@@ -31,3 +31,36 @@ public class Person {
     }
 }
 // this is an example of run time polymorphism 
+
+package polymorph;
+
+public class Person {
+
+    public void eat(int a){
+        System.out.println("this is an integer");
+    }
+    public void eat(String a){
+        System.out.println("This is a string");
+    }
+    public void eat(float a){
+        System.out.println("this is a float");
+    }
+    public void sleep(){
+        System.out.println("adult sleeps");
+    }
+}
+
+package polymorph;
+
+public class Child extends Person{
+    public void sleep(){
+        System.out.println("child sleeps");
+    }
+    public static void main(String args[]){
+        Person saif = new Person();
+        Child sara = new Child();
+        saif.sleep();
+        sara.sleep();
+    }
+}
+
