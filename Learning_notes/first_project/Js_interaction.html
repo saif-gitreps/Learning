@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hello world</title>
+  </head>
+  <body>
+    <h1>hi guys!</h1>
+    <form action="process.php" method="POST">
+      <label for="Text Field"> Text Field </label>
+      <input type="text" name="text" id="output" />
+      <br />
+      <br />
+      <input
+        type="button"
+        name="clickHere"
+        id="clickHere"
+        onclick="document.getElementById('output').value ='hello world' "
+      />
+      <input
+        type="button"
+        name="clear"
+        id="clear"
+        onclick="document.getElementById('output').value =' ' "
+      />
+    </form>
+  </body>
+</html>
