@@ -39,3 +39,21 @@ public class Rect extends Shape{
     }
 
 }
+
+package abstractclass;
+
+public class Employee extends Company{
+    @Override
+    void print(){
+        System.out.println("hello");
+    }
+    public static void main(String args[])
+    {
+        Circle c1 = new Circle(34);
+        Rect r1 = new Rect(456,456);
+        c1.printArea();
+        r1.printArea();
+
+    }
+}
+
