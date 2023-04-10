@@ -13,3 +13,29 @@ abstract public class Shape {
         // + cannot be used with void methods so i switched to area.
     }
 }
+
+package abstractclass;
+
+public class Circle extends Shape{
+    private int radius;
+    public Circle(int radius){
+        this.radius = radius;
+    }
+    @Override
+    public double showArea(){
+        return this.radius * 3.14;
+        }
+}
+package abstractclass;
+
+public class Rect extends Shape{
+    private int length,bread;
+    Rect(int width,int len){
+        bread = width;
+        length = len;
+    }
+    public double showArea(){
+        return length*bread;
+    }
+
+}
