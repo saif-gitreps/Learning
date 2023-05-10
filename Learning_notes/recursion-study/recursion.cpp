@@ -3,13 +3,13 @@ using namespace std;
 #define FAST(SUIII); ios_base::sync_with_stdio(false);cin.tie(NULL);
 const int MAXN = 100010;
 
-void solving(int n){
+void solving(int i,int n){
   // this is backtracking to solve 3 2 1 .
-   if(n==0){
+   if(i==n){
       return;
-   }
-   cout<<n<<" "; 
-   solving(n-1);    
+   } 
+   solving(i+1,n);
+  cout<<n<<" ";
 }
 void solving(int n){
   // this is backtracking to solve 1 2 3 .
