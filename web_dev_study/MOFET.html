@@ -1,226 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MOSFET</title>
-    <style>
-      .top_head{ 
-        color:antiquewhite;
-        display: inline-block; 
-        font-size: 13px; 
-        padding:6px;
-        font-family:Verdana, Geneva, Tahoma, sans-serif;
-      }
-      .body_div{
-        color: rgb(241, 224, 202);
-        font-family: Arial, Helvetica, sans-serif;
-      }
-      .body_div:hover{
-        color:rgb(192, 190, 179);
-        font-style: italic;
-      }
-      .ref_headers{
-        font-size: medium;
-        color: rgb(129, 114, 92);
-      }
-      a{
-        color: burlywood;
-        text-decoration: none;
-      }
-      a:hover{
-        text-decoration: underline;
-      }
-      .ref_list{
-        color:antiquewhite;
-      }
-    </style>
-  </head>
-  <body style="background-color: rgb(53, 44, 44);outline: 10px solid rgb(0, 0, 0); display: inline-block;padding: 40px; border-radius: 0px;margin: 9px;">
+body {
+  background-color: rgb(53, 44, 44);
+  outline: 10px solid rgb(0, 0, 0);
+  display: inline-block;
+  padding: 40px;
+  border-radius: 0px;
+  margin: 9px;
+  text-align: center;
+  font-family: "Oswald", sans-serif;
+  color: rgba(220, 185, 143, 0.978);
+}
+a {
+  color: burlywood;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+.top_head {
+  color: rgb(170, 125, 67);
+  display: inline-block;
+  font-size: 14px;
+  padding: 10px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  outline: 3px solid rgb(109, 98, 83);
+  background-color: bisque;
+  border-radius: 20px;
+}
+.body_div {
+  color: rgb(241, 224, 202);
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: left;
+}
+.body_div:hover {
+  color: rgb(192, 190, 179);
+  font-style: italic;
+}
+.ref_headers {
+  text-align: left;
+}
+.ref_list {
+  color: antiquewhite;
+  text-align: left;
+}
 
-    <span class="top_head">
-      <p>Name: Saifur Rahman</p>
-      <p>ID : 221000912</p>
-      <p>Section: 3</p>
-    </span>
-    <h1 style="text-align: center;color: rgba(250, 235, 215, 0.396);">Effectiveness of FET-based Bionsensors</h1>
-    <div class="body_div">
-    <p>
-      <b>When</b> cancer is discovered early, the prognosis is improved. Unfortunately,
-      when cancer is discovered, about 50% of cases are already advanced. Early
-      intervention may try to limit or prevent cancer development and lethality
-      is achieved by early discovery of cancer or precancerous changes. There
-      are many obstacles to be addressed to obtain earlier detection of all
-      tumors. It is critical to comprehend who is most at risk for developing
-      cancer. Ideas must be transformed into sensitive, focused early detection
-      systems and adequately assessed to enable realistic clinical adoption.
-      Individuals with cancer who obtain an earlier diagnosis experience better
-      care, fewer side effects from their therapies, and an improved standard of
-      life than those who receive a later diagnosis. This is in addition to
-      knowing that they stand a higher chance of surviving
-    </p>
-
-    <p>
-      A blood chemistry test quantifies the levels of specific chemicals that
-      tissues and organs in the body emit into the blood. Metabolites,
-      electrolytes, lipids, carbohydrates, and proteins, including enzymes, are
-      some of these compounds. Blood chemistry tests provide crucial information
-      about the functionality of your liver, kidneys, and other organs. Blood
-      levels of substances that are high or low can indicate a disease or the
-      side effects of a medication
-    </p>
-    <p>
-      The CBC (complete blood count) counts the number of platelets, white blood
-      cells, and red blood cells in your blood. It also calculates your
-      hematocrit (the percentage of blood made up of red blood cells), the size
-      of your red blood cells, and the amount of hemoglobin in your red blood
-      cells. Hemoglobin is a protein that carries oxygen in your blood. The CBC
-      is frequently included in regular health examination. It can aid in the
-      diagnosis of various malignancies, particularly leukemias. Your health is
-      tracked as well both during and after treatment with it.
-    </p>
-
-    <p>
-      In samples of tissue, blood, bone marrow, or amniotic fluid, Cytogenetic
-      analysis searches for chromosomal alterations. Broken, missing, altered,
-      or additional chromosomes are examples of chromosomal alterations.
-      Chromosome changes could be an indication of a genetic disorder or certain
-      cancers. Cytogenetic analysis may be performed to aid in the diagnosis of
-      cancer, to organize treatment, or to assess the way a course of treatment
-      is working
-    </p>
-    <p>
-      A blood sample is tested using a liquid biopsy procedure to check for
-      cancer cells or tumor DNA fragments that might occasionally leak into the
-      blood. A biopsy using liquid could help with cancer early diagnosis.
-      Almost any region of the body can be used to collect tissue or cell
-      samples. Depending on the location of the tumor and the suspected cancer
-      kind, different samples are obtained. The entire organ may need to be
-      removed in certain biopsies. Only surgeons are qualified to execute these.
-      In other kinds of biopsies, tumor samples are removed using an endoscope,
-      a flexible, illuminated tube inserted into the body. These biopsies can be
-      carried out by other clinicians, although surgeons are typically the ones
-      that carry them out.
-    </p>
-    <p>
-      But these traditional methods have a limitation of its own such as: For
-      CBC, Inaccurate results could be caused by certain medical disorders or
-      issues with the blood sample. As a result of improper phlebotomy
-      technique, a sample that is visibly clotted is improper for testing since
-      it will artificially lower the platelet count and lead to unpredictable
-      results in other areas. Conventional karyotyping or cytokinesis analysis
-      limit is accuracy in detecting complicated aberrations, marker
-      chromosomes, and cryptic abnormalities. An extracted tumor sample used in
-      a solid biopsy is delivered to a lab for analysis. This method is not
-      suitable for the diagnosis of high-risk individuals due to the
-      invasiveness of the procedure, which makes it impossible to track the
-      progression of cancer. A solid biopsy is an excision of a tumor sample
-      that is delivered to a lab for analysis. This method is not suitable for
-      the diagnosis of high-risk individuals due to the invasiveness of the
-      procedure, which makes it impossible to track the progression of cancer.
-      Imaging tests have some limitations and are not always very informative.
-      For instance, diagnostic tests typically are unable to conclusively
-      determine if a change is brought on by cancer. Imaging tests can detect
-      vast clusters of cancer cells, but they cannot detect a single cancer cell
-      or even a few cancer cells.
-    </p>
-    <p>
-      Scientists in the areas of early biomarker identification and drug
-      screening have raised questions about field-effect transistor (FET) type
-      biosensing designs. The non-metalized gate dielectrics that cover the
-      semiconductor material actively translate the biological changes on the
-      surface when it is exposed to an electrolyte solution. Numerous studies
-      have validated the capability of these novel instruments to detect
-      different biomolecular analytes in real-time, extremely precise, specific,
-      and label-free manners. Biomarkers are chemicals that noticeably change as
-      cancer progresses. These molecules, which include proteins, nucleic acids,
-      hormones, metabolites, isoenzymes, and metabolites, have significant
-      therapeutic value. The presence, lack, or change in concentration of a
-      particular cell biomarker frequently indicates cancer development. The
-      discovery and quantification of these kinds of oncobiomarkers may help in
-      the early detection and monitoring of disease development. The unique
-      characteristics of field-effect transistor (FET)-based sensors, such as
-      their simplicity in surface functionalization, label-free nature, and low
-      power consumption during functioning, have given a lot of attention to the
-      world.
-    </p>
-    <p>
-      Here is the reason why FET is efficient: Sensitivity: Compared to
-      conventional techniques, FET biosensors can detect cancer biomarkers at
-      considerably lower concentrations. This enables earlier cancer
-      identification, which can enhance patient outcomes. Speed: Compared to
-      conventional techniques like histology, which can take days or weeks to
-      obtain results, FET biosensors can deliver results in real-time. FET
-      biosensors can be constructed to be compact and portable, which qualifies
-      them for applications at the point of care. They can therefore be employed
-      in isolated areas or in places with limited resources, where conventional
-      approaches would not be feasible.
-    </p>
-    <p>
-      Concluding over the fact that, Over the past few decades, FET biosensor
-      platforms have drawn a lot of interest, which has greatly increased the
-      number of practical applications. In order to achieve highly selective,
-      ultrasensitive biosensing performance, it is critical to highlight the
-      various parameters and the difficulties they pose, including the setup of
-      the device, method of measurement, and operational circumstances, surface
-      stimulation with a target-specific bioreceptor/recognition element, and
-      recognition of biomarkers for a particular disease, such as cancer.
-    </p>
-    </div>
-    <div class="ref_headers">
-      <h3>References:</h3>
-      <h4>Citation:</h4>
-    </div>
-    <div class="ref_list">
-      <p>
-        National Library of Medicine.2022 March 18. Early detection of cancer.
-        <p style="text-indent:30px">
-            <a href="https://pubmed.ncbi.nlm.nih.gov/35298272">
-                Source: https://pubmed.ncbi.nlm.nih.gov/35298272        
-            </a>
-        </p>
-      </p>
-      <br />
-      <p>
-        The Lancet Oncoloy.2019 November 05. Earlier diagnosis: the importance
-        of cancer symptoms.
-        <p style = "text-indent: 30px;">
-            <a href="https://www.thelancet.com/journals/lanonc/article/PIIS1470-2045(19)30658-8/fulltext" target="_blank">
-                Source:
-                https://www.thelancet.com/journals/lanonc/article/PIIS1470-2045(19)30658-8/fulltext        
-            </a>
-        </p> 
-      <br />
-      <p>
-        National Cancer Institute. 2023 January 17. How cancer is Diagnosed.
-        <p style="text-indent: 30px;">
-            <a href="https://www.cancer.gov/about-cancer/diagnosis-staging/diagnosis" target="_blank">
-                Source:
-                https://www.cancer.gov/about-cancer/diagnosis-staging/diagnosis</a
-        </p>
-      </p>
-      <br />
-      <p>
-        National Cancer Institute. 2023 January 17. How cancer is Diagnosed.
-        <p style="text-indent:30px;">
-            <a href="https://www.cancer.gov/about-cancer/diagnosis-staging/diagnosis" target="_blank">
-                Source: https://www.cancer.gov/about-cancer/diagnosis-staging/diagnosis
-            </a>
-        </p>
-      </p>
-      <br />
-      <p>
-        Bridge, J. A. (2008). Advantages and limitations of cytogenetic,
-        molecular cytogenetic, and molecular diagnostic testing in mesenchymal
-        neoplasms. Journal of Orthopedic Science, 13(3), 273-282.
-        <p style="text-indent:30px">
-            <a href="https://doi.org/10.1007/s00776-007-1215-1" target="_blank">
-                https://doi.org/10.1007/s00776-007-1215-1        
-            </a>
-        </p>
-      </p>
-      <br/>
-    </div>
-  </body>
-</html>
+#ref-para {
+  text-indent: 30px;
+}
