@@ -1,0 +1,16 @@
+body {
+  margin: 70px;
+}
+img {
+  height: 200px;
+  width: 200px;
+  border-radius: 100%;
+}
+p:hover {
+  cursor: pointer;
+}
+#todays-challenge {
+  color: rgb(170, 96, 83);
+  font-weight: bold;
+  font-size: 52px;
+}
