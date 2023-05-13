@@ -1,9 +1,28 @@
+h1 {
+  font-size: 40px;
+  color: rgb(71, 62, 62);
+}
+a {
+  background-color: rgb(167, 1, 78);
+  color: antiquewhite;
+  border-radius: 5px;
+  font-size: 24px;
+  padding: 5px;
+  border: 1px solid rgb(167, 1, 78);
+}
+a:hover {
+  font-weight: normal;
+  text-decoration: none;
+  background-color: rgb(180, 12, 90);
+}
 ol {
   list-style: none;
+  background-color: rgb(244, 206, 196);
+  margin: -10px;
+  border-radius: 20px;
 }
-
-/* 
 li {
-  list-style: none;
+  background-color: rgb(223, 136, 124);
+  margin: 32px;
+  border-radius: 8px;
 }
- */
