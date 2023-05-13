@@ -1,12 +1,11 @@
 body {
   text-align: center;
   background-color: rgb(233, 215, 207);
-  color: rgb(83.75.75);
+  color: rgb(83, 75, 75);
   font-size: 20px;
 }
 h1 {
   font-family: "Oswald", sans-serif;
-  color: rgb(125, 85, 32);
 }
 p {
   font-family: "Fira Sans", sans-serif;
