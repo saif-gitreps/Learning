@@ -5,10 +5,10 @@ h1 {
 a {
   background-color: rgb(167, 1, 78);
   color: antiquewhite;
-  border-radius: 5px;
+  border-radius: 6px;
   font-size: 24px;
   padding: 5px;
-  border: 1px solid rgb(167, 1, 78);
+  border: 2px solid rgb(49, 41, 45);
 }
 a:hover {
   font-weight: normal;
@@ -24,5 +24,5 @@ ol {
 li {
   background-color: rgb(223, 136, 124);
   margin: 30px;
-  border-radius: 8px;
+  border-radius: 6px;
 }
