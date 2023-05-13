@@ -26,6 +26,17 @@ a:hover {
   background-color: bisque;
   border-radius: 20px;
 }
+.top_head:hover {
+  color: rgb(170, 125, 67);
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 17px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  outline: 4px solid rgb(109, 98, 83);
+  background-color: bisque;
+  border-radius: 20%;
+}
 .body_div {
   color: rgb(241, 224, 202);
   font-family: Arial, Helvetica, sans-serif;
