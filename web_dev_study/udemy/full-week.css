@@ -1,14 +1,30 @@
 h1 {
-  font-size: 40px;
+  font-size: 48px;
   color: rgb(71, 62, 62);
+  margin: 12px;
+}
+/* #header-description {
+  margin-bottom: 36px;
+} */
+h2 {
+  color: rgb(78, 12, 5);
+  font-family: "Oswald", sans-serif;
+}
+header p {
+  margin-bottom: 36px;
+}
+main {
+  background-color: rgb(244, 215, 178);
+  margin: 20px -30px;
 }
 a {
   background-color: rgb(167, 1, 78);
   color: antiquewhite;
   border-radius: 6px;
   font-size: 24px;
-  padding: 5px;
+  padding: 12px 42px;
   border: 2px solid rgb(49, 41, 45);
+  margin: 12px;
 }
 a:hover {
   font-weight: normal;
@@ -17,12 +33,21 @@ a:hover {
 }
 ol {
   list-style: none;
-  background-color: rgb(244, 206, 196);
-  margin: -10px;
-  border-radius: 20px;
+  width: 500px;
+  margin: 36px auto 0 auto;
+  padding: 0;
 }
 li {
+  padding: 15px;
   background-color: rgb(223, 136, 124);
   margin: 30px;
   border-radius: 6px;
+}
+main p {
+  color: rgb(71, 29, 22);
+  margin: 12px;
+}
+.daily-goals {
+  color: rgb(71, 29, 22);
+  margin: 12px;
 }
