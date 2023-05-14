@@ -7,7 +7,6 @@ h1 {
   margin: 12px;
 }
 #header-description {
-  margin-bottom: 36px;
 }
 h2 {
   color: rgb(78, 12, 5);
@@ -23,12 +22,13 @@ main {
 }
 a {
   background-color: rgb(167, 1, 78);
+  border: 2px solid rgb(49, 41, 45);
   color: antiquewhite;
   border-radius: 6px;
   font-size: 24px;
-  padding: 12px 42px;
-  border: 2px solid rgb(49, 41, 45);
-  margin: 12px;
+  padding: 12px 48px;
+  margin: 12px 0;
+  display: inline-block;
 }
 a:hover {
   font-weight: normal;
