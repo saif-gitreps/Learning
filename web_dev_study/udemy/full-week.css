@@ -1,18 +1,22 @@
+header {
+  margin-bottom: 60px;
+}
 h1 {
   font-size: 48px;
   color: rgb(71, 62, 62);
   margin: 12px;
 }
-/* #header-description {
+#header-description {
   margin-bottom: 36px;
-} */
+}
 h2 {
   color: rgb(78, 12, 5);
   font-family: "Oswald", sans-serif;
 }
-header p {
+/* header p {
   margin-bottom: 36px;
-}
+} */
+
 main {
   background-color: rgb(244, 215, 178);
   margin: 20px -30px;
@@ -43,11 +47,10 @@ li {
   margin: 30px;
   border-radius: 6px;
 }
-main p {
+/* main p {
   color: rgb(71, 29, 22);
   margin: 12px;
-}
-.daily-goals {
-  color: rgb(71, 29, 22);
-  margin: 12px;
+} */
+.highlight-goal {
+  background-color: rgb(226, 115, 101);
 }
