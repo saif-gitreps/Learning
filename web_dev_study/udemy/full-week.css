@@ -4,9 +4,10 @@ header {
 h1 {
   font-size: 48px;
   color: rgb(71, 62, 62);
-  margin: 12px;
+  margin: 0;
 }
 #header-description {
+  margin: 12px 0;
 }
 h2 {
   color: rgb(78, 12, 5);
@@ -18,7 +19,7 @@ h2 {
 
 main {
   background-color: rgb(244, 215, 178);
-  margin: 20px -30px;
+  margin: 20px -70px;
 }
 a {
   background-color: rgb(167, 1, 78);
@@ -27,13 +28,13 @@ a {
   border-radius: 6px;
   font-size: 24px;
   padding: 12px 48px;
-  margin: 12px 0;
+  margin: 0;
   display: inline-block;
 }
 a:hover {
   font-weight: normal;
   text-decoration: none;
-  background-color: rgb(180, 12, 90);
+  background-color: rgb(186, 48, 48);
 }
 ol {
   list-style: none;
@@ -43,9 +44,13 @@ ol {
 }
 li {
   padding: 15px;
-  background-color: rgb(223, 136, 124);
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  background-color: rgb(230, 126, 113);
   margin: 30px;
-  border-radius: 6px;
+  border-radius: 10px;
+}
+li:hover {
+  border: 1px solid rgb(0, 0, 0);
 }
 /* main p {
   color: rgb(71, 29, 22);
