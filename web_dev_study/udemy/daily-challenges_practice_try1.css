@@ -1,0 +1,27 @@
+body {
+  margin: 70px;
+}
+img {
+  height: 250px;
+  width: 250px;
+  border-radius: 100%;
+  margin-bottom: -125px;
+  border: 5px solid black;
+}
+main h1 {
+  font-size: 31px;
+  font-weight: bold;
+}
+main {
+  background-color: rgb(224, 119, 81);
+  border: 5px solid black;
+  width: 800px;
+  padding: 120px 50px 20px 50px;
+  margin: 0px auto 60px auto;
+  border-radius: 9px;
+}
+#todays-challenge {
+  color: rgb(94, 31, 20);
+  font-weight: bold;
+  font-size: 52px;
+}
