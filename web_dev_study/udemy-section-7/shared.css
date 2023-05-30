@@ -2,3 +2,17 @@ body {
   font-family: "QuickSand", sans-serif;
   margin: 0;
 }
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+#page-logo a {
+  color: rgb(255, 243, 160);
+  font-family: "Oleo Script", sans-serif;
+  padding: 10px;
+  font-size: 50px;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 2px black;
+}
