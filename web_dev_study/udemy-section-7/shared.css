@@ -1,26 +1,23 @@
-body {
-  font-family: "QuickSand", sans-serif;
-  /* margin: 0; */
-}
-ul {
-  background-color: rgb(250, 146, 63);
-  width: 250px;
-  list-style: none;
-  margin: 10px;
-  padding: 0;
-}
-li {
-  background-color: rgb(238, 212, 192);
-  width: 100px;
-}
 p {
   background-color: rgb(211, 88, 209);
   margin: 10px;
   width: 250px;
 }
+
+ul {
+  background-color: rgb(250, 146, 63);
+  list-style: none;
+  width: 250px;
+  margin: 10px;
+  padding: 0;
+}
+
+li {
+  background-color: rgb(238, 212, 192);
+  width: 100px;
+}
 #container {
   background-color: rgb(82, 23, 81);
   padding: 10px;
   width: 600px;
-  display: flex;
 }
