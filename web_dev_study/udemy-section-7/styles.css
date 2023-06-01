@@ -4,3 +4,12 @@
   background-position: center;
   background-size: cover;
 }
+#hero-content {
+  width: 900px;
+  background-color: rgba(51, 48, 47, 0.5);
+  box-shadow: 2px 4px 14px black;
+  border-radius: 8px;
+  text-align: center;
+  padding: 50px 0;
+  margin: 0px auto;
+}
