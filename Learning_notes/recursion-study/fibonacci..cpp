@@ -35,7 +35,6 @@ int rev(int n){
 void solve(){
 
    cout<<rev(5);
-   //out_arr(a,10);
 
 }
 
