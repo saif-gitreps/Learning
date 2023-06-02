@@ -7,9 +7,7 @@
 using namespace std;
 #define s(x) sizeof(x)/sizeof(x[0]);
 #define ll long long int
-#define newline() "\n"
-#define nexline() std::cout<<newline()
-#define enter_arr(x,n) for(int i=0;i<n;i++)cin>>x[i]
+
 /*==================================================*/
 
 // one thing to note here is that passing an argument as sum+a[i] and sum+= a[i] and then passing argument are two different
