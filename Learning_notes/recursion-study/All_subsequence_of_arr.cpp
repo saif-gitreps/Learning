@@ -23,6 +23,7 @@ for (int x=2;x*x<=n;x++)
 if (n > 1) f.push_back(n);return f; }
 /*==================================================*/
 
+//take and not take technique.
 void rev(int i,int a[],vector<int>& ds,int n){
    if(i==n){
       for(auto &s: ds){
