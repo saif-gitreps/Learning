@@ -1,3 +1,6 @@
+header {
+  position: absolute;
+}
 #hero {
   height: 800px;
   background-image: url("/web_dev_study/udemy-section-7/images/places/ocean.jpg");
