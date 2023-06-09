@@ -1,6 +1,3 @@
-header {
-  position: absolute;
-}
 #hero {
   height: 800px;
   background-image: url("/web_dev_study/udemy-section-7/images/places/ocean.jpg");
@@ -8,7 +5,7 @@ header {
   background-size: cover;
 }
 #hero-content {
-  width: 900px;
+  width: 800px;
   background-color: rgba(74, 73, 73, 0.5);
   box-shadow: 2px 4px 5px black;
   border-radius: 10px;
