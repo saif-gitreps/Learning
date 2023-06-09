@@ -7,7 +7,6 @@ using namespace std;
 #define debug(a) cerr<< "line "<<__LINE__ <<" : "<< #a <<" --> "<<(a)<<"\n"
 #define GGG 9223372036854775807
 #define pb push_back
-#define FAST(SUIII); ios_base::sync_with_stdio(false);cin.tie(NULL);
 const int MAXN = 100010;
    
 void rev(int i,string s,string ds){
