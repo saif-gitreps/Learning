@@ -15,6 +15,11 @@
   position: relative;
   top: 200px;
 }
+#hero-content:hover {
+  background-color: rgba(36, 36, 36, 0.5);
+  box-shadow: 2px 4px 10px black;
+}
+
 #hero-content h1 {
   color: white;
   text-transform: uppercase;
