@@ -7,7 +7,7 @@ header {
 }
 
 main ul {
-  width: 800px;
+  width: 1500px;
   margin: 0 auto;
 }
 main li {
@@ -16,6 +16,7 @@ main li {
   border-radius: 6px;
   display: flex;
   overflow: hidden;
+  width: 500px;
 }
 main li img {
   width: 300px;
@@ -37,7 +38,7 @@ main li img {
   padding: 6px;
   text-decoration: none;
   text-transform: capitalize;
-  color: rgb(22, 211, 228);
+  color: rgb(22, 211, 218);
 }
 .actions a:hover {
   background-color: rgb(190, 239, 244);
