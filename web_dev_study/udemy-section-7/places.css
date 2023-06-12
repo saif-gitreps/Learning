@@ -1,5 +1,6 @@
 body {
   background: linear-gradient(90deg, rgb(77, 77, 77), rgb(58, 58, 58));
+  color: rgb(68, 68, 68);
 }
 header {
   position: static;
@@ -21,10 +22,6 @@ main li img {
   height: 280px;
   object-fit: cover;
 }
-main li a {
-  text-decoration: none;
-  text-transform: capitalize;
-}
 
 .item-content {
   padding: 24px;
@@ -33,10 +30,16 @@ main li a {
   justify-content: space-between;
 }
 
-.item-content p {
-  margin-bottom: 60px;
-}
 .actions {
-  display: flex;
-  justify-content: right;
+  text-align: right;
+}
+.actions a {
+  padding: 6px;
+  text-decoration: none;
+  text-transform: capitalize;
+  color: rgb(22, 211, 228);
+}
+.actions a:hover {
+  background-color: rgb(190, 239, 244);
+  border-radius: 10px;
 }
