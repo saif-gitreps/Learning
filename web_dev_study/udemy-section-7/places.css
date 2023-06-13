@@ -7,8 +7,11 @@ header {
 }
 
 main ul {
-  width: 1400px;
+  width: 1200px;
   margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 20px;
 }
 main li {
   background-color: white;
@@ -16,7 +19,11 @@ main li {
   border-radius: 6px;
   display: flex;
   overflow: hidden;
-  width: 500px;
+}
+main li:nth-of-type(3) {
+  grid-column: 1 / span 2;
+  width: 100%;
+  box-sizing: border-box;
 }
 main li img {
   width: 300px;
@@ -25,7 +32,7 @@ main li img {
 }
 
 .item-content {
-  padding: 25px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
