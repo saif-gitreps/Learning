@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+//note : this is the code of the mycodeschool guy.
 using namespace std;
 #define ll long long int
 #define newline() "\n"
