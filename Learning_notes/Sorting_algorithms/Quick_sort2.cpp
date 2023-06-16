@@ -18,16 +18,15 @@ same goes for the right as well.
 
 #define FAST(SUIII); ios_base::sync_with_stdio(false);cin.tie(NULL);
 const int MAXN = 100010;
-
 int partition(vector<int> &a,int low ,int high){
    int left = low; int right = high;
    int pivot = a[low];
    while(left<right){
-      while(a[left]<=pivot && left<=high){
+      while(a[left]<=pivot && left<high){
          left++;
          // finds the first element greater than pivot.
       }
-      while(a[right]>pivot && right>=low){
+      while(a[right]>pivot && right>low){
          right--;
          // finds the first smaller element than pivot.
       }
@@ -53,7 +52,7 @@ void quickyboy(vector<int> &a,int low,int high){
 
 
 int main(){
-   vector<int> a = {6,5,9,3,10,15,12,16,0};
+   vector<int> a = {6,5,9,3,10,10,15,12,16,0,5};
    quickyboy(a,0,a.size()-1);
    for(int i=0;i<a.size();i++){
       cout<< a[i]<< " ";
