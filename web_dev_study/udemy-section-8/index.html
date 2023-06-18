@@ -3,13 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <title>BOORGIR</title>
     <link rel="stylesheet" href="/web_dev_study/udemy-section-8/styles.css" />
   </head>
   <body>
-    <header>
+    <header id="main-header">
+      <a href="/web_dev_study/udemy-section-8/index.html" id="logo">WEBFOOD</a>
       <nav>
-        <a href="">WEBFOOD</a>
         <ul>
           <li>
             <a href="">Brouse meals</a>
@@ -22,27 +27,31 @@
     </header>
     <main>
       <h1>Brows our delicous meal</h1>
-      <section>
+      <section id="latest-products">
         <ul>
-          <li>
-            <img
-              src="/web_dev_study/udemy-section-8/risotto.jpg"
-              alt="risotto"
-            />
-            <div>
-              <h2>Risotto with Prawns</h2>
-              <a href="">add to cart</a>
-            </div>
+          <li class="food-item">
+            <article>
+              <img
+                src="/web_dev_study/udemy-section-8/risotto.jpg"
+                alt="risotto"
+              />
+              <div class="food-item-content">
+                <h2>Risotto with Prawns</h2>
+                <a href="" class="button">add to cart</a>
+              </div>
+            </article>
           </li>
-          <li>
-            <img
-              src="/web_dev_study/udemy-section-8/cheeseburgers.jpg"
-              alt="boorgir"
-            />
-            <div>
-              <h2>CheeseBoorgirs</h2>
-              <a href="">add to cart</a>
-            </div>
+          <li class="food-item">
+            <article>
+              <img
+                src="/web_dev_study/udemy-section-8/cheeseburgers.jpg"
+                alt="boorgir"
+              />
+              <div class="food-item-content">
+                <h2>CheeseBoorgirs</h2>
+                <a href="" class="button">add to cart</a>
+              </div>
+            </article>
           </li>
         </ul>
       </section>

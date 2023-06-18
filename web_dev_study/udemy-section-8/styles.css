@@ -1,3 +1,83 @@
-header {
-  background-color: rgb(35, 23, 11);
+body {
+  font-family: "Open Sans", sans-serif;
+  margin: 0;
+  background-color: rgb(44, 40, 38);
+}
+a {
+  text-decoration: none;
+}
+ul {
+  list-style: none;
+}
+#main-header {
+  background-color: rgb(29, 26, 24);
+  height: 80px;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#logo {
+  color: rgb(238, 164, 80);
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+#main-header ul {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+}
+#main-header li {
+  margin: 0 15px;
+}
+#main-header nav a {
+  color: rgb(185, 134, 31);
+  font-size: 20px;
+}
+
+#main-header nav a:hover {
+  color: rgb(285, 164, 31);
+  font-size: 20px;
+}
+main h1 {
+  text-align: center;
+  color: rgb(238, 164, 80);
+  font-size: 38px;
+}
+#latest-products {
+  width: 80%;
+  margin: 50px auto;
+}
+#latest-products ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin: 0;
+  padding: 0;
+}
+.food-item {
+  background-color: rgb(228, 206, 182);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.food-item img {
+  height: 230px;
+  width: 100%;
+  object-fit: cover;
+}
+.food-item-content {
+  padding: 12px;
+  text-align: center;
+}
+.button {
+  background-color: rgb(228, 157, 44);
+  color: white;
+  border-radius: 4px;
+  padding: 5px 20px;
+}
+.button:hover {
+  background-color: rgb(150, 101, 21);
 }
