@@ -69,8 +69,12 @@ main h1 {
   object-fit: cover;
 }
 .food-item-content {
-  padding: 12px;
+  /* padding: 14px; */
   text-align: center;
+  padding: 10%;
+}
+h2 {
+  font-size: 2em;
 }
 .button {
   background-color: rgb(228, 157, 44);
