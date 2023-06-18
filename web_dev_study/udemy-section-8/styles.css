@@ -80,3 +80,15 @@ main h1 {
 .button:hover {
   background-color: rgb(150, 101, 21);
 }
+
+@media (max-width: 46rem) {
+  header nav {
+    display: none;
+  }
+  main h1 {
+    font-size: 1.5rem;
+  }
+  #latest-products ul {
+    grid-template-columns: 1fr;
+  }
+}
