@@ -11,15 +11,15 @@ ul {
 }
 #main-header {
   background-color: rgb(29, 26, 24);
-  height: 80px;
-  padding: 0 20px;
+  height: 5rem;
+  padding: 0 5%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 #logo {
   color: rgb(238, 164, 80);
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: bold;
   text-transform: uppercase;
 }
@@ -31,30 +31,29 @@ ul {
   padding: 0;
 }
 #main-header li {
-  margin: 0 15px;
+  margin: 0 1rem;
 }
 #main-header nav a {
   color: rgb(185, 134, 31);
   font-size: 20px;
 }
-
 #main-header nav a:hover {
   color: rgb(285, 164, 31);
-  font-size: 20px;
+  font-size: 1.25rem;
 }
 main h1 {
   text-align: center;
   color: rgb(238, 164, 80);
-  font-size: 38px;
+  font-size: 3rem;
 }
 #latest-products {
   width: 80%;
-  margin: 50px auto;
+  margin: 2rem auto;
 }
 #latest-products ul {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 15px;
+  gap: 1rem;
   margin: 0;
   padding: 0;
 }
@@ -64,23 +63,19 @@ main h1 {
   overflow: hidden;
 }
 .food-item img {
-  height: 230px;
+  height: 15rem;
   width: 100%;
   object-fit: cover;
 }
 .food-item-content {
-  /* padding: 14px; */
   text-align: center;
-  padding: 10%;
-}
-h2 {
-  font-size: 2em;
+  padding: 1rem;
 }
 .button {
   background-color: rgb(228, 157, 44);
   color: white;
   border-radius: 4px;
-  padding: 5px 20px;
+  padding: 0.5rem 1.5rem;
 }
 .button:hover {
   background-color: rgb(150, 101, 21);
