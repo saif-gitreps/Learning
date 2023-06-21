@@ -7,3 +7,25 @@ int f2(int i,int sum){
    }
    return f2(i-1,sum+i);
 }
+
+
+==================================
+
+void calculateSum(int N, int& sum) {
+    if (N <= 0) {
+        return;
+    } else {
+        sum += N;
+        calculateSum(N - 1, sum);  
+    }
+}
+
+int main() {
+    int sum = 0;
+    int N = 10;
+    calculateSum(N, sum);
+    cout << "Sum of numbers from 1 to " << N << " is: " << sum << endl;
+    return 0;
+}
+
+
