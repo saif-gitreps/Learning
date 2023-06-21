@@ -23,9 +23,15 @@ ul {
   font-weight: bold;
   text-transform: uppercase;
 }
-#menu-button {
+.menu-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 3rem;
+  height: 3rem;
 }
-#menu-button span {
+.menu-button span {
+  background-color: rgb(172, 125, 14);
   width: 100%;
   height: 3px;
 }
