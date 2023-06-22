@@ -64,7 +64,7 @@ ul {
 }
 #side-drawer ul {
   margin: 0;
-  padding: 4rem;
+  padding: 5rem;
   list-style: none;
   display: flex;
   flex-direction: column;
