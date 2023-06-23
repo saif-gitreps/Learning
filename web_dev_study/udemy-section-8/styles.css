@@ -120,6 +120,9 @@ main h1 {
   text-align: center;
   padding: 1rem;
 }
+.food-item h2 {
+  margin: 0 0 1rem 0;
+}
 .button {
   background-color: rgb(228, 157, 44);
   color: white;
