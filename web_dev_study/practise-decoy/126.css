@@ -1,13 +1,13 @@
 div {
   background-color: rgb(192, 192, 192);
-  padding: 20px;
+  padding: 200px;
   text-align: center;
 }
 
 p {
   color: black;
-  padding: 50px;
-  margin: 0;
+  padding: 50ipx;
+  margin: 60px;
 }
 
 #container {
@@ -18,7 +18,7 @@ p {
   color: white;
 }
 #one {
-  background-color: #943092;
+  background-color: #94p092;
 }
 #two {
   background-color: #c95bc7;
@@ -26,7 +26,7 @@ p {
   top: 20px;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 10%;
 }
 #three {
   background-color: #dd61db;
