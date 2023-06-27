@@ -1,8 +1,30 @@
 html {
-  --color-grey-1: rbg(200, 200, 200);
+  --color-grey-10: rgb(200, 200, 200);
+  --color-grey-20: rgb(170, 170, 170);
+  --color-grey-30: rgb(140, 140, 140);
+  --color-grey-40: rgb(70, 70, 70);
+  --color-grey-50: rgb(49, 49, 49);
+  --color-blue-10: rgb(42, 194, 199);
+  --color-blue-20: rgb(35, 130, 150);
 }
 body {
-  background-color: var(--color-grey-1);
+  background-color: var(--color-grey-20);
 }
 h1 {
+  color: var(--color-grey-50);
+}
+p {
+  color: var(--color-grey-40);
+}
+a {
+  text-decoration: none;
+  background-color: var(--color-blue-10);
+  color: var(--color-blue-20);
+  padding: 0.2rem;
+  border: 1px solid var(--color-grey-50);
+  border-radius: 2px;
+}
+main {
+  background-color: var(--color-grey-10);
+  padding: 1rem;
 }
