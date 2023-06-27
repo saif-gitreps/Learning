@@ -17,18 +17,17 @@ h1 {
 p {
   color: var(--color-grey-40);
 }
-a {
-  text-decoration: none;
-  background-color: var(--color-blue-10);
-  color: var(--color-blue-20);
-  padding: 0.1rem 0.3rem;
-  border: 1px solid var(--color-grey-50);
-  border-radius: 2px;
-  transition: background-color 0.4s ease-out;
+#card {
+  background-color: var(--color-grey-10);
+  width: 30%;
+  border-radius: 3px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 2rem;
+  transition: background-color 0.2s ease-out 0.1s;
 }
-a:hover {
-  background-color: var(--color-blue-20);
-  color: var(--color-blue-10);
+#card:hover {
+  background-color: var(--color-grey-20);
 }
 #front {
   padding: 1rem;
@@ -52,16 +51,38 @@ a:hover {
 }
 #price {
   background-color: var(--color-blue-10);
-  margin: 0;
+  margin: 0 -2rem;
 }
-main {
-  background-color: var(--color-grey-10);
-  width: 24%;
-  border-radius: 3px;
-  margin: 0 auto;
+a {
+  text-decoration: none;
+  background-color: var(--color-blue-10);
+  color: var(--color-blue-20);
+  padding: 0.1rem 0.3rem;
+  border: 1px solid var(--color-grey-50);
+  border-radius: 2px;
+  transition: background-color 0.4s ease-out;
+}
+a:hover {
+  background-color: var(--color-blue-20);
+  color: var(--color-blue-10);
+}
+#pepe {
+  object-fit: cover;
   text-align: center;
-  transition: background-color 0.2s ease-out 0.1s;
+  height: 30rem;
 }
-main:hover {
-  background-color: var(--color-grey-20);
+@media (max-width: 48rem) {
+  #front {
+    padding: 0;
+    padding-top: 10px;
+    width: 80%;
+    margin: 0 auto;
+  }
+  #card {
+    width: 60%;
+    margin: 0 auto;
+  }
+  #pepe img {
+    height: 14rem;
+  }
 }
