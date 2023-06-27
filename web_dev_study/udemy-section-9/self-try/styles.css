@@ -27,4 +27,6 @@ a {
 main {
   background-color: var(--color-grey-10);
   padding: 1rem;
+  width: 20%;
+  text-align: center;
 }
