@@ -2,12 +2,20 @@ body {
   background-color: rgb(31, 30, 30);
   margin: 8rem;
 }
-
+form {
+  background-color: rgb(255, 255, 255);
+  width: 30rem;
+  margin: 3rem auto;
+  border-radius: 6px;
+  padding: 1rem;
+}
 input {
-  width: 20rem;
+  width: 100%;
   display: block;
   margin-bottom: 1rem;
+  box-sizing: border-box;
 }
+
 button {
   display: block;
 }
