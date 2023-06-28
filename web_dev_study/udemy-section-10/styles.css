@@ -1,5 +1,6 @@
 body {
   background-color: rgb(31, 30, 30);
+  font-family: "Times New Roman", Times, serif;
   margin: 8rem;
 }
 form {
@@ -9,13 +10,36 @@ form {
   border-radius: 6px;
   padding: 1rem;
 }
+label {
+  margin-bottom: 0.5rem;
+  display: block;
+}
 input {
   width: 100%;
   display: block;
   margin-bottom: 1rem;
   box-sizing: border-box;
+  border: 1px solid black;
+  padding: 0.25rem;
+  color: rgb(26, 26, 26);
+  font-weight: bolder;
+}
+
+input:focus {
+  background-color: rgb(219, 190, 253);
+  color: rgb(82, 74, 91);
 }
 
 button {
   display: block;
+  font: normal 1rem;
+  background-color: rgb(58, 3, 58);
+  color: white;
+  border: 1px solid rgb(58, 3, 58);
+  padding: 0.5rem 1.5rem;
+  border-radius: 3px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: rgb(82, 74, 91);
 }
