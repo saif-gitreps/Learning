@@ -14,7 +14,8 @@ label {
   margin-bottom: 0.5rem;
   display: block;
 }
-input {
+input,
+textarea {
   width: 100%;
   display: block;
   margin-bottom: 1rem;
@@ -25,9 +26,17 @@ input {
   font-weight: bolder;
 }
 
-input:focus {
+input:focus,
+textarea:focus {
   background-color: rgb(219, 190, 253);
   color: rgb(82, 74, 91);
+}
+.form-control-inline {
+  display: flex;
+}
+.form-control-inline input {
+  width: auto;
+  margin-right: 0.6rem;
 }
 
 button {
