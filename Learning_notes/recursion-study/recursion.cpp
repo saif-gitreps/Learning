@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-using namespace std;
+using namespace std
 #define FAST(SUIII); ios_base::sync_with_stdio(false);cin.tie(NULL);
 const int MAXN = 100010;
 
