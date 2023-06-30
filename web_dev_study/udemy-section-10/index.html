@@ -12,78 +12,113 @@
     </header>
     <main>
       <form action="" method="GET">
-        <label for="username">Name:</label>
-        <input type="text" name="user-name" id="username" />
-        <label for="text-area">A message</label>
-        <textarea name="" id="text-area"></textarea>
-        <label for="useremail">Email:</label>
-        <input type="email" name="user-email" id="useremail" />
-        <label for="userage">Age:</label>
-        <input type="number" name="user-age" id="userage" step="2" />
-        <label for="userpassword">Password:</label>
-        <input type="password" id="userpassword" name="user-password" />
-        <label for="userdate">Birthdate:</label>
-        <input type="date" name="user-date" id="userdate" />
-        <br />
-        <label for="drop-list">Major:</label>
-        <select name="" id="drop-list">
-          <option value="Science">Science</option>
-          <option value="Commerce">Commerce</option>
-          <option value="Cow">Cow</option>
-        </select>
+        <section>
+          <h2>Personal Details:</h2>
+          <ul>
+            <li>
+              <label for="username">Name:</label>
+              <input type="text" name="user-name" id="username" />
+            </li>
+            <li>
+              <label for="useremail">Email:</label>
+              <input type="email" name="user-email" id="useremail" />
+            </li>
+            <li>
+              <label for="userpassword">Password:</label>
+              <input type="password" id="userpassword" name="user-password" />
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>More details:</h2>
+          <ul>
+            <li>
+              <label for="userage">Age:</label>
+              <input type="number" name="user-age" id="userage" step="2" />
+            </li>
+            <li>
+              <label for="userdate">Birthdate:</label>
+              <input type="date" name="user-date" id="userdate" />
+            </li>
+            <li>
+              <label for="drop-list">Major:</label>
+              <select name="" id="drop-list">
+                <option value="Science">Science</option>
+                <option value="Commerce">Commerce</option>
+                <option value="Cow">Cow</option>
+              </select>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <label for="text-area">A message</label>
+          <textarea name="" id="text-area"></textarea>
+        </section>
+        <section>
+          <h2>Verification method:</h2>
+          <ul>
+            <li class="form-control-inline">
+              <input
+                type="radio"
+                name="verify"
+                id="verify-text"
+                value="text-message"
+              />
+              <label for="verify-text">via text message</label>
+            </li>
+            <li class="form-control-inline">
+              <input
+                type="radio"
+                name="verify"
+                id="verify-phone"
+                value="phone-call"
+              />
+              <label for="verify-phone">via phone call</label>
+            </li>
+            <li class="form-control-inline">
+              <input
+                type="radio"
+                name="verify"
+                id="verify-email"
+                value="email-verify"
+              />
+              <label for="verify-email">via email </label>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>Contact details:</h2>
+          <ul>
+            <li class="form-control-inline">
+              <input
+                type="checkbox"
+                name="contact"
+                id="contact-email"
+                value="email"
+              />
+              <label for="contact-email">Contact for emails</label>
+            </li>
+            <li class="form-control-inline">
+              <input
+                type="checkbox"
+                name="contact"
+                id="contact-phone"
+                value="call"
+              />
+              <label for="contact-phone">Contact for phone</label>
+            </li>
+          </ul>
+        </section>
         <hr />
-        <h2>Verification method:</h2>
-        <div class="form-control-inline">
-          <input
-            type="radio"
-            name="verify"
-            id="verify-text"
-            value="text-message"
-          />
-          <label for="verify-text">via text message</label>
-        </div>
-        <div class="form-control-inline">
-          <input
-            type="radio"
-            name="verify"
-            id="verify-phone"
-            value="phone-call"
-          />
-          <label for="verify-phone">via phone call</label>
-        </div>
-        <div class="form-control-inline">
-          <input
-            type="radio"
-            name="verify"
-            id="verify-email"
-            value="email-verify"
-          />
-          <label for="verify-email">via email </label>
-        </div>
-        <hr />
-        <div class="form-control-inline">
-          <input type="checkbox" name="terms" id="agree-terms" />
-          <label for="agree-terms">Agree for terms and condition</label>
-        </div>
-        <div class="form-control-inline">
-          <input
-            type="checkbox"
-            name="contact"
-            id="contact-email"
-            value="email"
-          />
-          <label for="contact-email">Contact for emails</label>
-        </div>
-        <div class="form-control-inline">
-          <input
-            type="checkbox"
-            name="contact"
-            id="contact-phone"
-            value="call"
-          />
-          <label for="contact-phone">Contact for phone</label>
-        </div>
-        <button>submit</button>
+        <section>
+          <div class="form-control-inline">
+            <input type="checkbox" name="terms" id="agree-terms" />
+            <label for="agree-terms">Agree for terms and condition</label>
+          </div>
+        </section>
+        <section>
+          <button>submit</button>
+        </section>
       </form>
     </main>
   </body>
