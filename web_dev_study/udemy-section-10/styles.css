@@ -19,6 +19,9 @@ form {
   border-radius: 6px;
   padding: 1rem;
 }
+textarea {
+  resize: none;
+}
 label {
   margin-bottom: 0.5rem;
   display: block;

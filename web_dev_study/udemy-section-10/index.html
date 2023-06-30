@@ -17,7 +17,13 @@
           <ul>
             <li>
               <label for="username">Name:</label>
-              <input type="text" name="user-name" id="username" />
+              <input
+                type="text"
+                name="user-name"
+                id="username"
+                required
+                placeholder="Nice cop"
+              />
             </li>
             <li>
               <label for="useremail">Email:</label>
@@ -25,7 +31,14 @@
             </li>
             <li>
               <label for="userpassword">Password:</label>
-              <input type="password" id="userpassword" name="user-password" />
+              <input
+                type="password"
+                id="userpassword"
+                name="user-password"
+                required
+                minlength="7"
+                maxlength="25"
+              />
             </li>
           </ul>
         </section>
@@ -34,11 +47,26 @@
           <ul>
             <li>
               <label for="userage">Age:</label>
-              <input type="number" name="user-age" id="userage" step="2" />
+              <input
+                type="number"
+                name="user-age"
+                id="userage"
+                step="2"
+                required
+                min="20"
+                max="100"
+              />
             </li>
             <li>
               <label for="userdate">Birthdate:</label>
-              <input type="date" name="user-date" id="userdate" />
+              <input
+                type="date"
+                name="user-date"
+                id="userdate"
+                required
+                min="1995-01-01"
+                max="2007-01-01"
+              />
             </li>
             <li>
               <label for="drop-list">Major:</label>
@@ -51,8 +79,8 @@
           </ul>
         </section>
         <section>
-          <label for="text-area">A message</label>
-          <textarea name="" id="text-area"></textarea>
+          <label for="text-area">A message:</label>
+          <textarea name="" id="text-area" rows="2"></textarea>
         </section>
         <section>
           <h2>Verification method:</h2>
@@ -63,6 +91,7 @@
                 name="verify"
                 id="verify-text"
                 value="text-message"
+                required
               />
               <label for="verify-text">via text message</label>
             </li>
@@ -72,6 +101,7 @@
                 name="verify"
                 id="verify-phone"
                 value="phone-call"
+                required
               />
               <label for="verify-phone">via phone call</label>
             </li>
@@ -81,6 +111,7 @@
                 name="verify"
                 id="verify-email"
                 value="email-verify"
+                required
               />
               <label for="verify-email">via email </label>
             </li>
@@ -118,6 +149,7 @@
         </section>
         <section>
           <button>submit</button>
+          <button type="reset">reset</button>
         </section>
       </form>
     </main>
