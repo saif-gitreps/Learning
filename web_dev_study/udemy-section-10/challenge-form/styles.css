@@ -1,3 +1,8 @@
-.field-details {
-  display: block;
+form {
+  width: 40%;
+  margin: 3rem auto;
+}
+section {
+  display: flex;
+  flex-direction: column;
 }
