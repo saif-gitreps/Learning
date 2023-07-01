@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-1 - find the first element smaller tha n pivot . and then stop at there.
+1 - find the first element greater tha n pivot . and then stop at there.
 
 2- then from right side , find the first element smaller than the pivot.
 
