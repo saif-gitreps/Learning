@@ -19,7 +19,21 @@ input {
 select {
   padding: 0.5rem;
 }
+ul {
+  list-style: none;
+  padding: 0;
+}
 section {
   display: flex;
   flex-direction: column;
+}
+.buttons ul {
+  display: flex;
+  justify-content: right;
+}
+.buttons ul button {
+  padding: 0.3rem 0.6rem;
+}
+#check-box {
+  margin-top: 0.4rem;
 }
