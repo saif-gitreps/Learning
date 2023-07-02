@@ -10,12 +10,15 @@
     />
   </head>
   <body>
-    <header></header>
+    <header><h1>Contact Us</h1></header>
     <main>
       <form
         action="/web_dev_study/udemy-section-10/challenge-form/index.html"
         method="get"
       >
+        <section>
+          <h2>How can we Help you?</h2>
+        </section>
         <section class="field-details">
           <label for="name">Your Name:</label>
           <input
@@ -34,8 +37,36 @@
             id="email"
             required
             maxlength="30"
+            placeholder="Enter your email.."
+          />
+          <label for="number">Your Phone Number</label>
+          <input
+            type="number"
+            name="user-number"
+            id="number"
+            required
+            minlength="11"
+            maxlength="11"
+            placeholder="Enter your Phone.."
           />
         </section>
+        <section class="not-important-fields">
+          <label for="message">Your message</label>
+          <textarea
+            name="user-message"
+            id="textarea"
+            cols="18"
+            rows="7"
+          ></textarea>
+          <label for="search"></label>
+          <select name="user-search" id="search">
+            <option value="Web-search">Web search</option>
+            <option value="Ad">Ads</option>
+            <option value="Youtube">Youtube link</option>
+            <option value="Facebook-post">Facebook post</option>
+          </select>
+        </section>
+        <section class="contact-field"></section>
       </form>
     </main>
   </body>
