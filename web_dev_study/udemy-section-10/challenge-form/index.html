@@ -27,7 +27,7 @@
             name="user-name"
             required
             maxlength="25"
-            minlength="6"
+            minlength="8"
             placeholder="Enter your name.."
           />
           <label for="email">Your Email Adress:</label>
@@ -56,17 +56,31 @@
             name="user-message"
             id="textarea"
             cols="18"
-            rows="7"
+            rows="8"
           ></textarea>
-          <label for="search"></label>
-          <select name="user-search" id="search">
+          <label for="search">How did you find us?</label>
+          <select name="user-search" id="search" required>
             <option value="Web-search">Web search</option>
             <option value="Ad">Ads</option>
             <option value="Youtube">Youtube link</option>
             <option value="Facebook-post">Facebook post</option>
           </select>
         </section>
-        <section class="contact-field"></section>
+        <section class="contact-field">
+          <h2>How Should we reply?</h2>
+          <ul>
+            <li>
+              <input type="radio" name="contact" id="call-me" />
+              <label for="call-me">Call me</label>
+            </li>
+            <li>
+              <input type="radio" name="contact" id="email-me" />
+              <label for="email-me">Email me</label>
+            </li>
+          </ul>
+          <input type="radio" name="contact" id="dont-reply" />
+          <label for="dont-reply">Prefer no reply</label>
+        </section>
       </form>
     </main>
   </body>
