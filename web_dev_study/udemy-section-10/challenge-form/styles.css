@@ -8,6 +8,8 @@ form {
   width: 40%;
   margin: 1rem auto;
   padding: 1rem;
+  border-radius: 3px;
+  box-shadow: 0.4px 0.6px 6px black;
 }
 form h2 {
   padding: 0;
@@ -31,8 +33,12 @@ section {
   display: flex;
   justify-content: right;
 }
+.buttons li {
+  margin: 0.1rem;
+}
 .buttons ul button {
   padding: 0.3rem 0.6rem;
+  border-radius: 2px;
 }
 #check-box {
   margin-top: 0.4rem;
