@@ -1,20 +1,20 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-1 - find the first element smaller tha n pivot . and then stop at there.
+1 - find the first element greater tha n pivot . and then stop at there.
 
 2- then from right side , find the first element smaller than the pivot.
 
 3. while traversing from right if you dont find any value smaller than pivot, still continue traversing.
-same goes for the right as well.
+same goes for the left as well.
 
-4. if j crosses i , then we stop.
+4. if right crosses left , then we stop.
 
-5. so the goal on entire loop is to make all the elements smaller than pivot to the right side of it, and to make the elemets smaller than it , to the left side of pivot.
+5. So the goal on entire loop is to make all the elements greater than pivot to the right side of it, and to make the elemets smaller than pivot, to the left side of pivot.
 
-6. if low is lesser than high , then that means that are more than 1 elements smaller
+6.NOTE: if low is lesser than high , then that means that are more than 1 elements smaller
 
-7. low >= high means one element only.
+7.NOTE: low >= high means one element only.
 
 #define FAST(SUIII); ios_base::sync_with_stdio(false);cin.tie(NULL);
 const int MAXN = 100010;
