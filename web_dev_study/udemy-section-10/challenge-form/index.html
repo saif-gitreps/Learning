@@ -49,16 +49,11 @@
             maxlength="11"
             placeholder="Enter your Phone.."
           />
-        </section>
-        <section class="not-important-fields">
           <label for="message">Your message</label>
-          <textarea
-            name="user-message"
-            id="textarea"
-            cols="18"
-            rows="8"
-          ></textarea>
-          <label for="search">How did you find us?</label>
+          <textarea name="user-message" id="textarea" rows="7"></textarea>
+        </section>
+        <label for="search">How did you find us?</label>
+        <section class="not-important-fields">
           <select name="user-search" id="search" required>
             <option value="Web-search">Web search</option>
             <option value="Ad">Ads</option>
@@ -70,15 +65,21 @@
           <h2>How Should we reply?</h2>
           <ul>
             <li>
-              <input type="radio" name="contact" id="call-me" />
+              <input type="radio" name="contact" id="call-me" value="phone" />
               <label for="call-me">Call me</label>
             </li>
             <li>
-              <input type="radio" name="contact" id="email-me" />
+              <input type="radio" name="contact" id="email-me" value="email" />
               <label for="email-me">Email me</label>
             </li>
             <li>
-              <input type="radio" name="contact" id="dont-reply" required />
+              <input
+                type="radio"
+                name="contact"
+                id="dont-reply"
+                value="no-reply"
+                required
+              />
               <label for="dont-reply">Prefer no reply</label>
             </li>
             <li id="check-box">

@@ -1,39 +1,58 @@
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: sans-serif;
+  background-color: rgb(236, 252, 253);
 }
 h1 {
   text-align: center;
-  margin: 0;
+  margin: 2rem;
   padding: 0;
 }
 form {
   background-color: rgb(203, 216, 227);
   width: 40%;
-  margin: 1rem auto;
+  margin: 0 auto;
   padding: 1rem;
   border-radius: 3px;
-  box-shadow: 0.4px 0.6px 6px rgb(39, 39, 39, 0.6);
+  box-shadow: 0px 2px 8px rgba(39, 39, 39, 0.6);
+}
+label {
+  display: block;
 }
 form h2 {
-  padding: 0;
-  margin: 0;
 }
-input {
+input,
+textarea,
+select {
   padding: 0.5rem;
+  font-family: inherit;
+  display: block;
+}
+textarea {
+  resize: none;
+}
+input:focus,
+textarea:focus {
+  background-color: rgb(243, 243, 243);
 }
 label {
   margin: 0.5rem 0;
 }
-select {
-  padding: 0.5rem;
-}
 ul {
   list-style: none;
   padding: 0;
+  margin: 0;
+}
+li {
+  display: flex;
+  margin: 0.5rem 0;
+}
+li label {
+  margin: 0;
 }
 section {
   display: flex;
   flex-direction: column;
+  margin-bottom: 1rem;
 }
 .buttons ul {
   display: flex;
@@ -45,7 +64,8 @@ section {
 }
 .buttons ul button {
   background-color: rgb(161, 161, 161);
-  padding: 0.3rem 0.6rem;
+  padding: 0.3rem 1.3rem;
+  border-radius: 3px;
   font-family: inherit;
 }
 #check-box {
