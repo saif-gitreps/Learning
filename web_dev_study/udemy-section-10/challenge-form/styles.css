@@ -1,3 +1,6 @@
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
 h1 {
   text-align: center;
   margin: 0;
@@ -9,7 +12,7 @@ form {
   margin: 1rem auto;
   padding: 1rem;
   border-radius: 3px;
-  box-shadow: 0.4px 0.6px 6px black;
+  box-shadow: 0.4px 0.6px 6px rgb(39, 39, 39, 0.6);
 }
 form h2 {
   padding: 0;
@@ -17,6 +20,9 @@ form h2 {
 }
 input {
   padding: 0.5rem;
+}
+label {
+  margin: 0.5rem 0;
 }
 select {
   padding: 0.5rem;
@@ -35,11 +41,17 @@ section {
 }
 .buttons li {
   margin: 0.1rem;
+  padding: 0;
 }
 .buttons ul button {
+  background-color: rgb(161, 161, 161);
   padding: 0.3rem 0.6rem;
-  border-radius: 2px;
+  font-family: inherit;
 }
 #check-box {
   margin-top: 0.4rem;
+}
+#submit-button {
+  background-color: darkblue;
+  color: white;
 }
