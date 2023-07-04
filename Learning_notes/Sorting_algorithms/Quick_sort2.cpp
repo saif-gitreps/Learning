@@ -37,6 +37,7 @@ int partition(vector<int> &a,int low ,int high){
    // this swap will work anyway because either way the left is 
    // gonna be greater or equal to
    // high because the outer loop has to work
+   // doubt was why does this executeed regardless , well because , when do we actually do this condition , when our left>right yea? well that's what happeed if noticed in the outer loop , left became greater or equal to right that's why we stopped , so we are fulfilling the condition regardless.
    swap(a[low],a[right]);
    return right;
 }
