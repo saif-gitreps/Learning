@@ -1,24 +1,23 @@
-function CalculateAdultYears(age) {
-  return age - 18;
+function printName(name) {
+  console.log(`hello ${name}!`);
 }
+const printAge = function (number) {
+  return number;
+};
+const greet = () => "hello world";
+
+const bill = (products, tax) => {
+  let total = 0;
+  for (let i = 0; i < products.length; i++) {
+    total += products[i] + products[i] * tax;
+  }
+  return total;
+};
 
 function int_main() {
-  let onlineCourse = "web-dev";
-  let coursePrice = 67;
-  let goals = ["id1", "id2", "id3"];
-  let groups = {
-    courseName: onlineCourse,
-    price: coursePrice,
-    mainGoals: goals,
-  };
-  let person = {
-    name: "siaf",
-    greet() {
-      console.log("hello");
-    },
-    age: 34,
-  };
-  person.greet();
+  console.log(greet());
+  console.log(bill([23, 23, 1, 2, 3, 3], 0.2));
   return 0;
 }
+
 int_main();
