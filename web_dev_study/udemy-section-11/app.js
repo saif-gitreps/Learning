@@ -1,22 +1,15 @@
-function printName(name) {
-  console.log(`hello ${name}!`);
-}
-const printAge = function (number) {
-  return number;
-};
-const greet = () => "hello world";
-
-const bill = (products, tax) => {
-  let total = 0;
-  for (let i = 0; i < products.length; i++) {
-    total += products[i] + products[i] * tax;
-  }
-  return total;
-};
-
 function int_main() {
-  console.log(greet());
-  console.log(bill([23, 23, 1, 2, 3, 3], 0.2));
+  let user1 = {
+    name: "saif",
+    age: 34,
+  };
+  let user2 = {
+    name: "Sara",
+    age: 10,
+  };
+  let a = [user1, user2];
+  a[0].name = "kaif";
+  console.log(a[0].name);
   return 0;
 }
 
