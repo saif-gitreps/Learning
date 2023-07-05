@@ -1,10 +1,9 @@
-let linked_list = {
-  data: null,
-  next: linked_list,
-};
+function name(name) {
+  return name;
+}
 
-function int_main() {
+function int_main(Void) {
   return 0;
 }
 
-int_main();
+int_main(null);
