@@ -3,6 +3,7 @@ function name(name) {
 }
 
 function int_main(Void) {
+  let hello = "hello";
   return 0;
 }
 
