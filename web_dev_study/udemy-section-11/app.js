@@ -1,5 +1,5 @@
 function name(name) {
-  return name;
+  return "";
 }
 
 function int_main(Void) {
