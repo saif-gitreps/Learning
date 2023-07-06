@@ -4,6 +4,7 @@ function name(name) {
 
 function int_main(Void) {
   let hello = "hello";
+  let a = { name: "no user" };
   return 0;
 }
 
