@@ -5,9 +5,6 @@
 ===========================================
 */
 using namespace std;
-#define s(x) sizeof(x)/sizeof(x[0]);
-#define ll long long int
-#define newline() "\n"
 #define nexline() std::cout<<newline()
 
 const int MAXN = 100010;
