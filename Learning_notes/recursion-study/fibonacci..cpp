@@ -1,9 +1,4 @@
 #include <bits/stdc++.h>
-/*             ::Pasteboard::
-===========================================
-
-===========================================
-*/
 using namespace std;
 #define nexline() std::cout<<newline()
 
