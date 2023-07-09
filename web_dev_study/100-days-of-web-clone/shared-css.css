@@ -1,0 +1,15 @@
+body {
+  font-family: R;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+li {
+  margin: 0;
+  padding: 0;
+}
