@@ -7,5 +7,4 @@ function int_main(Void) {
   let a = { name: "no user", date: "DD-MM-YYYY", age: 50 };
   return 0;
 }
-
 int_main(null);
