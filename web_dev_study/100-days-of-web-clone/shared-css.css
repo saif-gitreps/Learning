@@ -6,6 +6,10 @@ body {
 }
 #universal-nav ul {
   display: flex;
+  justify-content: center;
+}
+#universal-nav li {
+  padding: 0.3rem;
 }
 ul {
   list-style: none;
@@ -15,4 +19,7 @@ ul {
 li {
   margin: 0;
   padding: 0;
+}
+a {
+  text-decoration: none;
 }
