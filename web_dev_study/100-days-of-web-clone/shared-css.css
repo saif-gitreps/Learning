@@ -4,6 +4,9 @@ body {
   padding: 0;
   text-align: center;
 }
+#universal-nav ul {
+  display: flex;
+}
 ul {
   list-style: none;
   margin: 0;
