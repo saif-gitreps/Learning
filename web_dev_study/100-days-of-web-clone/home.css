@@ -1,3 +1,12 @@
+html {
+  --font-size-large: 4rem;
+  --font-size-medium-large: 2rem;
+  --font-size-medium: 1rem;
+  --font-size-small: 0.7rem;
+  --font-family-1: "Roboto Mono", sans-serif;
+  --font-family-2: "Roboto Slab", sans-serif;
+  --font-family-3: "Roboto", sans-serif;
+}
 #universal-nav a {
   color: rgb(105, 104, 104);
 }
@@ -14,4 +23,15 @@
 }
 #header-section strong {
   color: rgb(8, 8, 132);
+}
+
+#header-section li {
+  margin: 2.3rem;
+}
+
+#header-section li a {
+  font-family: var(--font-family-1);
+  font-size: var(--font-size-medium-large);
+  border: 1px solid black;
+  padding: 0.7rem;
 }
