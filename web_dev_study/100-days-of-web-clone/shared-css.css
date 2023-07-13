@@ -10,12 +10,26 @@ html {
 h1 {
   font-size: var(--font-size-large);
   font-family: var(--font-family-1);
+  width: 40rem;
+  margin: 3.3rem auto;
 }
 body {
   font-family: R;
   margin: 0;
   padding: 0;
   text-align: center;
+}
+li {
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+}
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 #universal-nav {
   display: flex;
@@ -30,15 +44,5 @@ body {
 #universal-nav li {
   padding: 0.3rem;
 }
-ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-li {
-  margin: 0;
-  padding: 0;
-}
-a {
-  text-decoration: none;
+#header-section {
 }
