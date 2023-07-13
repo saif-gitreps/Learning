@@ -1,6 +1,6 @@
 html {
   --font-size-large: 4rem;
-  --font-size-medium-large: 2rem;
+  --font-size-medium-large: 2.2rem;
   --font-size-medium: 1rem;
   --font-size-small: 0.7rem;
   --font-family-1: "Roboto Mono", sans-serif;
@@ -12,6 +12,14 @@ h1 {
   font-family: var(--font-family-1);
   width: 40rem;
   margin: 3.3rem auto;
+  text-transform: uppercase;
+}
+h2 {
+  font-size: var(--font-size-medium-large);
+  font-family: var(--font-family-2);
+  font-weight: 500;
+  width: 53rem;
+  margin: 3rem auto;
 }
 body {
   font-family: R;
