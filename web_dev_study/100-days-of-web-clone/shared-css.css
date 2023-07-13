@@ -42,7 +42,11 @@ ul {
   padding: 1rem 0;
 }
 #universal-nav li {
-  padding: 0.3rem;
+  padding: 0.5rem;
+}
+#universal-nav a {
+  font-family: var(--font-family-1);
+  font-weight: 600;
 }
 #header-section {
 }

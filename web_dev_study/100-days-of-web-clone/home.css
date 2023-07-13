@@ -1,5 +1,11 @@
+#universal-nav a {
+  color: rgb(105, 104, 104);
+}
 #header-section {
   background-color: orange;
   height: 38rem;
   padding: 2rem 0;
+}
+#header-section h1 {
+  color: rgba(32, 5, 90, 0.726);
 }
