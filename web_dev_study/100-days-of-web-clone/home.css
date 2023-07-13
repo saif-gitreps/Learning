@@ -33,5 +33,6 @@ html {
   font-family: var(--font-family-1);
   font-size: var(--font-size-medium-large);
   border: 1px solid black;
+  border-radius: 50px;
   padding: 0.7rem;
 }
