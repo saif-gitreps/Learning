@@ -1,3 +1,16 @@
+html {
+  --font-size-large: 4rem;
+  --font-size-medium-large: 2rem;
+  --font-size-medium: 1rem;
+  --font-size-small: 0.7rem;
+  --font-family-1: "Roboto Mono", sans-serif;
+  --font-family-2: "Roboto Slab", sans-serif;
+  --font-family-3: "Roboto", sans-serif;
+}
+h1 {
+  font-size: var(--font-size-large);
+  font-family: var(--font-family-1);
+}
 body {
   font-family: R;
   margin: 0;
