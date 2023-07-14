@@ -94,6 +94,7 @@ li h2 {
   color: #ffdc00;
 }
 #Learn-web-dev-in-100-days {
+  height: 39rem;
   background-image: linear-gradient(
     to right top,
     #ff9200,
@@ -103,16 +104,50 @@ li h2 {
     #ff1a00
   );
 }
-
 #Learn-web-dev-in-100-days .header-and-para {
   color: rgb(255, 255, 255);
 }
 #Learn-web-dev-in-100-days ul {
   display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
 }
 #Learn-web-dev-in-100-days li {
+  background-color: rgb(39, 39, 39);
+  color: white;
   width: 15%;
+  height: 13rem;
+  margin: 0.5rem;
+  padding: 1.2rem;
+  border-radius: 10px;
 }
 #Learn-web-dev-in-100-days li h2 {
   width: 100%;
+  background-color: rgb(197, 158, 158);
+  color: black;
+  padding: 0.3rem;
+  box-sizing: border-box;
+  border-radius: 4px;
+  margin-bottom: 2rem;
+}
+#Learn-web-dev-in-100-days #arrow-card {
+  display: flex;
+  background-color: transparent;
+}
+
+#Learn-web-dev-in-100-days a {
+  background-color: rgba(3, 6, 166, 0.726);
+  color: white;
+  font-family: var(--font-family-1);
+  display: inline-block;
+  margin: 0;
+  font-size: 1.55rem;
+  font-weight: 600;
+  border-radius: 50px;
+  padding: 1.2rem;
+  box-sizing: content-box;
+  transition: background-color 0.3s ease-out;
+}
+#Learn-web-dev-in-100-days a:hover {
+  background-color: rgb(49, 49, 211);
 }
