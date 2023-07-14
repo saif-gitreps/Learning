@@ -65,6 +65,7 @@ html {
 #what-and-how {
   background-color: rgb(27, 38, 68);
   color: white;
+  height: 33rem;
 }
 #what-and-how .header-and-para {
   padding: 3.5rem;
@@ -72,7 +73,26 @@ html {
 .header-and-para h2 {
   padding: 1rem;
 }
-
+#what-and-how ul {
+  display: flex;
+  justify-content: center;
+}
+#what-and-how li {
+  width: 26%;
+  margin: 1rem;
+}
+#what-and-how li h2 {
+  font-size: var(--font-size-medium);
+  width: 100%;
+  margin-bottom: 1rem;
+}
+#what-and-how svg {
+  height: 3rem;
+}
+#what-and-how svg,
+li h2 {
+  color: #ffdc00;
+}
 #Learn-web-dev-in-100-days {
   background-color: #ffb300;
 }
