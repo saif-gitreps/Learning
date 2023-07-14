@@ -1,7 +1,7 @@
 html {
   --font-size-large: 4rem;
-  --font-size-medium-large: 2rem;
-  --font-size-medium: 1rem;
+  --font-size-medium-large: 2.1rem;
+  --font-size-medium: 1.2rem;
   --font-size-small: 0.7rem;
   --font-family-1: "Roboto Mono", sans-serif;
   --font-family-2: "Roboto Slab", sans-serif;
@@ -17,8 +17,17 @@ html {
 
 #header-section {
   background-color: orange;
+  background-image: linear-gradient(
+    to bottom,
+    #ffdc00,
+    #ffb300,
+    #fa8700,
+    #f15700,
+    #e30000
+  );
   height: 40rem;
   padding: 2rem;
+  box-shadow: 1px 1px 1px gray;
 }
 #header-section h1 {
   color: rgba(6, 5, 90, 0.726);
@@ -52,4 +61,18 @@ html {
 }
 #header-section li #header-section-ul-first-point:hover {
   background-color: rgb(49, 49, 211);
+}
+#what-and-how {
+  background-color: rgb(27, 38, 68);
+  color: white;
+}
+#what-and-how .header-and-para {
+  padding: 3.5rem;
+}
+.header-and-para h2 {
+  padding: 1rem;
+}
+
+#Learn-web-dev-in-100-days {
+  background-color: #ffb300;
 }

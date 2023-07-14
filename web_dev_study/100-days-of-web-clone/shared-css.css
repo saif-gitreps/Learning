@@ -1,7 +1,7 @@
 html {
   --font-size-large: 4rem;
   --font-size-medium-large: 2.1rem;
-  --font-size-medium: 1rem;
+  --font-size-medium: 1.2rem;
   --font-size-small: 0.7rem;
   --font-family-1: "Roboto Mono", sans-serif;
   --font-family-2: "Roboto Slab", sans-serif;
@@ -10,6 +10,10 @@ html {
 section {
   margin: 0;
   padding: 0;
+}
+main {
+  padding: 0;
+  margin: 0;
 }
 h1 {
   font-size: var(--font-size-large);
@@ -23,10 +27,14 @@ h2 {
   font-family: var(--font-family-2);
   font-weight: 500;
   width: 50rem;
-  margin: 3rem auto;
+  margin: 0 auto;
+}
+p {
+  margin: 0;
+  padding: 0;
 }
 body {
-  font-family: R;
+  font-family: var(--font-family-3);
   margin: 0;
   padding: 0;
   text-align: center;
@@ -45,10 +53,6 @@ ul {
   margin: 0;
   padding: 0;
 }
-#arrow-symbol p {
-  display: inline;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-}
 #universal-nav {
   display: flex;
   justify-content: center;
@@ -65,4 +69,18 @@ ul {
 #universal-nav a {
   font-family: var(--font-family-1);
   font-weight: 600;
+}
+.header-and-para {
+  font-weight: 600;
+}
+.header-and-para h2 {
+  font-family: var(--font-family-2);
+  font-size: var(--font-size-medium-large);
+  margin-bottom: 0;
+}
+.header-and-para p {
+  font-family: var(--font-family-2);
+  font-size: var(--font-size-medium);
+  width: 70%;
+  margin: 0 auto;
 }
