@@ -9,7 +9,12 @@ html {
 }
 #universal-nav a {
   color: rgb(105, 104, 104);
+  transition: background-color 0.2s ease-out;
 }
+#universal-nav a:hover {
+  color: rgba(6, 5, 90, 0.726);
+}
+
 #header-section {
   background-color: orange;
   height: 40rem;
@@ -24,14 +29,8 @@ html {
 #header-section strong {
   color: rgb(8, 8, 132);
 }
-
 #header-section li {
   margin: 3.2rem 0;
-}
-
-#header-section-ul-first-point {
-  background-color: rgba(3, 6, 166, 0.726);
-  color: white;
 }
 #header-section li a {
   font-family: var(--font-family-1);
@@ -40,4 +39,17 @@ html {
   border: 1px solid black;
   border-radius: 50px;
   padding: 1.2rem;
+  transition: background-color 0.5s ease-out;
+}
+#header-section-ul-first-point {
+  background-color: rgba(3, 6, 166, 0.726);
+  color: white;
+  transition: background-color 0.5s ease-out;
+}
+#header-section li a:hover {
+  background-color: rgba(3, 6, 166, 0.726);
+  color: white;
+}
+#header-section li #header-section-ul-first-point:hover {
+  background-color: rgb(49, 49, 211);
 }
