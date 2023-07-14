@@ -120,6 +120,7 @@ li h2 {
   margin: 0.5rem;
   padding: 1.2rem;
   border-radius: 10px;
+  transition: transform 0.4s ease-in;
 }
 #Learn-web-dev-in-100-days li h2 {
   width: 100%;
@@ -129,6 +130,9 @@ li h2 {
   box-sizing: border-box;
   border-radius: 4px;
   margin-bottom: 2rem;
+}
+#Learn-web-dev-in-100-days li:hover {
+  transform: scale(1.05);
 }
 #Learn-web-dev-in-100-days #arrow-card {
   display: flex;
@@ -150,4 +154,37 @@ li h2 {
 }
 #Learn-web-dev-in-100-days a:hover {
   background-color: rgb(49, 49, 211);
+}
+#What-you-ll-learn {
+  background-color: rgb(255, 237, 237);
+  height: 44rem;
+}
+
+#What-you-ll-learn ul {
+  width: 70rem;
+  margin: 0 auto 3rem auto; /* Added margin: 0 auto; to center horizontally */
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem 1rem;
+}
+
+#What-you-ll-learn li {
+  display: flex;
+  justify-content: center;
+  background-color: white;
+  margin: 0;
+  padding: 1.5rem;
+}
+
+#What-you-ll-learn li h2 {
+  font-size: var(--font-size-medium);
+  padding: 0;
+  width: 90%;
+  margin: 0 auto;
+  padding: 1rem 0;
+}
+
+#What-you-ll-learn li p {
+  padding: 0;
+  margin: 0;
 }
