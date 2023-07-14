@@ -157,7 +157,7 @@ li h2 {
 }
 #What-you-ll-learn {
   background-color: rgb(255, 237, 237);
-  height: 44rem;
+  height: 49rem;
 }
 
 #What-you-ll-learn ul {
@@ -178,13 +178,16 @@ li h2 {
 
 #What-you-ll-learn li h2 {
   font-size: var(--font-size-medium);
-  padding: 0;
+  padding: 0.5rem 0;
   width: 90%;
   margin: 0 auto;
-  padding: 1rem 0;
+  padding: em 0;
 }
 
 #What-you-ll-learn li p {
-  padding: 0;
+  padding: 0.5rem 0;
   margin: 0;
+}
+#What-you-ll-learn svg {
+  height: 3rem;
 }
