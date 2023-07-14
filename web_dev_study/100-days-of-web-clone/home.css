@@ -12,8 +12,8 @@ html {
 }
 #header-section {
   background-color: orange;
-  height: 38rem;
-  padding: 2rem 0;
+  height: 40rem;
+  padding: 2rem;
 }
 #header-section h1 {
   color: rgba(6, 5, 90, 0.726);
@@ -26,13 +26,18 @@ html {
 }
 
 #header-section li {
-  margin: 2.3rem;
+  margin: 3.2rem 0;
 }
 
+#header-section-ul-first-point {
+  background-color: rgba(3, 6, 166, 0.726);
+  color: white;
+}
 #header-section li a {
   font-family: var(--font-family-1);
-  font-size: var(--font-size-medium-large);
+  font-size: 1.55rem;
+  font-weight: 600;
   border: 1px solid black;
   border-radius: 50px;
-  padding: 0.7rem;
+  padding: 1.2rem;
 }
