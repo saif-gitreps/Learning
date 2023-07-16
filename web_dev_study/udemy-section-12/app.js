@@ -1,12 +1,17 @@
-// adding an element
-let newAnchorElement = document.createElement("a");
+function changeParaText() {
+  if (i % 2 == 0) {
+    paraElement.textContent = "Clicked";
+    paraElement.style.color = "green";
+    paraElement.style.fontSize = "10rem";
+  } else {
+    paraElement.textContent = "unClicked";
+    paraElement.style.color = "blue";
+    paraElement.style.fontSize = "3rem";
+  }
+  i++;
+}
 
-let firstPara = document.querySelector("p");
-
-firstPara.append(newAnchorElement);
-firstPara.inse;
-newAnchorElement.textContent = " new link doe";
-
-let firstH1Element = document.querySelector("h1");
-
-firstPara.parentElement.append(firstPara);
+//---------------------MAIN----------------------//
+let i = 0;
+let paraElement = document.querySelector("p");
+paraElement.addEventListener("mouseover", changeParaText);
