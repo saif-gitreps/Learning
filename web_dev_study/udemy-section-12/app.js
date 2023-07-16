@@ -8,3 +8,5 @@ firstPara.inse;
 newAnchorElement.textContent = " new link doe";
 
 let firstH1Element = document.querySelector("h1");
+
+firstPara.parentElement.append(firstPara);
