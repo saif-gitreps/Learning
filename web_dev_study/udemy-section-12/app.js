@@ -1,1 +1,3 @@
-document.body.children[1].children[0].href = "https://google.com";
+let header1 = document.body.children[0];
+header1.parentElement.style.backgroundColor = "blue";
+header1.nextElementSibling;
