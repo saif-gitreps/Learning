@@ -1,6 +1,9 @@
-function checkWordLimit() {
+function checkWordLimit(event) {
   let enteredText = inputField.value;
+  let enteredText2 = event.target.value;
   console.log(enteredText);
+  console.log(enteredText2);
+  console.log(event);
 }
 
 //---------------------MAIN----------------------//
