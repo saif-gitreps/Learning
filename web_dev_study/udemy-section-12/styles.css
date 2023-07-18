@@ -15,9 +15,12 @@ p {
   padding: 0;
 }
 input {
-  width: 80%;
+  width: 60%;
+}
+input:focus {
+  background-color: rgb(252, 235, 134);
 }
 #counter {
   display: inline;
-  margin-left: 2rem;
+  margin-left: 1rem;
 }
