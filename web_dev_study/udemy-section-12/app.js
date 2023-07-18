@@ -5,5 +5,5 @@
 //---------------------MAIN----------------------//
 
 let textField = document.querySelector("input");
-let counter = document.querySelector("#counter");
+let counter = document.body.children[0].children[2];
 console.dir(counter);
