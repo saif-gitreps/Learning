@@ -1,17 +1,16 @@
-function changeParaText() {
-  if (i % 2 == 0) {
-    paraElement.textContent = "Clicked";
-    paraElement.style.color = "green";
-    paraElement.style.fontSize = "10rem";
-  } else {
-    paraElement.textContent = "unClicked";
-    paraElement.style.color = "blue";
-    paraElement.style.fontSize = "3rem";
-  }
+function checkWordLimit() {
+  inputField.style.width = "40rem";
   i++;
+  if (i == 5) {
+    inputField.textContent = "enough i cant do it anymore";
+  }
 }
 
 //---------------------MAIN----------------------//
 let i = 0;
 let paraElement = document.querySelector("p");
-paraElement.addEventListener("mouseover", changeParaText);
+let inputField = document.querySelector("input");
+inputField.addEventListener("input", checkWordLimit);
+let newPara = document.createElement("p");
+newPara.textContent = i;
+inputField.append(newPara);
