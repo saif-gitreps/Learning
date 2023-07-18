@@ -1,13 +1,9 @@
-function checkWordLimit(event) {
-  let enteredText = inputField.value;
-  let enteredText2 = event.target.value;
-  console.log(enteredText);
-  console.log(enteredText2);
-  console.log(event);
-}
+//include<iostream>
+//using namespace std;
+//-----------------------------------------------//
 
 //---------------------MAIN----------------------//
-let i = 0;
-let paraElement = document.querySelector("p");
-let inputField = document.querySelector("input");
-inputField.addEventListener("input", checkWordLimit);
+
+let textField = document.querySelector("input");
+let counter = document.querySelector("#counter");
+console.dir(counter);
