@@ -16,5 +16,10 @@ function checkLength(event) {
 let textField = document.getElementById("Product-name");
 let counter = document.getElementById("remaining-counter");
 let maxLengthOfTextField = textField.maxLength;
+let clearButton = document.querySelector("button");
+console.dir(clearButton);
+if (clearButton.click) {
+  textField.style.backgroundColor = "white";
+}
 
 textField.addEventListener("input", checkLength);
