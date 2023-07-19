@@ -19,7 +19,6 @@ let maxLengthOfTextField = textField.maxLength;
 let clearButton = document.querySelector("button");
 console.dir(clearButton);
 if (clearButton.click) {
-  textField.style.backgroundColor = "white";
 }
 
 textField.addEventListener("input", checkLength);
