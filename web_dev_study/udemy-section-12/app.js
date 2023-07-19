@@ -1,15 +1,20 @@
 //include<iostream>
 //using namespace std;
+
 //-----------------------------------------------//
 
 function checkLength(event) {
-  let enterText = textField.event.target.input;
-  let len = enterText.length;
-  counter.textContent = len + "/60";
+  let enteredText = event.target.value;
+  let enteredTextLen = enteredText.length;
+  if (enteredTextLen >= 50) {
+    textField.style.backgroundColor = "#ffcccb";
+  }
+  counter.textContent = enteredTextLen;
 }
 
 //---------------------MAIN----------------------//
+let textField = document.getElementById("Product-name");
+let counter = document.getElementById("remaining-counter");
+let maxLengthOfTextField = textField.maxLength;
 
-let textField = document.querySelector("input");
-let counter = document.body.children[0].children[2];
 textField.addEventListener("input", checkLength);
