@@ -7,7 +7,7 @@ div {
   width: 70%;
   margin: 3rem auto 0 auto;
   border-radius: 0.3rem;
-  border: 1.3px solid black;
+  border: 1px solid black;
   box-shadow: 1px 1px 1px rgba(39, 39, 39, 0.9);
 }
 p {
@@ -23,4 +23,12 @@ input:focus {
 #counter {
   display: inline;
   margin-left: 1rem;
+}
+
+button {
+  display: block;
+  margin-top: 0.3rem;
+  text-transform: capitalize;
+  background-color: gray;
+  border-radius: 4px;
 }
