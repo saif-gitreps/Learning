@@ -13,10 +13,10 @@ function checkLength(event) {
 }
 
 //---------------------MAIN----------------------//
-let textField = document.getElementById("Product-name");
-let counter = document.getElementById("remaining-counter");
-let maxLengthOfTextField = textField.maxLength;
-let clearButton = document.querySelector("button");
+const textField = document.getElementById("Product-name");
+const counter = document.getElementById("remaining-counter");
+const maxLengthOfTextField = textField.maxLength;
+const clearButton = document.querySelector("button");
 console.dir(clearButton);
 if (clearButton.click) {
 }
