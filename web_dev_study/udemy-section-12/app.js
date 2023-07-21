@@ -17,5 +17,5 @@ const textField = document.getElementById("Product-name");
 const counter = document.getElementById("remaining-counter");
 const maxLengthOfTextField = textField.maxLength;
 const clearButton = document.querySelector("button");
-
+console.dir(textField);
 textField.addEventListener("input", checkLength);

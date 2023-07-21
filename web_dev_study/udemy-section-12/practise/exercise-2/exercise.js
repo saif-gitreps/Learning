@@ -10,13 +10,12 @@ let second_button = document.getElementById("second-button");
 //    - Output the first button by using the variable in which it's stored
 //    - Output the second button WITHOUT using the variable in which it's stored
 function first_button_function(event) {
-  console.dir(event);
+  console.dir(first_button);
 }
 function second_button_function() {
   console.dir(second_button);
 }
-console.dir(first_button);
-first_button.addEventListener("mouseover", first_button_function);
+first_button.addEventListener("click", first_button_function);
 second_button.addEventListener("click", second_button_function);
 
 // 3) Now select and store the paragraphs mentioned in the text you see on the page
