@@ -26,7 +26,8 @@ second_button.addEventListener("click", second_button_function);
 function first_button_function() {
   first_para.parentElement.removeChild(first_para);
 }
-function second_button_function() {
+function second_button_function(event) {
+  console.dir(event.target);
   first_para.classList.add("bg-color");
 }
 
