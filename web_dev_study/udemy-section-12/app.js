@@ -12,12 +12,6 @@ function checkLength(event) {
   counter.textContent = enteredTextLen;
   clearButton.addEventListener("click", event);
 }
-function clearRed(event) {
-  if (textField.style.backgroundColor == "#ffcccb") {
-    textField.style.backgroundColor = "white";
-  }
-}
-
 //---------------------MAIN----------------------//
 const textField = document.getElementById("Product-name");
 const counter = document.getElementById("remaining-counter");
