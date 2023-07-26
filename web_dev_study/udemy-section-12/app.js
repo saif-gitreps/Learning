@@ -4,12 +4,18 @@
 //-----------------------------------------------//
 
 function checkLength(event) {
-  let enteredText = event.target.value;
-  let enteredTextLen = enteredText.length;
-  if (enteredTextLen >= 50) {
+  enteredText = event.target.value;
+  enteredTextLen = enteredText.length;
+  if (enteredTextLen >= 40) {
     textField.style.backgroundColor = "#ffcccb";
   }
   counter.textContent = enteredTextLen;
+  clearButton.addEventListener("click", event);
+}
+function clearRed(event) {
+  if (textField.style.backgroundColor == "#ffcccb") {
+    textField.style.backgroundColor = "white";
+  }
 }
 
 //---------------------MAIN----------------------//
