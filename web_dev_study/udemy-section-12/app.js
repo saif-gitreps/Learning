@@ -32,3 +32,5 @@ const maxLengthOfTextField = textField.maxLength;
 const clearButton = document.querySelector("button");
 textField.addEventListener("input", checkLength);
 clearButton.addEventListener("click", resetAction);
+
+let isLoggedIN = true;
