@@ -31,3 +31,6 @@ button {
 .warning {
   color: red;
 }
+.error {
+  background-color: lightcoral;
+}
