@@ -4,9 +4,9 @@
 //-----------------------------------------------//
 
 function checkLength(event) {
-  enteredText = event.target.value;
-  enteredTextLen = enteredText.length;
-  if (enteredTextLen >= 40) {
+  let enteredText = event.target.value;
+  let enteredTextLen = maxLengthOfTextField - enteredText.length;
+  if (enteredTextLen <= 10) {
     textField.style.backgroundColor = "#ffcccb";
   } else {
     textField.style.backgroundColor = "white";
