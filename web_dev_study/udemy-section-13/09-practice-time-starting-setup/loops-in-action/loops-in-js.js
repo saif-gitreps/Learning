@@ -45,12 +45,12 @@ const UserDataFromDatabase = {
 };
 
 function displayInformation(event) {
-  const parentOfPara = document.querySelector("#user-data");
-  const newPara = document.createElement("p");
-  parentOfPara.append(newPara);
-  newPara.classList.add("output");
-  for (let info in UserDataFromDatabase) {
-    newPara.textContent = info;
+  const outPutDataUnorderedList = document.getElementById("output-user-data");
+  for (let data in UserDataFromDatabase) {
+    const listItem = document.createElement("li");
+    const outputText = data.toUpperCase() + " : " + UserDataFromDatabase[data];
+    listItem.textContent = outputText;
+    outPutDataUnorderedList.append(listItem);
   }
 }
 
