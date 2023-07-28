@@ -22,8 +22,16 @@ function highlightLinks(event) {
   //     allAnchorTags[i].classList.add("highlight");
   //   }
   // OR this way:
-  for (const tag of allAnchorTags) {
-    tag.classList.add("highlight");
+  if (i % 2 == 0) {
+    for (const tag of allAnchorTags) {
+      tag.classList.add("highlight");
+    }
+  } else {
+    for (const tag of allAnchorTags) {
+      tag.classList.remove("highlight");
+    }
   }
+  i++;
 }
+let i = 0;
 highlightLinksButton.addEventListener("click", highlightLinks);
