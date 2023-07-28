@@ -35,3 +35,24 @@ function highlightLinks(event) {
 }
 let i = 0;
 highlightLinksButton.addEventListener("click", highlightLinks);
+
+// displaying codes for example fetched data from database.
+
+const UserDataFromDatabase = {
+  name: "saif",
+  age: 25,
+  job: "cook",
+};
+
+function displayInformation(event) {
+  const parentOfPara = document.querySelector("#user-data");
+  const newPara = document.createElement("p");
+  parentOfPara.append(newPara);
+  newPara.classList.add("output");
+  for (let info in UserDataFromDatabase) {
+    newPara.textContent = info;
+  }
+}
+
+const displayUserDataButton = document.querySelector("#user-data button");
+displayUserDataButton.addEventListener("click", displayInformation);
