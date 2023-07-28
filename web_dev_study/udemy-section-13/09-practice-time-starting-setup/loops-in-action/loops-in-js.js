@@ -11,3 +11,19 @@ function calculateSum(event) {
 }
 
 calculateSumButton.addEventListener("click", calculateSum);
+
+// Highlight links
+const highlightLinksButton = document.querySelector("#highlight-links button");
+
+function highlightLinks(event) {
+  const allAnchorTags = document.querySelectorAll("#highlight-links a");
+  console.log(allAnchorTags);
+  //   for (let i = 0; i < allAnchorTags.length; i++) {
+  //     allAnchorTags[i].classList.add("highlight");
+  //   }
+  // OR this way:
+  for (const tag of allAnchorTags) {
+    tag.classList.add("highlight");
+  }
+}
+highlightLinksButton.addEventListener("click", highlightLinks);
