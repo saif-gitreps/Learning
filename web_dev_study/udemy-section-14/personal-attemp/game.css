@@ -9,6 +9,16 @@
   margin: auto;
   padding: 1rem 2rem;
   background-color: rgb(75, 40, 75);
-  box-shadow: 0 px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   color: white;
+  border-radius: 5px;
+  /* display: none; */
+}
+#game-over h3 {
+  font-size: 2.8rem;
+  margin: 0.5rem 0;
+}
+#active-player-name {
+  font-weight: bold;
+  color: rgb(50, 5, 87);
 }
