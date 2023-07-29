@@ -71,9 +71,11 @@ function numberOfDiceRolled() {
   const enteredNumber = targetNumberInput.value;
   diceRollUnorderedList.innerHTML = "";
   let count = 0;
-  while (Math.random() * 7 != enteredNumber) {
+  let rand = -1;
+  while (rand != enteredNumber) {
     let outputListItem = document.createElement("li");
-    outputListItem.textContent = math.random() * 7;
+    rand = Math.floor(Math.random() * 7);
+    outputListItem.textContent = rand;
     diceRollUnorderedList.append(outputListItem);
     count++;
   }
