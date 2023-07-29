@@ -57,3 +57,30 @@ function displayInformation(event) {
 
 const displayUserDataButton = document.querySelector("#user-data button");
 displayUserDataButton.addEventListener("click", displayInformation);
+
+// Roll the dice function.
+
+const rollDiceButton = document.querySelector("#statistics button");
+
+function rollDice() {}
+
+function numberOfDiceRolled() {
+  const targetNumberInput = document.getElementById("user-target-number");
+  const diceRollUnorderedList = document.getElementById("dice-rolls");
+
+  const enteredNumber = targetNumberInput.value;
+  diceRollUnorderedList.innerHTML = "";
+  let count = 0;
+  while (Math.random() * 7 != enteredNumber) {
+    let outputListItem = document.createElement("li");
+    outputListItem.textContent = math.random() * 7;
+    diceRollUnorderedList.append(outputListItem);
+    count++;
+  }
+  const outPuttotalRolls = document.getElementById("output-total-rolls");
+  const outPutTarget = document.getElementById("output-target-number");
+  outPuttotalRolls.textContent = count;
+  outPutTarget.textContent = enteredNumber;
+}
+
+rollDiceButton.addEventListener("click", numberOfDiceRolled);
