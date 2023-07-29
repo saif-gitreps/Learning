@@ -62,8 +62,6 @@ displayUserDataButton.addEventListener("click", displayInformation);
 
 const rollDiceButton = document.querySelector("#statistics button");
 
-function rollDice() {}
-
 function numberOfDiceRolled() {
   const targetNumberInput = document.getElementById("user-target-number");
   const diceRollUnorderedList = document.getElementById("dice-rolls");
@@ -71,11 +69,11 @@ function numberOfDiceRolled() {
   const enteredNumber = targetNumberInput.value;
   diceRollUnorderedList.innerHTML = "";
   let count = 0;
-  let rand = -1;
-  while (rand != enteredNumber) {
+  let randomNumber = -1;
+  while (randomNumber != enteredNumber) {
     let outputListItem = document.createElement("li");
-    rand = Math.floor(Math.random() * 7);
-    outputListItem.textContent = rand;
+    randomNumber = Math.floor(Math.random() * 7);
+    outputListItem.textContent = "Roll " + (count + 1) + ": " + randomNumber;
     diceRollUnorderedList.append(outputListItem);
     count++;
   }
