@@ -46,6 +46,7 @@ const UserDataFromDatabase = {
 
 function displayInformation(event) {
   const outPutDataUnorderedList = document.getElementById("output-user-data");
+  outPutDataUnorderedList.innerHTML = "";
   for (let data in UserDataFromDatabase) {
     const listItem = document.createElement("li");
     const outputText = data.toUpperCase() + " : " + UserDataFromDatabase[data];
