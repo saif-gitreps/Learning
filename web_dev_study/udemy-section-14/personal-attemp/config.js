@@ -9,4 +9,6 @@ function closePlayerConfig(event) {
 
 function savePlayerConfig(event) {
   event.preventDefault();
+  const formData = new FormData(event.target);
+  const enteredPlayerName = formData.get("playername").trim();
 }
