@@ -12,11 +12,9 @@ function closePlayerConfig(event) {
 function savePlayerConfig(event) {
   event.preventDefault();
   const formData = new FormData(event.target);
-  event.target.firstElementChild.classList.remove("error");
-  errorOutputPara.textContent = "";
   const enteredPlayerName = formData.get("playername").trim();
   if (enteredPlayerName == "") {
-    event.target.firstElementChild.classList.add("error");
+    event.target.firstElementChild.classList.add("error"); // form.firstElementChild // honestly you can use any document selector method.
     errorOutputPara.textContent = "Please enter a valid name";
     return;
   }
