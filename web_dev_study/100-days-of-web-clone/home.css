@@ -79,7 +79,7 @@ html {
 }
 #what-and-how li {
   width: 26%;
-  margin: 1rem;
+  margin: 1.2rem;
 }
 #what-and-how li h2 {
   font-size: var(--font-size-medium);
