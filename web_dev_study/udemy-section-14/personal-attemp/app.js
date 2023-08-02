@@ -1,4 +1,14 @@
 let editedPlayer = 0;
+const players = [
+  {
+    name: "",
+    symbol: "X",
+  },
+  {
+    name: "",
+    symbol: "O",
+  },
+];
 
 const playerConfigOverlay = document.getElementById("config-overlay");
 const backdrop = document.getElementById("backdrop");

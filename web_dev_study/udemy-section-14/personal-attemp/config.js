@@ -23,6 +23,15 @@ function savePlayerConfig(event) {
     "player-" + editedPlayer + "-data"
   );
   updatedPlayerName.children[1].textContent = enteredPlayerName;
+
+  if (editedPlayer == 1) {
+    players[0].name = enteredPlayerName;
+  } else {
+    players[1].name = enteredPlayerName;
+  }
+
+  // OR we could do -> player[editedPlayer -1].name = enteredPLayerName;
+
   playerConfigOverlay.style.display = "none";
   backdrop.style.display = "none";
 }
