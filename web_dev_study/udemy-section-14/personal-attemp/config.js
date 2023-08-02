@@ -1,4 +1,5 @@
 function openPLayerConfig(event) {
+  const clickedButton = event.target.dataset;
   playerConfigOverlay.style.display = "block";
   backdrop.style.display = "block";
 }
