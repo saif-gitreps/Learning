@@ -1,5 +1,5 @@
 function openPLayerConfig(event) {
-  const clickedButton = event.target.dataset;
+  editedPlayer = +event.target.dataset.playerid;
   playerConfigOverlay.style.display = "block";
   backdrop.style.display = "block";
 }
@@ -19,4 +19,10 @@ function savePlayerConfig(event) {
     errorOutputPara.textContent = "Please enter a valid name";
     return;
   }
+  const updatedPlayerName = document.getElementById(
+    "player-" + editedPlayer + "-data"
+  );
+  updatedPlayerName.children[1].textContent = enteredPlayerName;
+  playerConfigOverlay.style.display = "none";
+  backdrop.style.display = "none";
 }
