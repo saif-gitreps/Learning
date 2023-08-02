@@ -8,6 +8,7 @@ function closePlayerConfig(event) {
   backdrop.style.display = "none";
   form.firstElementChild.classList.remove("error");
   errorOutputPara.textContent = "";
+  form.children[0].children[1].value = "";
 }
 
 function savePlayerConfig(event) {
@@ -32,6 +33,5 @@ function savePlayerConfig(event) {
 
   // OR we could do -> player[editedPlayer -1].name = enteredPLayerName;
 
-  playerConfigOverlay.style.display = "none";
-  backdrop.style.display = "none";
+  closePlayerConfig();
 }
