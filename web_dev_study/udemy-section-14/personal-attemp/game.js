@@ -5,3 +5,8 @@ function startNewGame(event) {
   }
   activeGameSection.style.display = "block";
 }
+
+function selectGameField(event) {
+  event.target.textContent = players[activePlayer].symbol; //player[0].
+  event.target.classList.add("disabled");
+}

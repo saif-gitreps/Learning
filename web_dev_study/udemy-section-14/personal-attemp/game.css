@@ -12,7 +12,7 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   color: white;
   border-radius: 5px;
-  /* display: none; */
+  display: none;
 }
 #game-over h3 {
   font-size: 2.8rem;
@@ -51,6 +51,9 @@
 
 #game-board li.disabled {
   background-color: rgb(76, 63, 142);
-  cursor: none;
+  cursor: default;
   color: white;
+}
+#game-board li.disabled:hover {
+  box-shadow: none;
 }
