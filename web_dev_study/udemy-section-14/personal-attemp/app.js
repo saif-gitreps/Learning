@@ -27,4 +27,4 @@ editPlayer2Button.addEventListener("click", openPLayerConfig);
 closePlayerConfigButton.addEventListener("click", closePlayerConfig);
 form.addEventListener("submit", savePlayerConfig);
 
-startNewGameButton.addEventListener("click", startNewGameButton);
+startNewGameButton.addEventListener("click", startNewGame);
