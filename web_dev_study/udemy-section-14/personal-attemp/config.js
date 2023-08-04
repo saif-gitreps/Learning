@@ -1,6 +1,12 @@
 function playerVsPlayerSettings(event) {
   opponentSelectionWindow.style.display = "none";
   gameConfigurationSection.style.display = "block";
+  menuBackButton.style.display = "inline-block";
+}
+function backToLobby(event) {
+  opponentSelectionWindow.style.display = "block";
+  gameConfigurationSection.style.display = "none";
+  menuBackButton.style.display = "none";
 }
 function openPLayerConfig(event) {
   editedPlayer = +event.target.dataset.playerid;

@@ -36,9 +36,11 @@ const resetGameButton = document.getElementById("reset-game-button");
 const opponentPlayerVsPlayer = document.getElementById("pvp");
 const opponentPlayerVsCpu = document.getElementById("pve");
 const opponentSelectionWindow = document.getElementById("opponent-selection");
+const menuBackButton = document.getElementById("menu-back-button");
 //const gameFields = document.querySelectorAll("#game-board li");
 const gameBoard = document.getElementById("game-board");
 
+menuBackButton.addEventListener("click", backToLobby);
 opponentPlayerVsPlayer.addEventListener("click", playerVsPlayerSettings);
 
 editPlayer1Button.addEventListener("click", openPLayerConfig);

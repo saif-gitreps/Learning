@@ -4,14 +4,20 @@ body {
   color: rgb(44, 35, 44);
   background-color: rgb(247, 239, 247);
 }
-
 #menu-back-button {
   margin: 0;
   padding: 0.6rem;
   display: inline-block;
   color: rgb(94, 4, 168);
+  background-color: rgb(243, 227, 255);
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  display: none;
 }
-
+#menu-back-button:hover {
+  cursor: pointer;
+  background-color: rgb(229, 208, 243);
+}
 #main-header {
   text-align: center;
   padding: 2rem 5%;
