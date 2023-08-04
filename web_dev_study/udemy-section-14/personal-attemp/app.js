@@ -1,5 +1,6 @@
 let editedPlayer = 0;
 let activePlayer = 0;
+let currentRound = 1;
 
 const gameData = [
   [0, 0, 0],
@@ -24,6 +25,7 @@ const form = document.querySelector("form");
 const errorOutputPara = document.getElementById("config-error");
 const activeGameSection = document.getElementById("active-game");
 const activePLayerNamePara = document.getElementById("active-player-name");
+const gameOverElement = document.getElementById("game-over");
 //buttons etc.
 const editPlayer1Button = document.getElementById("edit-player-1");
 const editPlayer2Button = document.getElementById("edit-player-2");
