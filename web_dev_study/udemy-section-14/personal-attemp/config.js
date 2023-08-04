@@ -1,3 +1,7 @@
+function playerVsPlayerSettings(event) {
+  opponentSelectionWindow.style.display = "none";
+  gameConfigurationSection.style.display = "block";
+}
 function openPLayerConfig(event) {
   editedPlayer = +event.target.dataset.playerid;
   playerConfigOverlay.style.display = "block";

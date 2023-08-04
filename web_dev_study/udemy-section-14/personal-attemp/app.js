@@ -22,6 +22,7 @@ const players = [
 const playerConfigOverlay = document.getElementById("config-overlay");
 const backdrop = document.getElementById("backdrop");
 const form = document.querySelector("form");
+const gameConfigurationSection = document.getElementById("game-configuration");
 const errorOutputPara = document.getElementById("config-error");
 const activeGameSection = document.getElementById("active-game");
 const activePLayerNamePara = document.getElementById("active-player-name");
@@ -34,9 +35,11 @@ const startNewGameButton = document.getElementById("start-game-button");
 const resetGameButton = document.getElementById("reset-game-button");
 const opponentPlayerVsPlayer = document.getElementById("pvp");
 const opponentPlayerVsCpu = document.getElementById("pve");
-document.getElementById("opponent-selection");
+const opponentSelectionWindow = document.getElementById("opponent-selection");
 //const gameFields = document.querySelectorAll("#game-board li");
 const gameBoard = document.getElementById("game-board");
+
+opponentPlayerVsPlayer.addEventListener("click", playerVsPlayerSettings);
 
 editPlayer1Button.addEventListener("click", openPLayerConfig);
 editPlayer2Button.addEventListener("click", openPLayerConfig);
