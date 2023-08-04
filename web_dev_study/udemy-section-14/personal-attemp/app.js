@@ -32,8 +32,9 @@ const editPlayer2Button = document.getElementById("edit-player-2");
 const closePlayerConfigButton = document.getElementById("cancel-button");
 const startNewGameButton = document.getElementById("start-game-button");
 const resetGameButton = document.getElementById("reset-game-button");
-const opponentChoosenUnorderedList =
-  document.getElementById("opponent-selection");
+const opponentPlayerVsPlayer = document.getElementById("pvp");
+const opponentPlayerVsCpu = document.getElementById("pve");
+document.getElementById("opponent-selection");
 //const gameFields = document.querySelectorAll("#game-board li");
 const gameBoard = document.getElementById("game-board");
 
