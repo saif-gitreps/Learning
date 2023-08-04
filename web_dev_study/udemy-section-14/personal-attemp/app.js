@@ -1,3 +1,4 @@
+//global attributes/data structures
 let editedPlayer = 0;
 let activePlayer = 0;
 let currentRound = 1;
@@ -37,9 +38,9 @@ const opponentPlayerVsPlayer = document.getElementById("pvp");
 const opponentPlayerVsCpu = document.getElementById("pve");
 const opponentSelectionWindow = document.getElementById("opponent-selection");
 const menuBackButton = document.getElementById("menu-back-button");
-//const gameFields = document.querySelectorAll("#game-board li");
 const gameBoard = document.getElementById("game-board");
-
+const gameBoardinArray = document.querySelectorAll("#game-board li");
+//event listeners
 menuBackButton.addEventListener("click", backToLobby);
 opponentPlayerVsPlayer.addEventListener("click", playerVsPlayerSettings);
 
@@ -51,8 +52,5 @@ form.addEventListener("submit", savePlayerConfig);
 
 startNewGameButton.addEventListener("click", startNewGame);
 resetGameButton.addEventListener("click", resetGameStatus);
-// for (const gameFieldListItems of gameFields) {
-//   gameFieldListItems.addEventListener("click", selectGameField);
-// }
 
 gameBoard.addEventListener("click", selectGameField);

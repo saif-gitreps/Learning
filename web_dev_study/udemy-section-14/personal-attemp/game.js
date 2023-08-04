@@ -2,7 +2,7 @@ function resetGameStatus(event) {
   activePlayer = 0;
   currentRound = 1;
   gameOverElement.firstElementChild.innerHTML =
-    '>You won,<span id="winner-name"></span>!';
+    'You won,<span id="winner-name"></span>!';
   gameOverElement.style.display = "none";
   gameData = [
     [0, 0, 0],
@@ -48,7 +48,9 @@ function selectGameField(event) {
   const column = selectedField.dataset.col - 1; // automatically converts string to int anyway
   const row = selectedField.dataset.row - 1;
 
+  console.log(gameData);
   if (gameData[column][row] > 0) {
+    // for making selected rows unselectable.
     return;
   }
 
@@ -56,7 +58,7 @@ function selectGameField(event) {
   selectedField.classList.add("disabled");
   gameData[column][row] = activePlayer + 1;
 
-  let winner = checkWinner();
+  let winner = checkWinner(selectGameField.dataset.serial);
 
   if (winner != 0) {
     endGame(winner);
@@ -65,13 +67,14 @@ function selectGameField(event) {
   switchPlayer();
 }
 
-function checkWinner() {
+function checkWinner(serial) {
   for (let i = 0; i < 3; i++) {
     if (
       gameData[i][0] > 0 &&
       gameData[i][0] == gameData[i][1] &&
       gameData[i][1] == gameData[i][2]
     ) {
+      const box1 = document.querySelector;
       return gameData[i][0];
     }
   }
@@ -85,15 +88,15 @@ function checkWinner() {
     }
   }
   if (
-    gameData[0][0] > 1 &&
+    gameData[0][0] > 0 &&
     gameData[0][0] == gameData[1][1] &&
     gameData[1][1] == gameData[2][2]
   ) {
     return gameData[0][0];
   }
   if (
-    gameData[0][2] > 1 &&
-    gameData[2][0] == gameData[1][1] &&
+    gameData[0][2] > 0 &&
+    gameData[0][2] == gameData[1][1] &&
     gameData[1][1] == gameData[2][0]
   ) {
     return gameData[0][2];
@@ -109,8 +112,8 @@ function endGame(winner) {
   if (winner > 0) {
     gameOverElement.children[0].children[0].textContent =
       players[winner - 1].name;
-    console.log(gameOverElement.children[0].children[0]);
   } else {
     gameOverElement.children[0].textContent = "It is a draw!";
+    console.log(activeGameSection);
   }
 }
