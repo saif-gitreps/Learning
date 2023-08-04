@@ -4,6 +4,36 @@
 #config-overlay h2 {
   margin: 0.5rem 0;
 }
+
+#opponent-selection ul {
+  width: 75%;
+  list-style: none;
+  display: flex;
+  text-align: center;
+  margin: 0 auto;
+  padding: 0;
+}
+#opponent-selection ul li {
+  margin: 1rem;
+  padding: 1rem;
+  width: 90%;
+  border-radius: 5px;
+  background-color: rgb(243, 227, 255);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  align-items: center;
+  transition: background-color 0.3s ease-out;
+}
+#opponent-selection ul li:hover {
+  background-color: rgb(229, 208, 243);
+  cursor: pointer;
+}
+
+#opponent-selection h1 {
+  font-size: 1.5rem;
+  color: rgb(94, 4, 168);
+  padding: 1.5rem;
+}
+
 .form-control {
   margin: 0.5rem 0;
 }

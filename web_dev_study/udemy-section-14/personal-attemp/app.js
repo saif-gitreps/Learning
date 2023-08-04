@@ -26,12 +26,14 @@ const errorOutputPara = document.getElementById("config-error");
 const activeGameSection = document.getElementById("active-game");
 const activePLayerNamePara = document.getElementById("active-player-name");
 const gameOverElement = document.getElementById("game-over");
-//buttons etc.
+//buttons or Clickables
 const editPlayer1Button = document.getElementById("edit-player-1");
 const editPlayer2Button = document.getElementById("edit-player-2");
 const closePlayerConfigButton = document.getElementById("cancel-button");
 const startNewGameButton = document.getElementById("start-game-button");
 const resetGameButton = document.getElementById("reset-game-button");
+const opponentChoosenUnorderedList =
+  document.getElementById("opponent-selection");
 //const gameFields = document.querySelectorAll("#game-board li");
 const gameBoard = document.getElementById("game-board");
 
