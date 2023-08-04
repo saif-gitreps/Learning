@@ -2,7 +2,7 @@ let editedPlayer = 0;
 let activePlayer = 0;
 let currentRound = 1;
 
-const gameData = [
+let gameData = [
   [0, 0, 0],
   [0, 0, 0],
   [0, 0, 0],
@@ -31,6 +31,7 @@ const editPlayer1Button = document.getElementById("edit-player-1");
 const editPlayer2Button = document.getElementById("edit-player-2");
 const closePlayerConfigButton = document.getElementById("cancel-button");
 const startNewGameButton = document.getElementById("start-game-button");
+const resetGameButton = document.getElementById("reset-game-button");
 //const gameFields = document.querySelectorAll("#game-board li");
 const gameBoard = document.getElementById("game-board");
 
@@ -41,7 +42,7 @@ closePlayerConfigButton.addEventListener("click", closePlayerConfig);
 form.addEventListener("submit", savePlayerConfig);
 
 startNewGameButton.addEventListener("click", startNewGame);
-
+resetGameButton.addEventListener("click", resetGameStatus);
 // for (const gameFieldListItems of gameFields) {
 //   gameFieldListItems.addEventListener("click", selectGameField);
 // }

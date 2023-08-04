@@ -1,8 +1,36 @@
+function resetGameStatus(event) {
+  activePlayer = 0;
+  currentRound = 1;
+  gameOverElement.firstElementChild.innerHTML =
+    '>You won,<span id="winner-name"></span>!';
+  gameOverElement.style.display = "none";
+  gameData = [
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+  ];
+  //now we are resetting the html <ol>
+  for (let gameBoardIndex = 0; gameBoardIndex < 9; gameBoardIndex++) {
+    gameBoard.children[gameBoardIndex].textContent = "";
+    gameBoard.children[gameBoardIndex].classList.remove("disabled");
+  }
+  activePLayerNamePara.textContent = players[activePlayer].name;
+  editPlayer1Button.style.display = "block";
+  editPlayer1Button.style.margin = "auto";
+  editPlayer2Button.style.display = "block";
+  editPlayer2Button.style.margin = "auto";
+  activeGameSection.style.display = "none";
+}
+
 function startNewGame(event) {
   if (players[0].name == "" || players[1].name == "") {
     window.alert("Please enter valid name");
     return;
   }
+
+  resetGameStatus();
+  editPlayer1Button.style.display = "none";
+  editPlayer2Button.style.display = "none";
   activePLayerNamePara.textContent = players[activePlayer].name;
   activeGameSection.style.display = "block";
 }
@@ -65,7 +93,7 @@ function checkWinner() {
   }
   if (
     gameData[0][2] > 1 &&
-    gameData[0][2] == gameData[1][1] &&
+    gameData[2][0] == gameData[1][1] &&
     gameData[1][1] == gameData[2][0]
   ) {
     return gameData[0][2];
