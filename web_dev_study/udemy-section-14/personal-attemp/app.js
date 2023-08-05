@@ -21,6 +21,18 @@ const players = [
     symbol: "O",
   },
 ];
+
+const fruits = new Map([
+  ["00", 0],
+  ["01", 1],
+  ["02", 2],
+  ["10", 3],
+  ["11", 4],
+  ["12", 5],
+  ["20", 6],
+  ["21", 7],
+  ["22", 8],
+]);
 //non clickables
 const playerConfigOverlay = document.getElementById("config-overlay");
 const backdrop = document.getElementById("backdrop");

@@ -66,9 +66,125 @@ function switchPlayer() {
   activePLayerNamePara.textContent = players[activePlayer].name;
 }
 
-function opponentWinCheck() {}
+function opponentWinCheck() {
+  if (players[activePlayer].name != "Player") {
+    return [-1];
+  }
+  for (let i = 0; i < 3; i++) {
+    if (
+      gameData[i][0] + gameData[i][1] + gameData[i][2] + 1 == 3 ||
+      gameData[i][0] + gameData[i][1] + gameData[i][2] + 2 == 6
+    ) {
+      if (gameData[i][0] == 0) {
+        return [i, 0];
+      } else if (gameData[i][1] == 0) {
+        return [i, 1];
+      } else {
+        return [i, 2];
+      }
+    }
+  }
+  for (let i = 0; i < 3; i++) {
+    if (
+      gameData[0][i] + gameData[1][i] + gameData[2][i] + 1 == 3 ||
+      gameData[0][i] + gameData[1][i] + gameData[2][i] + 2 == 6
+    ) {
+      if (gameData[0][i] == 0) {
+        return [0, i];
+      } else if (gameData[1][i] == 0) {
+        return [1, i];
+      } else {
+        return [2, i];
+      }
+    }
+  }
+  if (
+    gameData[0][0] + gameData[1][1] + gameData[2][2] + 1 == 3 ||
+    gameData[0][0] + gameData[1][1] + gameData[2][2] + 2 == 6
+  ) {
+    if (gameData[0][0] == 0) {
+      return [0, 0];
+    } else if (gameData[1][1] == 0) {
+      return [1, 1];
+    } else {
+      return [2, 2];
+    }
+  }
+  //[0, 2], [1, 1], [2, 0]
+  if (
+    gameData[0][2] + gameData[1][1] + gameData[2][0] + 1 == 3 ||
+    gameData[0][2] + gameData[1][1] + gameData[2][0] + 2 == 6
+  ) {
+    if (gameData[0][2] == 0) {
+      return [0, 2];
+    } else if (gameData[1][1] == 0) {
+      return [1, 1];
+    } else {
+      return [2, 0];
+    }
+  }
+  return [-1];
+}
 
-function cpuWinCheck() {}
+function cpuWinCheck() {
+  if (players[activePlayer].name != "CPU") {
+    return [-1];
+  }
+  for (let i = 0; i < 3; i++) {
+    if (
+      gameData[i][0] + gameData[i][1] + gameData[i][2] + 1 == 3 ||
+      gameData[i][0] + gameData[i][1] + gameData[i][2] + 2 == 6
+    ) {
+      if (gameData[i][0] == 0) {
+        return [i, 0];
+      } else if (gameData[i][1] == 0) {
+        return [i, 1];
+      } else {
+        return [i, 2];
+      }
+    }
+  }
+  for (let i = 0; i < 3; i++) {
+    if (
+      gameData[0][i] + gameData[1][i] + gameData[2][i] + 1 == 3 ||
+      gameData[0][i] + gameData[1][i] + gameData[2][i] + 2 == 6
+    ) {
+      if (gameData[0][i] == 0) {
+        return [0, i];
+      } else if (gameData[1][i] == 0) {
+        return [1, i];
+      } else {
+        return [2, i];
+      }
+    }
+  }
+  if (
+    gameData[0][0] + gameData[1][1] + gameData[2][2] + 1 == 3 ||
+    gameData[0][0] + gameData[1][1] + gameData[2][2] + 2 == 6
+  ) {
+    if (gameData[0][0] == 0) {
+      return [0, 0];
+    } else if (gameData[1][1] == 0) {
+      return [1, 1];
+    } else {
+      return [2, 2];
+    }
+  }
+  //[0, 2], [1, 1], [2, 0]
+  if (
+    gameData[0][2] + gameData[1][1] + gameData[2][0] + 1 == 3 ||
+    gameData[0][2] + gameData[1][1] + gameData[2][0] + 2 == 6
+  ) {
+    if (gameData[0][2] == 0) {
+      return [0, 2];
+    } else if (gameData[1][1] == 0) {
+      return [1, 1];
+    } else {
+      return [2, 0];
+    }
+  }
+  return [-1];
+}
 
 function cpuAlgorithm() {}
 
@@ -86,6 +202,14 @@ function selectGameField(event) {
     return;
   }
 
+  let opponentWinCheckVar = opponentWinCheck();
+  if (opponentWinCheckVar.length != 1) {
+    let codeForFruits =
+      opponentWinCheckVar[0].toString() + opponentWinCheckVar[0].toString();
+    gameBoardinArray[fruits[codeForFruits]].textContent =
+      players[activePlayer].symbol;
+    gameBoardinArray[fruits[codeForFruits]].classList.add("marked");
+  }
   selectedField.textContent = players[activePlayer].symbol; //player[0].
   selectedField.classList.add("disabled");
   gameData[row][column] = activePlayer + 1;
@@ -100,17 +224,6 @@ function selectGameField(event) {
 }
 
 function patternDecoder(b1, b2, b3) {
-  const fruits = new Map([
-    ["00", 0],
-    ["01", 1],
-    ["02", 2],
-    ["10", 3],
-    ["11", 4],
-    ["12", 5],
-    ["20", 6],
-    ["21", 7],
-    ["22", 8],
-  ]);
   let box1 = b1[0].toString() + b1[1].toString();
   let box2 = b2[0].toString() + b2[1].toString();
   let box3 = b3[0].toString() + b3[1].toString();
