@@ -20,6 +20,12 @@ function resetGameStatus(event) {
   editPlayer2Button.style.display = "block";
   editPlayer2Button.style.margin = "auto";
   activeGameSection.style.display = "none";
+  for (let i = 0; i < 9; i++) {
+    if (gameBoardinArray[i].classList.contains("marked")) {
+      gameBoardinArray[i].classList.remove("marked");
+    }
+  }
+  patterns = [-1, -1, -1];
 }
 
 function startNewGame(event) {
@@ -49,14 +55,14 @@ function selectGameField(event) {
   const row = selectedField.dataset.row - 1;
 
   console.log(gameData);
-  if (gameData[column][row] > 0) {
+  if (gameData[row][column] > 0) {
     // for making selected rows unselectable.
     return;
   }
 
   selectedField.textContent = players[activePlayer].symbol; //player[0].
   selectedField.classList.add("disabled");
-  gameData[column][row] = activePlayer + 1;
+  gameData[row][column] = activePlayer + 1;
 
   let winner = checkWinner();
 
@@ -83,7 +89,6 @@ function patternDecoder(b1, b2, b3) {
   let box2 = b2[0].toString() + b2[1].toString();
   let box3 = b3[0].toString() + b3[1].toString();
   let ans = [fruits.get(box1), fruits.get(box2), fruits.get(box3)];
-  console.log(ans);
   return ans;
 }
 
@@ -94,7 +99,11 @@ function checkWinner() {
       gameData[i][0] == gameData[i][1] &&
       gameData[i][1] == gameData[i][2]
     ) {
+      console.log("ans found");
+      console.log([i, 0], [i, 1], [i, 2]);
       patterns = patternDecoder([i, 0], [i, 1], [i, 2]);
+      console.log(patterns);
+      console.log("...........");
       return gameData[i][0];
     }
   }
@@ -104,8 +113,12 @@ function checkWinner() {
       gameData[0][i] == gameData[1][i] &&
       gameData[1][i] == gameData[2][i]
     ) {
+      console.log("ans found");
+      console.log([0, i], [1, i], [2, i]);
       patterns = patternDecoder([0, i], [1, i], [2, i]);
-      return gameData[i][0];
+      console.log(patterns);
+      console.log("...........");
+      return gameData[0][i];
     }
   }
   if (
@@ -113,7 +126,10 @@ function checkWinner() {
     gameData[0][0] == gameData[1][1] &&
     gameData[1][1] == gameData[2][2]
   ) {
+    console.log("ans found");
+    console.log([0, 0], [1, 1], [2, 2]);
     patterns = patternDecoder([0, 0], [1, 1], [2, 2]);
+    console.log(patterns);
     return gameData[0][0];
   }
   if (
