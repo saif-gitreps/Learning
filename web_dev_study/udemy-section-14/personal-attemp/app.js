@@ -45,6 +45,7 @@ const gameBoardinArray = document.querySelectorAll("#game-board li");
 //event listeners
 menuBackButton.addEventListener("click", backToLobby);
 opponentPlayerVsPlayer.addEventListener("click", playerVsPlayerSettings);
+opponentPlayerVsCpu.addEventListener("click", playerVsCpuSettings);
 
 editPlayer1Button.addEventListener("click", openPLayerConfig);
 editPlayer2Button.addEventListener("click", openPLayerConfig);

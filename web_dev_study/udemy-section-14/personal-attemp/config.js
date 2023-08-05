@@ -3,6 +3,10 @@ function playerVsPlayerSettings(event) {
   gameConfigurationSection.style.display = "block";
   menuBackButton.style.display = "inline-block";
 }
+function playerVsCpuSettings(event) {
+  opponentSelectionWindow.style.display = "none";
+  menuBackButton.style.display = "inline-block";
+}
 function backToLobby(event) {
   opponentSelectionWindow.style.display = "block";
   gameConfigurationSection.style.display = "none";
