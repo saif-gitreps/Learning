@@ -58,7 +58,7 @@ function selectGameField(event) {
   selectedField.classList.add("disabled");
   gameData[column][row] = activePlayer + 1;
 
-  let winner = checkWinner(selectGameField.dataset.serial);
+  let winner = checkWinner();
 
   if (winner != 0) {
     endGame(winner);
@@ -67,14 +67,34 @@ function selectGameField(event) {
   switchPlayer();
 }
 
-function checkWinner(serial) {
+function patternDecoder(b1, b2, b3) {
+  const fruits = new Map([
+    ["00", 0],
+    ["01", 1],
+    ["02", 2],
+    ["10", 3],
+    ["11", 4],
+    ["12", 5],
+    ["20", 6],
+    ["21", 7],
+    ["22", 8],
+  ]);
+  let box1 = b1[0].toString() + b1[1].toString();
+  let box2 = b2[0].toString() + b2[1].toString();
+  let box3 = b3[0].toString() + b3[1].toString();
+  let ans = [fruits.get(box1), fruits.get(box2), fruits.get(box3)];
+  console.log(ans);
+  return ans;
+}
+
+function checkWinner() {
   for (let i = 0; i < 3; i++) {
     if (
       gameData[i][0] > 0 &&
       gameData[i][0] == gameData[i][1] &&
       gameData[i][1] == gameData[i][2]
     ) {
-      const box1 = document.querySelector;
+      patterns = patternDecoder([i, 0], [i, 1], [i, 2]);
       return gameData[i][0];
     }
   }
@@ -84,6 +104,7 @@ function checkWinner(serial) {
       gameData[0][i] == gameData[1][i] &&
       gameData[1][i] == gameData[2][i]
     ) {
+      patterns = patternDecoder([0, i], [1, i], [2, i]);
       return gameData[i][0];
     }
   }
@@ -92,6 +113,7 @@ function checkWinner(serial) {
     gameData[0][0] == gameData[1][1] &&
     gameData[1][1] == gameData[2][2]
   ) {
+    patterns = patternDecoder([0, 0], [1, 1], [2, 2]);
     return gameData[0][0];
   }
   if (
@@ -99,6 +121,7 @@ function checkWinner(serial) {
     gameData[0][2] == gameData[1][1] &&
     gameData[1][1] == gameData[2][0]
   ) {
+    patterns = patternDecoder([0, 2], [1, 1], [2, 0]);
     return gameData[0][2];
   }
   if (currentRound == 9) {
@@ -112,8 +135,11 @@ function endGame(winner) {
   if (winner > 0) {
     gameOverElement.children[0].children[0].textContent =
       players[winner - 1].name;
+    activePlayerNameParaParentElement.style.display = "none";
+    gameBoardinArray[patterns[0]].classList.add("marked");
+    gameBoardinArray[patterns[1]].classList.add("marked");
+    gameBoardinArray[patterns[2]].classList.add("marked");
   } else {
     gameOverElement.children[0].textContent = "It is a draw!";
-    console.log(activeGameSection);
   }
 }

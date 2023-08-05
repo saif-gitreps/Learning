@@ -57,3 +57,6 @@
 #game-board li.disabled:hover {
   box-shadow: none;
 }
+#game-board li.marked {
+  background-color: rgb(75, 40, 75);
+}

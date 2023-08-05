@@ -2,6 +2,7 @@
 let editedPlayer = 0;
 let activePlayer = 0;
 let currentRound = 1;
+let patterns = [-1, -1, -1];
 
 let gameData = [
   [0, 0, 0],
@@ -27,6 +28,7 @@ const gameConfigurationSection = document.getElementById("game-configuration");
 const errorOutputPara = document.getElementById("config-error");
 const activeGameSection = document.getElementById("active-game");
 const activePLayerNamePara = document.getElementById("active-player-name");
+const activePlayerNameParaParentElement = activePLayerNamePara.parentElement;
 const gameOverElement = document.getElementById("game-over");
 //buttons or Clickables
 const editPlayer1Button = document.getElementById("edit-player-1");
