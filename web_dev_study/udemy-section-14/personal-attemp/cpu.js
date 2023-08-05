@@ -66,6 +66,11 @@ function switchPlayer() {
   activePLayerNamePara.textContent = players[activePlayer].name;
 }
 
+function opponentWinCheck() {}
+function cpuWinCheck() {}
+
+function cpuAlgorithm() {}
+
 function selectGameField(event) {
   if (event.target.tagName !== "LI") {
     return;
