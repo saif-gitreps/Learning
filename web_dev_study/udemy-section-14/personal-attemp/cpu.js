@@ -1,6 +1,13 @@
-function resetGameStatus(event) {
+function resetGameStatusCPU(event) {
   activePlayer = 0;
   currentRound = 1;
+  if (xSelection.classList.contains("markedCPU")) {
+    xSelection.classList.remove("markedCPU");
+  }
+  if (oSelection.classList.contains("markedCPU")) {
+    oSelection.classList.remove("markedCPU");
+  }
+  locked = false;
   gameOverElement.firstElementChild.innerHTML =
     'You won,<span id="winner-name"></span>!';
   gameOverElement.style.display = "none";
@@ -24,14 +31,31 @@ function resetGameStatus(event) {
   patterns = [-1, -1, -1];
 }
 
-function startNewGameCpuMode(event) {
-  if (event.target.dataset == "1") {
-    players[0].name = "Player";
-    players[1].name = "CPU";
-  } else {
-    players[0].name = "CPU";
-    players[1].name = "PLayer";
+function xSelectedActions(event) {
+  if (locked == true) {
+    return;
   }
+  xSelection.classList.add("markedCPU");
+  players[0].name = "Player";
+  players[1].name = "CPU";
+  locked = true;
+}
+function oSelectedActions(event) {
+  if (locked == true) {
+    return;
+  }
+  oSelection.classList.add("markedCPU");
+  players[1].name = "Player";
+  players[0].name = "CPU";
+  locked = true;
+}
+
+function startNewGameCpuMode(event) {
+  if (players[0].name == "" || players[1].name == "") {
+    window.alert("Please Select X or O");
+    return;
+  }
+
   resetGameStatus();
   activePLayerNamePara.textContent = players[activePlayer].name;
   activeGameSection.style.display = "block";

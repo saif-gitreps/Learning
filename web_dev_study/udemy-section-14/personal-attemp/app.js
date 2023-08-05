@@ -3,6 +3,7 @@ let editedPlayer = 0;
 let activePlayer = 0;
 let currentRound = 1;
 let patterns = [-1, -1, -1];
+let locked = false;
 
 let gameData = [
   [0, 0, 0],
@@ -45,6 +46,12 @@ const playerVsCpuSelection = document.querySelector("#CPU-configuration");
 const gameBoardinArray = document.querySelectorAll("#game-board li");
 const xSelection = playerVsCpuSelection.children[0].children[0];
 const oSelection = playerVsCpuSelection.children[0].children[1];
+const startNewGameCpuButton = document.querySelector(
+  "#CPU-configuration #start-CPU-button"
+);
+const resetCpuMode = document.querySelector(
+  "#CPU-configuration #reset-CPU-button"
+);
 //event listeners
 menuBackButton.addEventListener("click", backToLobby);
 opponentPlayerVsPlayer.addEventListener("click", playerVsPlayerSettings);
@@ -60,5 +67,8 @@ startNewGameButton.addEventListener("click", startNewGame);
 resetGameButton.addEventListener("click", resetGameStatus);
 
 gameBoard.addEventListener("click", selectGameField);
-xSelection.addEventListener("click", startNewGameCpuMode);
-oSelection.addEventListener("click", startNewGameCpuMode);
+
+xSelection.addEventListener("click", xSelectedActions);
+oSelection.addEventListener("click", oSelectedActions);
+startNewGameCpuButton.addEventListener("click", startNewGameCpuMode);
+resetCpuMode.addEventListener("click", resetGameStatusCPU);

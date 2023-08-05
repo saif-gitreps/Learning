@@ -77,6 +77,14 @@
   font-size: 2.5rem;
   color: rgb(94, 4, 168);
 }
+#CPU-configuration li.markedCPU {
+  background-color: rgb(75, 40, 75);
+  color: white;
+}
+#CPU-configuration li.markedCPU:hover {
+  background-color: rgb(75, 40, 75);
+  cursor: default;
+}
 
 #game-configuration {
   width: 90%;
