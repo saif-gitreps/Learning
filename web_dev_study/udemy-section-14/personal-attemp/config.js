@@ -5,12 +5,14 @@ function playerVsPlayerSettings(event) {
 }
 function playerVsCpuSettings(event) {
   opponentSelectionWindow.style.display = "none";
+  playerVsCpuSelection.style.display = "block";
   menuBackButton.style.display = "inline-block";
 }
 function backToLobby(event) {
   opponentSelectionWindow.style.display = "block";
   gameConfigurationSection.style.display = "none";
   menuBackButton.style.display = "none";
+  playerVsCpuSelection.style.display = "none";
 }
 function openPLayerConfig(event) {
   editedPlayer = +event.target.dataset.playerid;
@@ -46,6 +48,5 @@ function savePlayerConfig(event) {
   }
 
   // OR we could do -> player[editedPlayer -1].name = enteredPLayerName;
-
   closePlayerConfig();
 }

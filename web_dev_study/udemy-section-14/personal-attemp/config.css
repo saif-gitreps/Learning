@@ -46,6 +46,38 @@
   border: 1px solid rgb(204, 204, 204);
   width: 15rem;
 }
+#CPU-configuration {
+  width: 90%;
+  max-width: 40rem;
+  margin: 3rem auto;
+  text-align: center;
+  display: none;
+}
+#CPU-configuration ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+#CPU-configuration ul li {
+  margin: 1rem;
+  padding: 1rem;
+  width: 50%;
+  background-color: rgb(243, 227, 255);
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#CPU-configuration ul li:hover {
+  background-color: rgb(229, 208, 243);
+  cursor: pointer;
+}
+
+#CPU-configuration ul li h1 {
+  font-size: 2.5rem;
+  color: rgb(94, 4, 168);
+}
+
 #game-configuration {
   width: 90%;
   max-width: 40rem;

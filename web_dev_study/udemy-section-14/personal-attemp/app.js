@@ -41,7 +41,10 @@ const opponentPlayerVsCpu = document.getElementById("pve");
 const opponentSelectionWindow = document.getElementById("opponent-selection");
 const menuBackButton = document.getElementById("menu-back-button");
 const gameBoard = document.getElementById("game-board");
+const playerVsCpuSelection = document.querySelector("#CPU-configuration");
 const gameBoardinArray = document.querySelectorAll("#game-board li");
+const xSelection = playerVsCpuSelection.children[0].children[0];
+const oSelection = playerVsCpuSelection.children[0].children[1];
 //event listeners
 menuBackButton.addEventListener("click", backToLobby);
 opponentPlayerVsPlayer.addEventListener("click", playerVsPlayerSettings);
@@ -57,3 +60,5 @@ startNewGameButton.addEventListener("click", startNewGame);
 resetGameButton.addEventListener("click", resetGameStatus);
 
 gameBoard.addEventListener("click", selectGameField);
+xSelection.addEventListener("click", startNewGameCpuMode);
+oSelection.addEventListener("click", startNewGameCpuMode);
