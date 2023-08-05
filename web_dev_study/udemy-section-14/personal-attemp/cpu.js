@@ -55,8 +55,8 @@ function startNewGameCpuMode(event) {
     window.alert("Please Select X or O");
     return;
   }
-
-  resetGameStatus();
+  resetGameStatusCPU();
+  console.log(activePLayerNamePara);
   activePLayerNamePara.textContent = players[activePlayer].name;
   activeGameSection.style.display = "block";
 }
@@ -67,6 +67,7 @@ function switchPlayer() {
 }
 
 function opponentWinCheck() {}
+
 function cpuWinCheck() {}
 
 function cpuAlgorithm() {}

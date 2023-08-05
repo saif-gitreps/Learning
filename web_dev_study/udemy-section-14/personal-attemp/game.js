@@ -99,11 +99,7 @@ function checkWinner() {
       gameData[i][0] == gameData[i][1] &&
       gameData[i][1] == gameData[i][2]
     ) {
-      console.log("ans found");
-      console.log([i, 0], [i, 1], [i, 2]);
       patterns = patternDecoder([i, 0], [i, 1], [i, 2]);
-      console.log(patterns);
-      console.log("...........");
       return gameData[i][0];
     }
   }
@@ -113,11 +109,7 @@ function checkWinner() {
       gameData[0][i] == gameData[1][i] &&
       gameData[1][i] == gameData[2][i]
     ) {
-      console.log("ans found");
-      console.log([0, i], [1, i], [2, i]);
       patterns = patternDecoder([0, i], [1, i], [2, i]);
-      console.log(patterns);
-      console.log("...........");
       return gameData[0][i];
     }
   }
@@ -126,10 +118,7 @@ function checkWinner() {
     gameData[0][0] == gameData[1][1] &&
     gameData[1][1] == gameData[2][2]
   ) {
-    console.log("ans found");
-    console.log([0, 0], [1, 1], [2, 2]);
     patterns = patternDecoder([0, 0], [1, 1], [2, 2]);
-    console.log(patterns);
     return gameData[0][0];
   }
   if (
