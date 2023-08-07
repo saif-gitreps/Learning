@@ -1,159 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Fira+Sans&family=Noto+Sans:wght@300&family=Open+Sans:wght@400;700&family=Oswald:wght@700&family=Pacifico&family=Roboto&family=Roboto+Mono&family=Roboto+Slab&display=swap"
-      rel="stylesheet"
-    />
-    <title>Tic Tac Toe</title>
-    <link
-      rel="stylesheet"
-      href="/web_dev_study/udemy-section-14/personal-attemp/styles.css"
-    />
-    <link
-      rel="stylesheet"
-      href="/web_dev_study/udemy-section-14/personal-attemp/overlay.css"
-    />
-    <link
-      rel="stylesheet"
-      href="/web_dev_study/udemy-section-14/personal-attemp/config.css"
-    />
-    <link
-      rel="stylesheet"
-      href="/web_dev_study/udemy-section-14/personal-attemp/game.css"
-    />
-    <script
-      src="/web_dev_study/udemy-section-14/personal-attemp/config.js"
-      defer
-    ></script>
-    <script
-      src="/web_dev_study/udemy-section-14/personal-attemp/cpu.js"
-      defer
-    ></script>
-    <script
-      src="/web_dev_study/udemy-section-14/personal-attemp/game.js"
-      defer
-    ></script>
-    <script
-      src="/web_dev_study/udemy-section-14/personal-attemp/app.js"
-      defer
-    ></script>
-  </head>
-  <body>
-    <div id="backdrop"></div>
-    <header id="main-header">
-      <h1>Play Tic, Tac, Toe</h1>
-      <p>Built with HTML, CSS and JavaScript</p>
-    </header>
-    <main>
-      <aside class="modal" id="config-overlay">
-        <h2>Choose your name:</h2>
-        <form>
-          <div class="form-control">
-            <label for="player-name">PLayer Name</label>
-            <input type="text" name="playername" id="player-name" required />
-          </div>
-          <div>
-            <p id="config-error"></p>
-            <button type="reset" class="button button-alt" id="cancel-button">
-              Cancel
-            </button>
-            <button type="submit" class="button">Confirm</button>
-          </div>
-        </form>
-      </aside>
-      <h3 id="menu-back-button">Back</h3>
-      <section id="opponent-selection">
-        <ul>
-          <li id="pvp">
-            <article>
-              <h1>Player Vs. Player</h1>
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+         href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Fira+Sans&family=Noto+Sans:wght@300&family=Open+Sans:wght@400;700&family=Oswald:wght@700&family=Pacifico&family=Roboto&family=Roboto+Mono&family=Roboto+Slab&display=swap"
+         rel="stylesheet"
+      />
+      <title>Tic Tac Toe</title>
+      <link rel="stylesheet" href="/web_dev_study/udemy-section-14/personal-attemp/styles.css" />
+      <link rel="stylesheet" href="/web_dev_study/udemy-section-14/personal-attemp/overlay.css" />
+      <link rel="stylesheet" href="/web_dev_study/udemy-section-14/personal-attemp/config.css" />
+      <link rel="stylesheet" href="/web_dev_study/udemy-section-14/personal-attemp/game.css" />
+      <script src="/web_dev_study/udemy-section-14/personal-attemp/config.js" defer></script>
+      <script src="/web_dev_study/udemy-section-14/personal-attemp/cpu.js" defer></script>
+      <script src="/web_dev_study/udemy-section-14/personal-attemp/game.js" defer></script>
+      <script src="/web_dev_study/udemy-section-14/personal-attemp/app.js" defer></script>
+   </head>
+   <body>
+      <div id="backdrop"></div>
+      <header id="main-header">
+         <h1>Play Tic, Tac, Toe</h1>
+         <p>Built with HTML, CSS and JavaScript</p>
+      </header>
+      <main>
+         <aside class="modal" id="config-overlay">
+            <h2>Choose your name:</h2>
+            <form>
+               <div class="form-control">
+                  <label for="player-name">PLayer Name</label>
+                  <input type="text" name="playername" id="player-name" required />
+               </div>
+               <div>
+                  <p id="config-error"></p>
+                  <button type="reset" class="button button-alt" id="cancel-button">Cancel</button>
+                  <button type="submit" class="button">Confirm</button>
+               </div>
+            </form>
+         </aside>
+         <h3 id="menu-back-button">Back</h3>
+         <section id="opponent-selection">
+            <ul>
+               <li id="pvp">
+                  <article>
+                     <h1>Player Vs. Player</h1>
+                  </article>
+               </li>
+               <li id="pve">
+                  <article>
+                     <h1>Player Vs. CPU</h1>
+                  </article>
+               </li>
+            </ul>
+         </section>
+         <section id="CPU-configuration">
+            <ul>
+               <li id="chosen-x" data-symbol="1">
+                  <article>
+                     <h1>X</h1>
+                  </article>
+               </li>
+               <li id="chosen-o" data-symbol="2">
+                  <article>
+                     <h1>O</h1>
+                  </article>
+               </li>
+            </ul>
+            <button class="button" id="start-CPU-button">Start</button>
+            <button class="button" id="reset-CPU-button">Reset</button>
+         </section>
+         <section id="game-configuration">
+            <ol>
+               <li>
+                  <article id="player-1-data">
+                     <h2>Player 1</h2>
+                     <h3>PLAYER 1</h3>
+                     <p class="player-symbol">X</p>
+                     <button class="button button-alt" id="edit-player-1" data-playerid="1">Edit</button>
+                  </article>
+               </li>
+               <li>
+                  <article id="player-2-data">
+                     <h2>Player 2</h2>
+                     <h3>PLAYER 2</h3>
+                     <p class="player-symbol">0</p>
+                     <button class="button button-alt" id="edit-player-2" data-playerid="2">Edit</button>
+                  </article>
+               </li>
+            </ol>
+            <button class="button" id="start-game-button">Start</button>
+            <button class="button" id="reset-game-button">Reset</button>
+         </section>
+         <section id="active-game">
+            <h1 id="maintainence">Will be added soon!stay tuned</h1>
+            <article id="game-over">
+               <h3>You Won, <span id="winner-name"></span>!</h3>
+               <p>Click Above To Start A New Game</p>
             </article>
-          </li>
-          <li id="pve">
-            <article>
-              <h1>Player Vs. CPU</h1>
-            </article>
-          </li>
-        </ul>
-      </section>
-      <section id="CPU-configuration">
-        <ul>
-          <li id="chosen-x" data-symbol="1">
-            <article>
-              <h1>X</h1>
-            </article>
-          </li>
-          <li id="chosen-o" data-symbol="2">
-            <article>
-              <h1>O</h1>
-            </article>
-          </li>
-        </ul>
-        <button class="button" id="start-CPU-button">Start</button>
-        <button class="button" id="reset-CPU-button">Reset</button>
-      </section>
-      <section id="game-configuration">
-        <ol>
-          <li>
-            <article id="player-1-data">
-              <h2>Player 1</h2>
-              <h3>PLAYER 1</h3>
-              <p class="player-symbol">X</p>
-              <button
-                class="button button-alt"
-                id="edit-player-1"
-                data-playerid="1"
-              >
-                Edit
-              </button>
-            </article>
-          </li>
-          <li>
-            <article id="player-2-data">
-              <h2>Player 2</h2>
-              <h3>PLAYER 2</h3>
-              <p class="player-symbol">0</p>
-              <button
-                class="button button-alt"
-                id="edit-player-2"
-                data-playerid="2"
-              >
-                Edit
-              </button>
-            </article>
-          </li>
-        </ol>
-        <button class="button" id="start-game-button">Start</button>
-        <button class="button" id="reset-game-button">Reset</button>
-      </section>
-      <section id="active-game">
-        <article id="game-over">
-          <h3>You Won, <span id="winner-name"></span>!</h3>
-          <p>Click Above To Start A New Game</p>
-        </article>
-        <p>
-          It's your turn
-          <span id="active-player-name">PLAYER NAME</span>!
-        </p>
-        <ol id="game-board">
-          <li data-col="1" data-row="1" data-serial="0"></li>
-          <li data-col="2" data-row="1" data-serial="1"></li>
-          <li data-col="3" data-row="1" data-serial="2"></li>
+            <p>
+               It's your turn
+               <span id="active-player-name">PLAYER NAME</span>!
+            </p>
+            <ol id="game-board" class="game-board2">
+               <li data-col="1" data-row="1" data-serial="0"></li>
+               <li data-col="2" data-row="1" data-serial="1"></li>
+               <li data-col="3" data-row="1" data-serial="2"></li>
 
-          <li data-col="1" data-row="2" data-serial="3"></li>
-          <li data-col="2" data-row="2" data-serial="4"></li>
-          <li data-col="3" data-row="2" data-serial="5"></li>
+               <li data-col="1" data-row="2" data-serial="3"></li>
+               <li data-col="2" data-row="2" data-serial="4"></li>
+               <li data-col="3" data-row="2" data-serial="5"></li>
 
-          <li data-col="1" data-row="3" data-serial="6"></li>
-          <li data-col="2" data-row="3" data-serial="7"></li>
-          <li data-col="3" data-row="3" data-serial="8"></li>
-        </ol>
-      </section>
-    </main>
-  </body>
+               <li data-col="1" data-row="3" data-serial="6"></li>
+               <li data-col="2" data-row="3" data-serial="7"></li>
+               <li data-col="3" data-row="3" data-serial="8"></li>
+            </ol>
+         </section>
+      </main>
+   </body>
 </html>

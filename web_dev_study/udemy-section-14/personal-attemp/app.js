@@ -6,32 +6,32 @@ let patterns = [-1, -1, -1];
 let locked = false;
 
 let gameData = [
-  [0, 0, 0],
-  [0, 0, 0],
-  [0, 0, 0],
+   [0, 0, 0],
+   [0, 0, 0],
+   [0, 0, 0],
 ];
 
 const players = [
-  {
-    name: "",
-    symbol: "X",
-  },
-  {
-    name: "",
-    symbol: "O",
-  },
+   {
+      name: "",
+      symbol: "X",
+   },
+   {
+      name: "",
+      symbol: "O",
+   },
 ];
 
 const fruits = new Map([
-  ["00", 0],
-  ["01", 1],
-  ["02", 2],
-  ["10", 3],
-  ["11", 4],
-  ["12", 5],
-  ["20", 6],
-  ["21", 7],
-  ["22", 8],
+   ["00", 0],
+   ["01", 1],
+   ["02", 2],
+   ["10", 3],
+   ["11", 4],
+   ["12", 5],
+   ["20", 6],
+   ["21", 7],
+   ["22", 8],
 ]);
 //non clickables
 const playerConfigOverlay = document.getElementById("config-overlay");
@@ -43,6 +43,7 @@ const activeGameSection = document.getElementById("active-game");
 const activePLayerNamePara = document.getElementById("active-player-name");
 const activePlayerNameParaParentElement = activePLayerNamePara.parentElement;
 const gameOverElement = document.getElementById("game-over");
+const maintainence = document.getElementById("maintainence");
 //buttons or Clickables
 const editPlayer1Button = document.getElementById("edit-player-1");
 const editPlayer2Button = document.getElementById("edit-player-2");
@@ -58,12 +59,8 @@ const playerVsCpuSelection = document.querySelector("#CPU-configuration");
 const gameBoardinArray = document.querySelectorAll("#game-board li");
 const xSelection = playerVsCpuSelection.children[0].children[0];
 const oSelection = playerVsCpuSelection.children[0].children[1];
-const startNewGameCpuButton = document.querySelector(
-  "#CPU-configuration #start-CPU-button"
-);
-const resetCpuMode = document.querySelector(
-  "#CPU-configuration #reset-CPU-button"
-);
+const startNewGameCpuButton = document.querySelector("#CPU-configuration #start-CPU-button");
+const resetCpuMode = document.querySelector("#CPU-configuration #reset-CPU-button");
 //event listeners
 menuBackButton.addEventListener("click", backToLobby);
 opponentPlayerVsPlayer.addEventListener("click", playerVsPlayerSettings);

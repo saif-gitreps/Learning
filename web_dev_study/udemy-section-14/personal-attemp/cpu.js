@@ -44,12 +44,14 @@ function oSelectedActions(event) {
       return;
    }
    oSelection.classList.add("markedCPU");
-   players[0].name = "CPU";
    players[1].name = "Player";
+   players[0].name = "CPU";
    locked = true;
 }
 
 function startNewGameCpuMode(event) {
+   resetGameStatusCPU();
+   return;
    if (players[0].name == "" || players[1].name == "") {
       window.alert("Please Select X or O");
       return;
@@ -66,7 +68,6 @@ function switchPlayer() {
 
 function opponentWinCheck() {
    if (players[activePlayer].name != "Player") {
-      console.log("return check");
       return [-1];
    }
    for (let i = 0; i < 3; i++) {
@@ -74,7 +75,6 @@ function opponentWinCheck() {
          gameData[i][0] + gameData[i][1] + gameData[i][2] + 1 == 3 ||
          gameData[i][0] + gameData[i][1] + gameData[i][2] + 2 == 6
       ) {
-         console.log("first condition");
          if (gameData[i][0] == 0) {
             return [i, 0];
          } else if (gameData[i][1] == 0) {
@@ -193,8 +193,8 @@ function cpuAlgorithm() {
       let codeForFruits = opponentWinCheckVar[0].toString() + opponentWinCheckVar[0].toString();
       gameBoardinArray[fruits[codeForFruits]].textContent = players[activePlayer].symbol;
       gameBoardinArray[fruits[codeForFruits]].classList.add("marked");
-      // currentRound++;
-      // switchPlayer();
+      currentRound++;
+      switchPlayer();
    }
 }
 
@@ -215,9 +215,11 @@ function selectGameField(event) {
    selectedField.classList.add("disabled");
    gameData[row][column] = activePlayer + 1;
 
-   cpuAlgorithm();
+   if (players[activePlayer].name == "CPU") {
+      console.log(players[activePlayer].name);
+      cpuAlgorithm();
+   }
    let winner = checkWinner();
-
    if (winner != 0) {
       endGame(winner);
    }
