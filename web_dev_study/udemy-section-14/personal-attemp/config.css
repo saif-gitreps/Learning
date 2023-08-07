@@ -6,7 +6,7 @@
 }
 
 #opponent-selection ul {
-   width: 75%;
+   width: 65%;
    list-style: none;
    display: flex;
    text-align: center;
@@ -133,4 +133,15 @@
 }
 #config-error {
    color: rgb(136, 2, 2);
+}
+
+@media (max-width: 45rem) {
+   #opponent-selection ul {
+      width: 100%;
+      list-style: none;
+      display: flex;
+      text-align: center;
+      margin: 0 auto;
+      padding: 0;
+   }
 }
