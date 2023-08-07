@@ -74,17 +74,6 @@ function selectGameField(event) {
 }
 
 function patternDecoder(b1, b2, b3) {
-  // const fruits = new Map([
-  //   ["00", 0],
-  //   ["01", 1],
-  //   ["02", 2],
-  //   ["10", 3],
-  //   ["11", 4],
-  //   ["12", 5],
-  //   ["20", 6],
-  //   ["21", 7],
-  //   ["22", 8],
-  // ]);
   let box1 = b1[0].toString() + b1[1].toString();
   let box2 = b2[0].toString() + b2[1].toString();
   let box3 = b3[0].toString() + b3[1].toString();
