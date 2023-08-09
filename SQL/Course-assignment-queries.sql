@@ -18,7 +18,7 @@ ALTER TABLE info_system ADD CONSTRAINT pk_info_system PRIMARY KEY(manager_id);
 ALTER TABLE info_system ADD CONSTRAINT fk_shipped_item FOREIGN KEY(item_number) references shipped_items(item_number);
 
 10) 
-b)
+a)
 INSERT INTO shipped_items (item_number, weight, dimensions, insurance_amt, destination, final_delivery_date)VALUES(101, 23, 44, 4992, 'Kolkata', to_date('09-AUG-23'),1); 
 INSERT INTO shipped_items (item_number, weight, dimensions, insurance_amt, destination, final_delivery_date)VALUES (102, 39, 903, 6792, 'Kulna', to_date('25-AUG-23'),2); 
 INSERT INTO shipped_items (item_number, weight, dimensions, insurance_amt, destination, final_delivery_date)VALUES (103, 10, 130, 901, 'Chittagong', to_date('01-DEC-23'),3); 
@@ -48,3 +48,31 @@ INSERT INTO customer(email,payment_info,name,branch_id) values('12@gmail.com','c
 INSERT INTO customer(email,payment_info,name,branch_id) values('123@gmail.com','cash','uday',6); 
 INSERT INTO customer(email,payment_info,name,branch_id) values('1257@gmail.com','cash','faiz',7); 
 
+b) 
+DESCRIBE shipped_items; 
+Select * from shipped_items; 
+
+c) SELECT item_number || ' , ' || weight as "item number and items weight" from shipped_items;  
+d) SELECT item_number , weight from shipped_items where weight NOT BETWEEN 20 AND 30 AND destination = 'Chittagong'; 
+e) SELECT item_number from shipped_items where final_delivery_date = to_date('21-MAY-22'); 
+f)  
+select round(weight) as WEIGHT,round(dimensions,-1) as DIMENSIONS, destination from shipped_items; 
+select distinct schedule_number, UPPER(type) as transport_type, UPPER(delivery_route) as route_taken from transport_event; 
+select item_number,weight,final_delivery_date , round(MONTHS_BETWEEN(SYSDATE,final_delivery_date)) as MONTHS_LEFT from shipped_items; 
+g) 
+select count(item_number) AS TOTAL_INVENTORY from shipped_items group by weight; 
+select max(weight) AS TOTAL_WEIGHT , item_number from shipped_items group by item_number; 
+select AVG(dimensions) AS AVERAGE_SPACE from shipped_items group by item_number; 
+h) 
+SELECT * from transport_event NATURAL JOIN shipped_items; 
+SELECT s.item_number, s.weight, s.dimensions, s.unique_id, r.retail_type FROM shipped_items s RIGHT OUTER JOIN retail_center r ON (s.unique_id = r.unique_id); 
+SELECT distinct t.item_number , t.type, t.delivery_route , s.item_number , s.destination FROM transport_event t LEFT OUTER JOIN shipped_items s ON(t.item_number=s.item_number); 
+SELECT s.branch_id,s.branch_loc, c.email , c.name ,c.branch_id FROM sa_paribahan s FULL OUTER JOIN customer c ON (s.branch_id=c.branch_id); 
+i) 
+SELECT item_number , weight AS ABOVE_AVERAGE_WEIGHT FROM shipped_items where weight > ANY(select AVG(weight) from shipped_items group by item_number); 
+
+ 
+
+ 
+
+ 
