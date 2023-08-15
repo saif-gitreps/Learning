@@ -81,3 +81,24 @@ select * from student40 natural join dept40;
 SELECT s.name, d.d_id, s.d_id FROM student40 s JOIN dept40 d ON (s.d_id = d.d_id);
 
 SELECT table_name FROM user_tables;
+
+
+SELECT s.name, d.d_id, s.d_id FROM student40 s JOIN dept40 d ON (s.d_id = d.d_id);
+
+SELECT table_name FROM user_tables;
+
+select name , d_id from student40 NATURAL JOIN dept40;
+
+select s.name , s.d_id , d.d_id from student40 s FULL OUTER JOIN dept40 d on (d.d_id = s.d_id);
+
+select e.last_name, e.department_id , d.department_name from employees e JOIN department d on e.department_id = d.department_id;
+
+select distinct e.job_id, d.location from employees e join department d on e.department_id = d.department_id where department_id=30 or deparment_id = 90;
+
+select e.last_name, d.department_name, d.location , d.city from employees e join department d on (e.department_id=d.department_id)d where commission is not NULL; 
+
+select name from student40 where name like '%A%';
+
+select e.last_name, d.department_name, d.location from employees e join department d on (e.department_id = d.department_id) where last_name like '%a%';
+
+select e.last_name , e.department_id , d.department_name from employees.e join department d on (e.department_id = d.department_id) join location L on (d.department_id = L.department_id);
