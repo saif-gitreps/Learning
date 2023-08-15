@@ -1,0 +1,7 @@
+create table emp(first_name varchar2(20),last_name varchar2(25),department_id number(3), salary number(7),job_id number(6));
+
+insert into emp(first_name,last_name,department_id,salary,job_id,join_date) values('saif','rahman',2,12033,10,to_date('10-JUN-2022'));
+
+insert into emp(first_name,last_name,department_id,salary,job_id,join_date) values('manan','abun',3,40633,11,to_date('12-JUL-2021'));
+
+insert into emp(first_name,last_name,department_id,salary,job_id,join_date) values('abdul','jabbar',3,80900,13,to_date('01-SEP-2009'));
