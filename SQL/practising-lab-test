@@ -39,3 +39,28 @@ alter table emp40 drop column job_id;
 create table emp60 as SELECT last_name,first_name,department_id from emp40;
 
 select * from emp60;
+
+drop table student40;
+create table student40(id number(5),name varchar2(20),gpa number(4,2),d_id number(5));
+describe student40;
+
+drop table dept40;
+create table dept40(d_id number(5), d_name varchar2(20), head varchar2(20));
+describe dept40;
+
+alter table student40 add constraint pk_student40 PRIMARY KEY(id);
+alter table dept40 add constraint pk_dept40 primary key(d_id);
+
+alter table student40 add constraint fk_student40 foreign key(d_id) references dept40(d_id);
+
+alter table student40 add constraint check_gpa check(gpa between 0 and 4);
+
+alter table student40 modify name not null;
+
+insert into dept40(d_id,d_name,head) values(1,'chem','mr.roos');
+insert into dept40(d_id,d_name,head) values(2,'phy','mr.kroos');
+insert into dept40(d_id,d_name,head) values(3,'bio','mr.moos');
+
+insert into student40 values(101,'saif',2.4,1);
+insert into student40 values(102,'kaif',5.6,2);
+insert into student40 values(104,'jaif',2.8,3);
