@@ -13,3 +13,29 @@ describe emp20;
 insert into emp20 select * from emp;
 
 drop table emp20;
+
+delete from emp20 where first_name = 'manan';
+
+delete from emp20;
+
+alter table emp20 modify (department_id number(5));
+
+update emp set department_id = 10 where first_name = 'manan';
+
+alter table emp modify (last_name varchar2(50));
+
+select * from emp;
+
+update emp set last_name = 'drexler' where department_id = 4;
+
+update emp set salary = 95000 where salary<50000;
+           
+rename emp to emp40;
+
+select * from emp40;
+
+alter table emp40 drop column job_id;
+
+create table emp60 as SELECT last_name,first_name,department_id from emp40;
+
+select * from emp60;
