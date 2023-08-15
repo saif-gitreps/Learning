@@ -66,3 +66,12 @@ insert into student40 values(102,'kaif',5.6,2);
 insert into student40 values(104,'jaif',2.8,3);
 
 select constraint_name, constraint_type, search_condition from user_constraints where table_name = 'student40';
+
+create table dep30(d_id number(5) primary key,d_name varchar2(25),id number(5), constraint ck_name check(d_name is not NULL),foreign key(id) references student40(id));
+
+select * from user_constraints where table_name = 'dep30';
+
+select * from student40;
+alter table student40 add commission_pct number(3);
+alter table student40 add constraint check_comm check(commission_pct>0);
+     
