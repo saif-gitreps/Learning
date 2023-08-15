@@ -64,3 +64,5 @@ insert into dept40(d_id,d_name,head) values(3,'bio','mr.moos');
 insert into student40 values(101,'saif',2.4,1);
 insert into student40 values(102,'kaif',5.6,2);
 insert into student40 values(104,'jaif',2.8,3);
+
+select constraint_name, constraint_type, search_condition from user_constraints where table_name = 'student40';
