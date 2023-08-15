@@ -75,3 +75,9 @@ select * from student40;
 alter table student40 add commission_pct number(3);
 alter table student40 add constraint check_comm check(commission_pct>0);
      
+select * from student40 join dept40 using (d_id);
+select * from student40 natural join dept40;
+
+SELECT s.name, d.d_id, s.d_id FROM student40 s JOIN dept40 d ON (s.d_id = d.d_id);
+
+SELECT table_name FROM user_tables;
