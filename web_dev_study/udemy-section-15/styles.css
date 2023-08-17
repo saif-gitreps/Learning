@@ -14,9 +14,7 @@
    margin: 4rem auto;
 }
 
-#navbar {
+.container-fluid {
    position: fixed;
-   display: flex;
-   justify-content: space-between;
    top: 0;
 }
