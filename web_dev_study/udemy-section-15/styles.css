@@ -8,3 +8,8 @@
    height: 30rem;
    object-fit: contain;
 }
+
+#newsletter {
+   max-width: 30rem;
+   margin: 4rem auto;
+}

@@ -102,3 +102,5 @@ select name from student40 where name like '%A%';
 select e.last_name, d.department_name, d.location from employees e join department d on (e.department_id = d.department_id) where last_name like '%a%';
 
 select e.last_name , e.department_id , d.department_name from employees.e join department d on (e.department_id = d.department_id) join location L on (d.department_id = L.department_id);
+
+ 
