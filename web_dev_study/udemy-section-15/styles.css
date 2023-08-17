@@ -13,3 +13,10 @@
    max-width: 30rem;
    margin: 4rem auto;
 }
+
+#navbar {
+   position: fixed;
+   display: flex;
+   justify-content: space-between;
+   top: 0;
+}
