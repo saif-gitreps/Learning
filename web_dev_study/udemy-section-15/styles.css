@@ -13,11 +13,3 @@
    max-width: 30rem;
    margin: 4rem auto;
 }
-#navbar {
-   background-color: aliceblue;
-}
-
-.container-fluid {
-   position: fixed;
-   top: 0;
-}
