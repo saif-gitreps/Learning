@@ -12,7 +12,7 @@ lpad()
 rpad()
 trim <- removes empty spaces.
 select employee_ID,lower(first_name),upper(first_name), initcap(first_name),length(first_name),instr(first_name, 'a') "Contains 'a '" from employees;
-initcap <- first letter caps.
+initcap
 
 
 2) NUMBER FUNCTION:
