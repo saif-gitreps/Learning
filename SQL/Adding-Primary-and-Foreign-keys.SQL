@@ -38,6 +38,8 @@ alter table student40 add constraint chk_cgpa_40 CHECK(cgpa BETWEEN 0 AND 4);
 
 alter table student40 modify(name NOT NULL); <- no idea what this was for.
 
+select constraint_name , constraint_type, search_condition from user_constraints where table_name = 'STUDENT';
+
 [note: while inserting in the table with the foreign key , first finish inserting into the table that has the PK as the FK]
 
 insert into dept40(d_id,name,head) values(1,'CSE','MNU');
