@@ -59,3 +59,17 @@ create table dept(d_id number(5), dname varchar(12));
 
 describe dept;
 describe student;
+
+alter table dept add constraint pk_dept PRIMARY KEY (d_id);
+alter table student add constraint pk_student PRIMARY KEY (id); 
+
+alter table student modify name not null;
+alter table student add constraint check_gpa check(gpa>0 and gpa<4);
+
+alter table student add constraint fk_dept FOREIGN KEY (d_id) references dept(d_id); 
+
+alter table dept add head varchar(19);
+
+insert into dept(d_id,dname,head) values(1,'CSE','MNU');
+insert into dept(d_id,dname,head) values(2,'EEE','BB');
+insert into dept(d_id,dname,head) values(3,'ETE','IAT');
