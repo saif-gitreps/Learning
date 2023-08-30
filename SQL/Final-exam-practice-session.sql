@@ -50,3 +50,12 @@ insert into emp3 select distinct * from emp2;
 select * from emp3;
 
 drop table emp2;
+
+drop table student;
+
+create table student (id number(5),  name varchar(15), gpa number(5) , d_id number(5));
+
+create table dept(d_id number(5), dname varchar(12)); 
+
+describe dept;
+describe student;
