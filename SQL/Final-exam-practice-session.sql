@@ -73,3 +73,13 @@ alter table dept add head varchar(19);
 insert into dept(d_id,dname,head) values(1,'CSE','MNU');
 insert into dept(d_id,dname,head) values(2,'EEE','BB');
 insert into dept(d_id,dname,head) values(3,'ETE','IAT');
+
+insert into student(id,name,gpa,d_id) values(1,'rakib',3,1);
+insert into student(id,name,gpa,d_id) values(2,'Ana',3,2);
+insert into student(id,name,gpa,d_id) values(3,'Beter',3,2);
+
+alter table student drop constraint check_gpa;
+
+select constraint_name , constraint_type, search_condition from user_constraints where table_name = 'STUDENT';
+
+describe student;
