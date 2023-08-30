@@ -28,7 +28,7 @@ select trunc(45.925,2) , trunc(45.932, -2) , trunc(45.932, -1) , trunc(445,-2) f
 
 select mod(40,3) from dual;
 
-select sysdate from dual; <-system date.
+select sysdate from dual; <-seeing the system date.
 
 select first_name ,hire_date, months_between(sysdate,hire_date), add_months(hire_date,6) as review, last_day(hire_date) from employees;
 select first_name ,hire_date, round(months_between(sysdate,hire_date)) as rounded , add_months(hire_date,6) as review , last_day(hire_date) from employees;
