@@ -83,3 +83,21 @@ alter table student drop constraint check_gpa;
 select constraint_name , constraint_type, search_condition from user_constraints where table_name = 'STUDENT';
 
 describe student;
+
+select * from student, dept;
+
+select * from student cross join dept;
+
+select * from student natural join dept;
+
+select * from student join dept using (d_id);
+
+select * from student LEFT OUTER join dept on (student.d_id = dept.d_id);
+
+select * form employee s,location,department join department d on (s.dept_id = d.dept_id) join location n on (n.dept_id = d.dept_id);
+
+select id from student where gpa = (select avg(gpa) from student);
+
+select name from student where gpa <= (select avg(gpa) from student);
+
+select * from employees where job_id = (select job_id from employees where emp_id = 141);
