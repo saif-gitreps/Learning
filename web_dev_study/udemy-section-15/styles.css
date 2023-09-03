@@ -1,5 +1,6 @@
 body {
    font-family: sans-serif;
+   text-align: center;
 }
 #carouselExample {
    width: 100%;
@@ -21,4 +22,11 @@ section {
    width: 100%;
    max-width: 50rem;
    margin: 3rem auto;
+   text-align: center;
+}
+
+#main-image {
+   width: 100%;
+   height: 30rem;
+   object-fit: cover;
 }
