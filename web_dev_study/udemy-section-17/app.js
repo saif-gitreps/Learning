@@ -8,4 +8,8 @@ function handleRequest(request, response) {
 
 const server = http.createServer(handleRequest);
 
-server.listen(3000);
+function serverMessage() {
+   console.log("hello");
+}
+
+server.listen(3000, serverMessage);
