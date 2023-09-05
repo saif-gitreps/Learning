@@ -12,4 +12,6 @@ app.get("/", (req, res) => {
    );
 }); // send request ot locahost:3000.
 
+app.post("/store-user", (request, response) => {});
+
 app.listen(3000);
