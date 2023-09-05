@@ -1,0 +1,14 @@
+{
+   "name": "udemy-section-18",
+   "version": "1.0.0",
+   "description": "starting Express with Node.js",
+   "main": "app.js",
+   "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+   },
+   "author": "saif rahman",
+   "license": "ISC",
+   "dependencies": {
+      "express": "^4.18.2"
+   }
+}
