@@ -1,4 +1,5 @@
 const http = require("http");
+const body = document.querySelector("body");
 
 function handleRequest(request, response) {
    response.statusCode = 200;
@@ -9,6 +10,9 @@ function handleRequest(request, response) {
 const server = http.createServer(handleRequest);
 
 function serverMessage() {
+   newElement = document.createElement("h1");
+   newElement.textContent = "hellow boys";
+   body.append(newElement);
    console.log("hello");
 }
 
