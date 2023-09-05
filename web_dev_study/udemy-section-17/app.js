@@ -1,10 +1,13 @@
 const http = require("http");
-const body = window.document.querySelector("body");
 
 function handleRequest(request, response) {
-   response.statusCode = 200;
-   //404 means url not found
-   response.end("<h1> Hellow World </h1>");
+   if (request.url == "/currenttime") {
+      response.statusCode = 200;
+      response.end("<h1>" + new Date().toISOString() + "</h1>");
+   } else if (request.url == "/") {
+      response.statusCode = 200;
+      response.end("<h1> Hellow World </h1>");
+   }
 }
 
 const server = http.createServer(handleRequest);
