@@ -32,4 +32,12 @@ app.post("/store-user", (request, response) => {
    response.send("<h1>" + userName + "</h1>");
 });
 
+app.get("/users", (request, response) => {
+   const filePath = path.join(__dirname, "data", "users.json");
+   const fileData = fs.readFileSync(filePath);
+   const existingUsers = JSON.parse(fileData);
+
+   response.send(existingUsers);
+});
+
 app.listen(3000);
