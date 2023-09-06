@@ -1,0 +1,11 @@
+{
+  "name": "web_dev_study",
+  "version": "1.0.0",
+  "description": "Getting started with node and express",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Saifur Rahman",
+  "license": "ISC"
+}
