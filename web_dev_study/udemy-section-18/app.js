@@ -20,7 +20,14 @@ app.get("/", (req, res) => {
 app.post("/store-user", (request, response) => {
    const userName = request.body.username;
 
-   fs.writeFileSync("");
+   const filePath = path.join(__dirname, "data", "users.json");
+
+   const fileData = fs.readFileSync(filePath);
+   const existingUsers = JSON.parse(fileData);
+
+   existingUsers.push(userName);
+
+   fs.writeFileSync(filePath, JSON.stringify(existingUsers));
 
    response.send("<h1>" + userName + "</h1>");
 });
