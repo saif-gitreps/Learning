@@ -37,7 +37,15 @@ app.get("/users", (request, response) => {
    const fileData = fs.readFileSync(filePath);
    const existingUsers = JSON.parse(fileData);
 
-   response.send(existingUsers);
+   let responseData = "<ul>";
+
+   for (let item of existingUsers) {
+      responseData += "<li> " + item + "</li>";
+   }
+
+   responseData += "</ul>";
+
+   response.send(responseData);
 });
 
 app.listen(3000);
