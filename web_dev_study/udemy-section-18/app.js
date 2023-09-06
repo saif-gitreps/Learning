@@ -13,7 +13,7 @@ app.get("/currenttime", (req, res, next) => {
 
 app.get("/", (req, res) => {
    res.send(
-      "<form action='/store-user' method='POST'> <input type='text' name='username'> <button> Submit </button> </form>"
+      "<form action='/store-user' method='POST'> <label> Enter your name : </label><input type='text' name='username'> <button> Submit </button> </form>"
    );
 }); // send request ot locahost:3000.
 
