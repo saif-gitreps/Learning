@@ -1,1 +1,16 @@
-[{"name":"midcafe","address":"Al Wahda Street, Sharjah","cuisine":"arabic","website":"https://www.midcafe.com","description":"its nice buddy!"}]
+[
+   {
+      "name": "midcafe",
+      "address": "Al Wahda Street, Sharjah",
+      "cuisine": "arabic",
+      "website": "https://www.midcafe.com",
+      "description": "its nice buddy!"
+   },
+   {
+      "name": "morning cafe",
+      "address": "Al nasria, Shariqah",
+      "cuisine": "Meheeco",
+      "website": "https://www.morningcafe.com",
+      "description": "good coheee"
+   }
+]
