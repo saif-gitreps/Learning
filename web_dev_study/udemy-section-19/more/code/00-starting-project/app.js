@@ -7,9 +7,9 @@ const express = require("express");
 const app = express();
 
 app.get("/", (request, response) => {
-   response.send(" <h1> hi </h1> ");
+   const frontPage = path.join(__dirname, "views", "index.html");
+   response.send(frontPage);
 });
-
 app.get("/restaurants", (request, response) => {
    const restaurantsHtml = path.join(__dirname, "views", "restaurants.html");
    response.sendFile(restaurantsHtml);
@@ -18,11 +18,6 @@ app.get("/restaurants", (request, response) => {
 app.get("/recommend", (request, response) => {
    const recommendHtml = path.join(__dirname, "views", "recommend.html");
    response.sendFile(recommendHtml);
-});
-
-app.get("/home", (request, response) => {
-   const frontPage = path.join(__dirname, "views", "index.html");
-   response.send(frontPage);
 });
 
 app.get("/confirm", (request, response) => {
