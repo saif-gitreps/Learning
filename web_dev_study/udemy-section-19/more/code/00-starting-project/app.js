@@ -26,6 +26,7 @@ app.get("/recommend", (request, response) => {
 
 app.post("/recommend", (request, response) => {
    const restaurant = request.body; // this probably returns an object.
+
    const filePath = path.join(__dirname, "data", "restaurant.json");
    const fileData = fs.readFileSync(filePath);
    const storedRestData = JSON.parse(fileData);
@@ -33,6 +34,8 @@ app.post("/recommend", (request, response) => {
    storedRestData.push(restaurant);
 
    fs.writeFileSync(filePath, JSON.stringify(storedRestData));
+
+   response.redirect("/");
 });
 
 app.get("/confirm", (request, response) => {
