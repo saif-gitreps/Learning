@@ -13,7 +13,7 @@ function handleRequest(request, response) {
 const server = http.createServer(handleRequest);
 
 function serverMessage() {
-   console.log("hello");
+   console.log("hello world i have entered");
 }
 
 server.listen(3000, serverMessage);
