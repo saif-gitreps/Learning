@@ -6,9 +6,13 @@ const express = require("express");
 
 const app = express();
 
+app.use(express.urlencoded({ extended: false }));
+
+app.use(express.static("public"));
+
 app.get("/", (request, response) => {
    const frontPage = path.join(__dirname, "views", "index.html");
-   response.send(frontPage);
+   response.sendFile(frontPage);
 });
 app.get("/restaurants", (request, response) => {
    const restaurantsHtml = path.join(__dirname, "views", "restaurants.html");
@@ -20,14 +24,25 @@ app.get("/recommend", (request, response) => {
    response.sendFile(recommendHtml);
 });
 
+app.post("/recommend", (request, response) => {
+   const restaurant = request.body; // this probably returns an object.
+   const filePath = path.join(__dirname, "data", "restaurant.json");
+   const fileData = fs.readFileSync(filePath);
+   const storedRestData = JSON.parse(fileData);
+
+   storedRestData.push(restaurant);
+
+   fs.writeFileSync(filePath, JSON.stringify(storedRestData));
+});
+
 app.get("/confirm", (request, response) => {
    const confirmHtml = path.join(__dirname, "views", "confirm.html");
-   response.send(confirmHtml);
+   response.sendFile(confirmHtml);
 });
 
 app.get("/about", (request, response) => {
    const aboutPage = path.join(__dirname, "views", "about.html");
-   response.send(aboutPage);
+   response.sendFile(aboutPage);
 });
 
 app.listen(3000);
