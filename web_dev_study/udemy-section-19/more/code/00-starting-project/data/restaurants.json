@@ -12,5 +12,19 @@
       "cuisine": "Meheeco",
       "website": "https://www.morningcafe.com",
       "description": "good coheee"
+   },
+   {
+      "name": "startboox",
+      "address": "Jeddah",
+      "cuisine": "American",
+      "website": "https://www.startbooxcafe.com",
+      "description": "Good overall"
+   },
+   {
+      "name": "KFG",
+      "address": "Al noor , rak",
+      "cuisine": "arabic",
+      "website": "https://www.KFG.com",
+      "description": "Good chicken like pollos"
    }
 ]
