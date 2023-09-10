@@ -50,21 +50,23 @@
       <main>
          <h1>Recommended restaurants</h1>
          <p>Find your next favorite restaurants with help of our other users!</p>
-         <p>We found <%= numberOfRestaurant %> restaurents</p>
+         <p>We found <%= numberOfRestaurant %> restaurants</p>
          <ul id="restaurants-list">
+            <% for (let item of restaurants){ %>
             <li class="restaurant-item">
                <article>
-                  <h2>Restaurant Title</h2>
+                  <h2><%= item.name %></h2>
                   <div class="restaurant-meta">
-                     <p>Mexican</p>
-                     <p>Address of the restaurant, including city</p>
+                     <p><%= item.cuisine %></p>
+                     <p><%= item.address %></p>
                   </div>
-                  <p>A short description, explaining why this restaurant is awesome!</p>
+                  <p><%= item.description %></p>
                   <div class="restaurant-actions">
-                     <a href="">View Website</a>
+                     <a href="<%= item.website %>">View Website</a>
                   </div>
                </article>
             </li>
+            <% } %>
          </ul>
       </main>
    </body>
