@@ -44,6 +44,6 @@ int pev(int n){
 }
 
 int main() {
-   cout<<pev(55);
+   
 }
  
