@@ -1,17 +1,12 @@
 const fs = require("fs");
-
 const path = require("path");
-
 const express = require("express");
-
+const uuid = require("uuid");
 const app = express();
 
 app.set("views", path.join(__dirname, "views"));
-
 app.set("view engine", "ejs");
-
 app.use(express.urlencoded({ extended: false }));
-
 app.use(express.static("public"));
 
 app.get("/", (request, response) => {
@@ -36,6 +31,8 @@ app.get("/recommend", (request, response) => {
 
 app.post("/recommend", (request, response) => {
    const restaurant = request.body; // this probably returns an object.
+
+   restaurant.id = uuid.v4(); // v4() method will give randomly generate unqiue id, in string.
 
    const filePath = path.join(__dirname, "data", "restaurants.json");
    const fileData = fs.readFileSync(filePath);
