@@ -12,6 +12,7 @@ app.use(express.static("public"));
 app.get("/", (request, response) => {
    response.render("index");
 });
+
 app.get("/restaurants", (request, response) => {
    const filePath = path.join(__dirname, "data", "restaurants.json");
    const fileData = fs.readFileSync(filePath);
@@ -64,6 +65,10 @@ app.get("/confirm", (request, response) => {
 
 app.get("/about", (request, response) => {
    response.render("about");
+});
+
+app.use((request, response) => {
+   response.send("404 Web page not found :/");
 });
 
 app.listen(3000);
