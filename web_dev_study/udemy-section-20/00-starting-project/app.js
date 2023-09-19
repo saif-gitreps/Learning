@@ -35,7 +35,7 @@ app.get("/restaurants/:id", (request, response) => {
          return;
       }
    }
-   response.send("<h1>Eror 404 not found</h1>");
+   response.render("404");
 });
 
 app.get("/recommend", (request, response) => {
