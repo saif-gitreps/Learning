@@ -8,6 +8,7 @@
    <body>
       <%- include("includes/header") %> <%- include("includes/aside") %>
       <main>
+         <!-- When the route of restautarant/id is triggered , the 'item' variable containting all the details  of that specifically clicked restaurant object will be passed inside the item variable.-->
          <h1><%= item.name %></h1>
          <p><%= item.cuisine %> | <%= item.address %></p>
          <p><%= item.description %></p>
