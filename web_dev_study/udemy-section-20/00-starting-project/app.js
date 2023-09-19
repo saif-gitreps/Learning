@@ -36,7 +36,7 @@ app.get("/restaurants/:id", (request, response) => {
          return;
       }
    }
-   response.render("404");
+   response.status(404).render("404");
 });
 
 app.get("/recommend", (request, response) => {
@@ -64,11 +64,11 @@ app.get("/confirm", (request, response) => {
 });
 
 app.get("/about", (request, response) => {
-   response.render("about");
+   response.status(404).render("about");
 });
 
 app.use((request, response) => {
-   response.send("404 Web page not found :/");
+   response.status(500).send("404 Web page not found :/");
 });
 
 //this function will have 4 params , it must receive 4 params , that tells express that it is a special handler middlware function if some error occurs in our express application .
