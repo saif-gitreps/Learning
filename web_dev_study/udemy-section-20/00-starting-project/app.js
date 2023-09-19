@@ -71,4 +71,9 @@ app.use((request, response) => {
    response.send("404 Web page not found :/");
 });
 
+//this function will have 4 params , it must receive 4 params , that tells express that it is a special handler middlware function if some error occurs in our express application .
+app.use((error, request, response, next) => {
+   response.render("500");
+});
+
 app.listen(3000);
