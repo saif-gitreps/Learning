@@ -24,9 +24,9 @@ app.get("/restaurants", (request, response) => {
    response.render("restaurants", { numberOfRestaurant: storedRestData.length, restaurants: storedRestData });
 });
 
-app.get("/restaurants/:rid", (request, response) => {
+app.get("/restaurants/:id", (request, response) => {
    // localhost:3000/restuarant/R1
-   const restaurantId = request.params.rid;
+   const restaurantId = request.params.id;
    response.render("restaurant-detail", { rid: restaurantId });
 });
 
