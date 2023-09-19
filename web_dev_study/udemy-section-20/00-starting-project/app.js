@@ -21,8 +21,18 @@ app.get("/restaurants", (request, response) => {
 
 app.get("/restaurants/:id", (request, response) => {
    // localhost:3000/restuarant/R1
+   const filePath = path.join(__dirname, "data", "restaurants.json");
+   const fileData = fs.readFileSync(filePath);
+   const storedRestData = JSON.parse(fileData);
+
    const restaurantId = request.params.id;
-   response.render("restaurant-detail", { rid: restaurantId });
+
+   for (const restaurant of storedRestData) {
+      if (restaurant.id == restaurantId) {
+         response.render("restaurant-detail", { item: restaurant });
+         return;
+      }
+   }
 });
 
 app.get("/recommend", (request, response) => {
