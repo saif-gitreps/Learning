@@ -24,6 +24,12 @@ app.get("/restaurants", (request, response) => {
    response.render("restaurants", { numberOfRestaurant: storedRestData.length, restaurants: storedRestData });
 });
 
+app.get("/restaurants/:rid", (request, response) => {
+   // localhost:3000/restuarant/R1
+   const restaurantId = request.params.rid;
+   response.render("restaurant-detail", { rid: restaurantId });
+});
+
 app.get("/recommend", (request, response) => {
    response.render("recommend");
 });
