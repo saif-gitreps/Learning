@@ -45,17 +45,16 @@ app.get("/recommend", (request, response) => {
 
 app.post("/recommend", (request, response) => {
    const restaurant = request.body;
-
    restaurant.id = uuid.v4();
    // v4() method will give randomly generate unqiue id, in string.
    // A new property in the newly submitted form in the form of 'id' will be added .
-   const filePath = path.join(__dirname, "data", "restaurants.json");
-   const fileData = fs.readFileSync(filePath);
-   const storedRestData = JSON.parse(fileData);
+
+   const storedRestData = getStoredRestaurant(); //this function is from util\restaurant-data.js
 
    storedRestData.push(restaurant);
 
-   fs.writeFileSync(filePath, JSON.stringify(storedRestData));
+   storedRestaurants(storedRestData); //this function is from util\restaurant-data.js
+
    response.redirect("/confirm");
 });
 
