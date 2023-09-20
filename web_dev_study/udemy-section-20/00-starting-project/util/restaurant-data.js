@@ -11,3 +11,10 @@ function getStoredRestaurant() {
 function storedRestaurants(storableRestaurants) {
    fs.writeFileSync(filePath, JSON.stringify(storableRestaurants));
 }
+
+module.exports = {
+   // we are exported these functions , so we are passing a key and a pointer as object poperties to be requirable in other node js file.
+   // In other file it will be a callable method.
+   getStoredRestaurant: getStoredRestaurant,
+   storedRestaurants: storedRestaurants,
+};
