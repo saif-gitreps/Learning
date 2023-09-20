@@ -1,3 +1,5 @@
+const fs = require("fs");
+
 const filePath = path.join(__dirname, "data", "restaurants.json");
 
 function getStoredRestaurant() {
