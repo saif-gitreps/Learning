@@ -15,17 +15,14 @@ app.get("/", (request, response) => {
 });
 
 app.get("/restaurants", (request, response) => {
-   const filePath = path.join(__dirname, "data", "restaurants.json");
-   const fileData = fs.readFileSync(filePath);
-   const storedRestData = JSON.parse(fileData);
+   const storedRestData = restaurantUtilData.getStoredRestaurant();
    response.render("restaurants", { numberOfRestaurant: storedRestData.length, restaurants: storedRestData });
 });
 
 app.get("/restaurants/:id", (request, response) => {
    // step 2 : The id that was accessd from the JSON FILE and sent through ejs file in the form of sub-route.
-   const filePath = path.join(__dirname, "data", "restaurants.json");
-   const fileData = fs.readFileSync(filePath);
-   const storedRestData = JSON.parse(fileData);
+
+   const storedRestData = restaurantUtilData.getStoredRestaurant();
 
    // step 3 : The id is then parse or translated using a param object into a JSON property.
    const restaurantId = request.params.id;
@@ -50,11 +47,11 @@ app.post("/recommend", (request, response) => {
    // v4() method will give randomly generate unqiue id, in string.
    // A new property in the newly submitted form in the form of 'id' will be added .
 
-   const storedRestData = getStoredRestaurant(); //this function is from util\restaurant-data.js
+   const storedRestData = restaurantUtilData.getStoredRestaurant(); //this function is from util\restaurant-data.js
 
    storedRestData.push(restaurant);
 
-   storedRestaurants(storedRestData); //this function is from util\restaurant-data.js
+   restaurantUtilData.storedRestaurants(storedRestData); //this function is from util\restaurant-data.js
 
    response.redirect("/confirm");
 });
@@ -67,6 +64,7 @@ app.get("/about", (request, response) => {
    response.status(404).render("about");
 });
 
+//middleware error handling functions below =>
 app.use((request, response) => {
    response.status(500).send("404 Web page not found :/");
 });
