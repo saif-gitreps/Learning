@@ -3,16 +3,16 @@ const path = require("path");
 const express = require("express");
 const uuid = require("uuid");
 const restaurantUtilData = require("./util/restaurant-data");
+const defaultRoutes = require("./routes/default");
+
 const app = express();
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static("public"));
-
-app.get("/", (request, response) => {
-   response.render("index");
-});
+//Registering our customer routes using middleware method from different files.
+app.use("/", defaultRoutes);
 
 app.get("/restaurants", (request, response) => {
    const storedRestData = restaurantUtilData.getStoredRestaurant();
@@ -58,10 +58,6 @@ app.post("/recommend", (request, response) => {
 
 app.get("/confirm", (request, response) => {
    response.render("confirm");
-});
-
-app.get("/about", (request, response) => {
-   response.status(404).render("about");
 });
 
 //middleware error handling functions below =>
