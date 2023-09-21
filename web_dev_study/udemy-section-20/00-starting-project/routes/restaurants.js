@@ -19,6 +19,14 @@ router.get("/restaurants", (request, response) => {
    }
    */
 
+   storedRestData.sort((restauarentA, restauarentB) => {
+      if (restauarentA.name.toLowerCase() > restauarentB.name.toLowerCase()) {
+         return 1;
+      } else {
+         return -1;
+      }
+   });
+
    response.render("restaurants", { numberOfRestaurant: storedRestData.length, restaurants: storedRestData });
 });
 
