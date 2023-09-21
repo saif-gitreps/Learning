@@ -6,6 +6,17 @@ const router = express.Router();
 const restaurantUtilData = require("../util/restaurant-data");
 
 router.get("/restaurants", (request, response) => {
+   let order = request.query.order;
+   let nextOrder = "desc";
+
+   if (order != "asc" && order != "desc") {
+      order = "asc";
+   }
+
+   if (order == "desc") {
+      nextOrder = "asc";
+   }
+
    const storedRestData = restaurantUtilData.getStoredRestaurant();
    /* bubble sorting in terms of name
    for (let i = 0; i < storedRestData.length; i++) {
@@ -18,16 +29,22 @@ router.get("/restaurants", (request, response) => {
       }
    }
    */
-
    storedRestData.sort((restauarentA, restauarentB) => {
-      if (restauarentA.name.toLowerCase() > restauarentB.name.toLowerCase()) {
+      if (
+         (nextOrder == "asc" && restauarentA.name.toLowerCase() > restauarentB.name.toLowerCase()) ||
+         (nextOrder == "desc" && restauarentA.name.toLowerCase() < restauarentB.name.toLowerCase())
+      ) {
          return 1;
       } else {
          return -1;
       }
    });
 
-   response.render("restaurants", { numberOfRestaurant: storedRestData.length, restaurants: storedRestData });
+   response.render("restaurants", {
+      numberOfRestaurant: storedRestData.length,
+      restaurants: storedRestData,
+      NextOrder: nextOrder,
+   });
 });
 
 router.get("/restaurants/:id", (request, response) => {
