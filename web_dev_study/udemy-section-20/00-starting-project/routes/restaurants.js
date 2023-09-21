@@ -7,6 +7,18 @@ const restaurantUtilData = require("../util/restaurant-data");
 
 router.get("/restaurants", (request, response) => {
    const storedRestData = restaurantUtilData.getStoredRestaurant();
+   /* bubble sorting in terms of name
+   for (let i = 0; i < storedRestData.length; i++) {
+      for (let j = i + 1; j < storedRestData.length; j++) {
+         if (storedRestData[i].name.toLowerCase() > storedRestData[j].name.toLowerCase()) {
+            let temp = storedRestData[i];
+            storedRestData[i] = storedRestData[j];
+            storedRestData[j] = temp;
+         }
+      }
+   }
+   */
+
    response.render("restaurants", { numberOfRestaurant: storedRestData.length, restaurants: storedRestData });
 });
 
