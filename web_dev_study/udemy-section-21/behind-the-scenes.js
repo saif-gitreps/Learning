@@ -4,7 +4,5 @@ function calc(person) {
    person.age -= 18;
    return person.age;
 }
-
-calc(person);
-
+console.log(calc({ ...person }));
 console.log(person.age);
