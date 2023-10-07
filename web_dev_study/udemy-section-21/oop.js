@@ -13,7 +13,7 @@ class Job {
 function main() {
    let developer = new Job("developer", "boston", 12000);
    developer.name = "saifur";
-   developer.info();
+   const job = { title: "dev", location: "Hamilton" };
 }
 
 main();
