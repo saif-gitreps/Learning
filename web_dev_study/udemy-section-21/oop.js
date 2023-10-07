@@ -14,6 +14,8 @@ function main() {
    let developer = new Job("developer", "boston", 12000);
    developer.name = "saifur";
    const job = { title: "dev", location: "Hamilton" };
+   const { title: NewTitle } = job;
+   console.log(NewTitle);
 }
 
 main();
