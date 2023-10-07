@@ -14,9 +14,10 @@ function readFile() {
       })
       .then(() => {
          console.log("second asyncho code");
+      })
+      .catch((error) => {
+         console.log(error);
       });
-
    console.log("hi lmao");
 }
-
 readFile();
