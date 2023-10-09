@@ -25,3 +25,7 @@ update restaurants set type = "East-Germany" where id = 3;
 => using Delete command
 
 Delete from restaurants where id = 3;
+
+=> Checking all current data bases
+
+show databases;
