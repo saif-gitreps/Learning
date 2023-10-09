@@ -78,3 +78,7 @@ CREATE TABLE reviews(
     restaurant_id INT NOT NULL,
     FOREIGN KEY(restaurant_id) REFERENCES restaurants(id)
 );
+
+=> Seeing existing tables.
+
+Show tables;
