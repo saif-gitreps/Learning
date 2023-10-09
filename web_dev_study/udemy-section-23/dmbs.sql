@@ -41,11 +41,15 @@ create table addresses(
 	postal_code int , 
     country varchar(20) NOT NULL);
 
-Deleting an entire table => 
+=> Deleting an entire table 
 
 drop table addresses;
 desc addresses;
 
-Renaming tables=>
+=> Renaming tables
 
 RENAME TABLE addresses2 TO addresses;
+
+=> Changing datatype of a Column
+
+alter table addresses modify street_number varchar(30);
