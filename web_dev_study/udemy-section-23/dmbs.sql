@@ -28,4 +28,24 @@ Delete from restaurants where id = 3;
 
 => Checking all current data bases
 
-show databases;
+show databases; 
+
+=> Creating table with auto increment
+
+create table addresses(
+	unique_id int NOT NULL AUTO_INCREMENT, 
+	primary key(unique_id), 
+	street varchar(30) NOT NULL, 
+	street_number INT NOT NULL, 
+    city varchar(30) NOT NULL, 
+	postal_code int , 
+    country varchar(20) NOT NULL);
+
+Deleting an entire table => 
+
+drop table addresses;
+desc addresses;
+
+Renaming tables=>
+
+RENAME TABLE addresses2 TO addresses;
