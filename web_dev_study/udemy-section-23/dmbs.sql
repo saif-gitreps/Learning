@@ -13,3 +13,7 @@ CREATE TABLE restaurant_finder.restaurants (
 
 INSERT INTO restaurants(id ,name, type) VALUES(1,'Morroccan Res' , 'Morrocan')
 INSERT INTO restaurants(id, name, type) VALUES(2,'Italiano Res' , 'Italian');
+
+=> using count.
+
+select count(*) from restaurants where type = "German";
