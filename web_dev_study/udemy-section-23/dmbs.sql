@@ -17,3 +17,7 @@ INSERT INTO restaurants(id, name, type) VALUES(2,'Italiano Res' , 'Italian');
 => using count.
 
 select count(*) from restaurants where type = "German";
+
+=> using update command
+
+update restaurants set type = "East-Germany" where id = 3; 
