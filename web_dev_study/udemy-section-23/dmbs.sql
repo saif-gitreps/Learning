@@ -82,3 +82,29 @@ CREATE TABLE reviews(
 => Seeing existing tables.
 
 Show tables;
+
+=> Inserting into RELATED DATAS across a SCHEMA
+
+INSERT INTO types(name) VALUES('Italian');
+INSERT INTO types(name) VALUES('American');
+INSERT INTO types(name) VALUES('Cuban');
+INSERT INTO types(name) VALUES('German');
+select * from types;
+
+INSERT INTO 
+	addresses(street,  street_number, city, postal_code , country) 
+	values('StreetDaBest' , '210v' , 'Berlin' , 1122, 'Germany');
+INSERT INTO 
+	addresses(street,  street_number, city, postal_code , country) 
+	values('Chingchong' , '01' , 'Vietnam' , 4, 'East Asia');
+    
+INSERT INTO
+	restaurants(name, address_id, type)
+    values('Schwam' , 1, 3);
+INSERT INTO
+	restaurants(name, address_id, type)
+    values('Olam' , 1, 2);
+INSERT INTO
+	restaurants(name, address_id, type)
+    values('BurgerKing' , 2, 1);
+select * from restaurants;
