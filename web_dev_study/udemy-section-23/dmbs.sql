@@ -61,7 +61,20 @@ CREATE TABLE restaurants(
     PRIMARY KEY(id),
     name VARCHAR(200) NOT NULL,
     address_id INT NOT NULL,
-    FOREIGN KEY(address) REFERENCES addresses(unique_id),
+    FOREIGN KEY(address_id) REFERENCES addresses(unique_id),
     type INT NOT NULL,
     FOREIGN KEY(type) REFERENCES types(id)
+);
+
+=> Creating a table with a default CURRENT_TIMESTAMP and New datatype called TEXT
+
+CREATE TABLE reviews(
+	id INT NOT NULL AUTO_INCREMENT,
+    PRIMARY KEY(id),
+    rev_name VARCHAR(200) NOT NULL,
+	rating INT NOT NULL,
+    text TEXT,
+    date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    restaurant_id INT NOT NULL,
+    FOREIGN KEY(restaurant_id) REFERENCES restaurants(id)
 );
