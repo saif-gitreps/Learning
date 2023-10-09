@@ -53,3 +53,15 @@ RENAME TABLE addresses2 TO addresses;
 => Changing datatype of a Column
 
 alter table addresses modify street_number varchar(30);
+
+=> Creating a table with FOREIGN KEYs
+
+CREATE TABLE restaurants(
+	id INT NOT NULL AUTO_INCREMENT,
+    PRIMARY KEY(id),
+    name VARCHAR(200) NOT NULL,
+    address_id INT NOT NULL,
+    FOREIGN KEY(address) REFERENCES addresses(unique_id),
+    type INT NOT NULL,
+    FOREIGN KEY(type) REFERENCES types(id)
+);
