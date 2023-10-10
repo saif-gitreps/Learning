@@ -9,29 +9,23 @@ CREATE TABLE restaurant_finder.restaurants (
   PRIMARY KEY (id),
   UNIQUE INDEX id_UNIQUE (id ASC) VISIBLE);
 
-=>inserting. 
-
+=>inserting:
 INSERT INTO restaurants(id ,name, type) VALUES(1,'Morroccan Res' , 'Morrocan')
 INSERT INTO restaurants(id, name, type) VALUES(2,'Italiano Res' , 'Italian');
 
-=> using count.
-
+=> using count:
 select count(*) from restaurants where type = "German";
 
-=> using Update command
-
+=> using Update command:
 update restaurants set type = "East-Germany" where id = 3; 
 
-=> using Delete command
-
+=> using Delete command:
 Delete from restaurants where id = 3;
 
-=> Checking all current data bases
-
+=> Checking all current data bases:
 show databases; 
 
-=> Creating table with auto increment
-
+=> Creating table with auto increment:
 create table addresses(
 	unique_id int NOT NULL AUTO_INCREMENT, 
 	primary key(unique_id), 
@@ -41,21 +35,17 @@ create table addresses(
 	postal_code int , 
     country varchar(20) NOT NULL);
 
-=> Deleting an entire table 
-
+=> Deleting an entire table:
 drop table addresses;
 desc addresses;
 
-=> Renaming tables
-
+=> Renaming tables:
 RENAME TABLE addresses2 TO addresses;
 
-=> Changing datatype of a Column
-
+=> Changing datatype of a Column:
 alter table addresses modify street_number varchar(30);
 
-=> Creating a table with FOREIGN KEYs
-
+=> Creating a table with FOREIGN KEYs:
 CREATE TABLE restaurants(
 	id INT NOT NULL AUTO_INCREMENT,
     PRIMARY KEY(id),
@@ -66,8 +56,7 @@ CREATE TABLE restaurants(
     FOREIGN KEY(type) REFERENCES types(id)
 );
 
-=> Creating a table with a default CURRENT_TIMESTAMP and New datatype called TEXT
-
+=> Creating a table with a default CURRENT_TIMESTAMP and New datatype called TEXT:
 CREATE TABLE reviews(
 	id INT NOT NULL AUTO_INCREMENT,
     PRIMARY KEY(id),
@@ -79,12 +68,10 @@ CREATE TABLE reviews(
     FOREIGN KEY(restaurant_id) REFERENCES restaurants(id)
 );
 
-=> Seeing existing tables.
-
+=> Seeing existing tables:
 Show tables;
 
-=> Inserting into RELATED DATAS across a SCHEMA
-
+=> Inserting into RELATED DATAS across a SCHEMA:
 INSERT INTO types(name) VALUES('Italian');
 INSERT INTO types(name) VALUES('American');
 INSERT INTO types(name) VALUES('Cuban');
@@ -108,3 +95,46 @@ INSERT INTO
 	restaurants(name, address_id, type)
     values('BurgerKing' , 2, 1);
 select * from restaurants;
+
+=> Inserting into a table with crrent_timestamp constaint:
+INSERT INTO
+	reviews(rev_name, rating, text, restaurant_id)
+    values('Karl' , 2, 'Not that bad of a restaurant', 2);
+INSERT INTO
+	reviews(rev_name, rating, text, restaurant_id)
+    values('Coman' , 4, 'It was alright', 2);
+INSERT INTO
+	reviews(rev_name, rating, text, restaurant_id)
+    values('Paura' , 3, 'bad restaurant', 3);
+INSERT INTO
+	reviews(rev_name, rating, restaurant_id)
+    values('Laura' , 2, 1);
+delete from reviews where id = 2;
+select * from reviews;
+
+=> Using inner JOIN in two tables:
+SELECt * FROM restaurants INNER JOIN addresses ON (restaurants.address_id = addresses.unique_id);
+
+=> using inner JOIN accross two or more tables:
+SELECT restaurants.name , addresses.* , types.name AS CUISINE from restaurants 
+INNER JOIN addresses ON (restaurants.address_id = addresses.unique_id)
+INNER JOIN types ON (restaurants.type = types.id);
+
+=> inner joins with conditions:
+SELECT restaurants.name , addresses.* , types.name AS CUISINE from restaurants 
+INNER JOIN addresses ON (restaurants.address_id = addresses.unique_id)
+INNER JOIN types ON (restaurants.type = types.id)
+WHERE addresses.city = 'Munich';
+
+=>Practice query with inner joing and abbreviations:
+SELECT R.name , A.* , T.name AS Cuisine , Rv.rev_name , Rv.text , Rv.date FROM restaurants R
+INNER JOIN addresses A ON (R.address_id = A.unique_id)
+INNER JOIN types T ON (R.type = T.id)
+INNER JOIN reviews Rv ON(R.id = Rv.restaurant_id)
+where Rv.rating > 3 OR Rv.rating < 3; 
+
+=>Using left Outer/ left join:
+SELECt * FROM restaurants LEFT JOIN addresses ON (restaurants.address_id = addresses.unique_id);
+
+=>Using natural JOIN:
+select * from restaurants natural Join addresses;
