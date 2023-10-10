@@ -13,7 +13,8 @@ router.get("/posts", (request, response) => {
 
 router.get("/new-post", async (request, response) => {
    const result = await db.query("SELECT * FROM author");
-   response.render("create-post");
+   const authors = result[0];
+   response.render("create-post", { authors: authors });
 });
 
 module.exports = router;
