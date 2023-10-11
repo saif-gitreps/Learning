@@ -8,8 +8,8 @@ router.get("/", (request, response) => {
 });
 
 router.get("/posts", async (request, response) => {
-   const query = `SELECT posts.*, author.name AS author_name from posts
-    INNER JOIN author ON (posts.author_id = author.id)`;
+   const query = `SELECT post.*, author.name AS author_name from post
+    INNER JOIN author ON (post.author_id = author.id)`;
    // await as we know returns 2 datas in an array, one is our datas , other is metadata.
    const result = await db.query(query);
    const postsList = result[0];
