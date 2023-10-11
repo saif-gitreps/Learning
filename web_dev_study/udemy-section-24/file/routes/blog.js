@@ -7,8 +7,13 @@ router.get("/", (request, response) => {
    response.redirect("/posts");
 });
 
-router.get("/posts", (request, response) => {
-   response.render("posts-list");
+router.get("/posts", async (request, response) => {
+   const query = `SELECT posts.*, author.name AS author_name from posts
+    INNER JOIN author ON (posts.author_id = author.id)`;
+   // await as we know returns 2 datas in an array, one is our datas , other is metadata.
+   const result = await db.query(query);
+   const postsList = result[0];
+   response.render("posts-list", { posts: postsList });
 });
 
 router.get("/new-post", async (request, response) => {
