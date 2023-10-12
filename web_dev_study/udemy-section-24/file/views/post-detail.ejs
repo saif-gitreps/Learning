@@ -8,11 +8,11 @@
    <body>
       <%- include('includes/header') %>
       <main id="post-detail">
-         <h1>...</h1>
-         <section id="post-meta">...</section>
+         <h1><%= posts.title %></h1>
+         <section id="post-meta"><%= posts.date %></section>
          <hr />
          <section>
-            <p id="body">...</p>
+            <p id="body"><%= posts.body %></p>
          </section>
       </main>
    </body>
