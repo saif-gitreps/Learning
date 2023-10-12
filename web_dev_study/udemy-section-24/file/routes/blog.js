@@ -31,9 +31,7 @@ router.post("/posts", async (request, response) => {
 
 router.get("/post-details", async (request, response) => {
    let postId = request.query.postid;
-   console.log(postId);
-   postId = db.escape(postId);
-   const query = `SELECT * from post WHERE id = ${postId}`;
+   const query = `SELECT * from post WHERE id = ${postId};`;
    const result = await db.query(query);
    const postsList = result[0];
    response.render("post-detail", { posts: postsList });
