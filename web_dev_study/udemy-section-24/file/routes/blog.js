@@ -29,10 +29,11 @@ router.post("/posts", async (request, response) => {
    response.redirect("/posts");
 });
 
-router.get("/post-details", async (request, response) => {
-   let postId = request.query.postid;
-   const query = `SELECT * from post WHERE id = ${postId};`;
-   const result = await db.query(query);
+router.get("/post/:id", async (request, response) => {
+   const query = `SELECT post.* , author.* from post 
+                  INNER JOIN(post.author_id = author.id)
+                  WHERE id = ?`;
+   const result = await db.query(query, [request.params.id]);
    const postsList = result[0];
    response.render("post-detail", { posts: postsList });
 });
