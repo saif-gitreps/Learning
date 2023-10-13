@@ -5,10 +5,6 @@
    <div class="post-actions">
       <button class="btn btn-alt">Delete Post</button>
       <a href="...">Edit Post</a>
-      <form action="/post-details" method="get">
-         <input type="hidden" name="postid" value="<%= post.id %>" />
-         <button class="btn">View Post</button>
-      </form>
-      <!-- <a class="btn" href="/post-details">View Post</a> -->
+      <a class="btn" href="/post/<%=post.id%>">View Post</a>
    </div>
 </article>
