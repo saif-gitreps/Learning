@@ -30,11 +30,15 @@ router.post("/posts", async (request, response) => {
 });
 
 router.get("/post/:id", async (request, response) => {
-   const query = `SELECT post.* , author.* from post 
-                  INNER JOIN(post.author_id = author.id)
-                  WHERE id = ?`;
-   const result = await db.query(query, [request.params.id]);
-   const postsList = result[0];
-   response.render("post-detail", { posts: postsList });
+   const query = `SELECT post.* , author.name AS author_name , 
+                  author.email AS author_email from post 
+                  INNER JOIN author ON (post.author_id = author.id)
+                  WHERE post.id = ?`;
+   const result = await db.query(query, [parseInt(request.params.id)]);
+   const postList = result[0];
+   if (!postList || postList.length == 0) {
+      response.statusCode(404).render("404");
+   }
+   response.render("post-detail", { posts: postList[0] });
 });
 module.exports = router;
