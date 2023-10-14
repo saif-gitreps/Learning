@@ -39,6 +39,16 @@ router.get("/post/:id", async (request, response) => {
    if (!postList || postList.length == 0) {
       response.statusCode(404).render("404");
    }
-   response.render("post-detail", { posts: postList[0] });
+   const postData = {
+      ...postList[0],
+      data: postList[0].date.toISOString(),
+      humanReadableDate: postList[0].date.toLocaleDateString("en-UK", {
+         weekday: "long",
+         year: "numeric",
+         month: "long",
+         day: "numeric",
+      }),
+   };
+   response.render("post-detail", { posts: postData });
 });
 module.exports = router;
