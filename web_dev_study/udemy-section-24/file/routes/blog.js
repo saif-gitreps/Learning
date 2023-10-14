@@ -63,6 +63,12 @@ router.get("/posts/:id/edit", async (request, response) => {
    }
    response.render("update-post", { posts: postList[0] });
 });
-router.post("/posts/:id/edit", async (request, response) => {});
+router.post("/posts/:id/edit", async (request, response) => {
+   const query = `Update post set title = ? , summary = ? , body = ? 
+                  WHERE id = ?`;
+   const reqData = [request.body.title, request.body.summary, request.body.content, request.params.id];
+   const result = await db.query(query, reqData);
+   response.redirect("/posts");
+});
 
 module.exports = router;
