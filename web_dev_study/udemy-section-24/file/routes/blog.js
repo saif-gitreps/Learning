@@ -51,4 +51,11 @@ router.get("/post/:id", async (request, response) => {
    };
    response.render("post-detail", { posts: postData });
 });
+
+router.get("posts/:id/edit", async (request, response) => {
+   const query = `SELECT * FROM POST WHERE id = ?`;
+   const result = await db.query(query, [request.params.id]);
+   const postList = result[0];
+   response.render("update-posts", { posts: postList });
+});
 module.exports = router;
