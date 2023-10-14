@@ -67,7 +67,13 @@ router.post("/posts/:id/edit", async (request, response) => {
    const query = `Update post set title = ? , summary = ? , body = ? 
                   WHERE id = ?`;
    const reqData = [request.body.title, request.body.summary, request.body.content, request.params.id];
-   const result = await db.query(query, reqData);
+   await db.query(query, reqData);
+   response.redirect("/posts");
+});
+
+router.post("/posts/:id/delete", async (request, response) => {
+   const query = `DELETE FROM POST WHERE id = ?`;
+   await db.query(query, [request.params.id]);
    response.redirect("/posts");
 });
 
