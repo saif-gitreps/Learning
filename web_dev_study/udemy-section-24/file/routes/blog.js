@@ -38,6 +38,7 @@ router.get("/post/:id", async (request, response) => {
    const postList = result[0];
    if (!postList || postList.length == 0) {
       response.statusCode(404).render("404");
+      return;
    }
    const postData = {
       ...postList[0],
@@ -52,10 +53,16 @@ router.get("/post/:id", async (request, response) => {
    response.render("post-detail", { posts: postData });
 });
 
-router.get("posts/:id/edit", async (request, response) => {
+router.get("/posts/:id/edit", async (request, response) => {
    const query = `SELECT * FROM POST WHERE id = ?`;
    const result = await db.query(query, [request.params.id]);
    const postList = result[0];
-   response.render("update-posts", { posts: postList });
+   if (!postList || postList.length == 0) {
+      response.statusCode(404).render("404");
+      return;
+   }
+   response.render("update-post", { posts: postList[0] });
 });
+router.post("/posts/:id/edit", async (request, response) => {});
+
 module.exports = router;
