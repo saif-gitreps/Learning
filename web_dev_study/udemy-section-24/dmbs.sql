@@ -19,3 +19,4 @@ show tables;
 
 INSERT INTO author(name,email) VALUES('Justin' ,'Justin12@mail.com');
 INSERT INTO author(name,email) VALUES('Manny' ,'Manny55@mail.com');
+INSERT INTO author(name,email) VALUES('Paura' ,'Paura@mail.org');
