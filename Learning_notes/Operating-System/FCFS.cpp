@@ -1,4 +1,9 @@
 //First Come, First Serve Algorithm
+#include<iostream>
+#include<bits/stdc++.h>
+
+using namespace std;
+
 void waiting_time(int process[] , int n , int burst_time[], int wait_time[]){
    wait_time[0] = 0;
    int i;
