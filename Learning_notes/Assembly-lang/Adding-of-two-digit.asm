@@ -10,7 +10,7 @@ MAIN PROC
     INT 21H
     MOV BL,AL
     
-    MOV AH,2
+    MOV AH,2 ; ADDING AN EMPTY SPACE AFTER FIRST INPUT.
     MOV DL,20H
     INT 21H
            
