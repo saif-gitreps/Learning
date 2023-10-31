@@ -8,7 +8,7 @@ const uuid = require("uuid"); // i kept this here for reference/education purpos
 const defaultRoutes = require("./routes/default");
 const restauarentRoutes = require("./routes/restaurants");
 
-//initiating express app =>
+//initiating express app =>   
 const app = express();
 
 //Middleware function =>
@@ -28,7 +28,8 @@ app.use((request, response) => {
 
 //This function will have 4 params , it must receive 4 params , that tells express that it is a special handler middlware function if some error occurs in our express application .
 app.use((error, request, response, next) => {
-   response.render("500");
+   response.render("500"); 
 });
 
 app.listen(3000);
+
