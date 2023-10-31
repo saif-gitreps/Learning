@@ -105,3 +105,11 @@ bookstore> db.books.insertMany([{title:"Ole", author:"Koolaid", pages: 40, ratin
     '1': ObjectId("65411597231b03009a2a201b")
   }
 }
+
+Giving sql like conditions:
+
+ db.books.find({author:"Terry"}, {title:1});
+[ { _id: ObjectId("654114c0231b03009a2a2019"), title: 'nice' } ]
+bookstore> db.books.find({author:"Terry"}, {title:1, _id:0});
+[ { title: 'nice' } ]
+bookstore>
