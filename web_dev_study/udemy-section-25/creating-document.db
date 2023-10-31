@@ -93,3 +93,15 @@ test> db.bools.insertOne({title:"nice", author:"Terry", pages: 300, rating: 5 , 
   acknowledged: true,
   insertedId: ObjectId("654113a4231b03009a2a2017")
 }
+
+To add multiple documents:
+
+bookstore> show collections
+bookstore> db.books.insertMany([{title:"Ole", author:"Koolaid", pages: 40, rating: 3 , genre:["horro"]} , {title:"eclipse", author:"rry", pages: 800, rating: 8 , genre:["fantasy"]}]);
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("65411597231b03009a2a201a"),
+    '1': ObjectId("65411597231b03009a2a201b")
+  }
+}
