@@ -85,3 +85,11 @@ ratingportal> db.restaurants.find({}, {address:1});
     address: { street: 'Street 20', steetNumber: '24B' }
   }
 ]
+
+To add a single document:
+
+test> db.bools.insertOne({title:"nice", author:"Terry", pages: 300, rating: 5 , genre:["fantasy"]});
+{
+  acknowledged: true,
+  insertedId: ObjectId("654113a4231b03009a2a2017")
+}
