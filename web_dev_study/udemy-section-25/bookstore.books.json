@@ -1,0 +1,110 @@
+[{
+  "_id": {
+    "$oid": "654391807bb1fbf085ae89d9"
+  },
+  "title": "way of kings",
+  "author": "Brandon Sanderson",
+  "rating": 9,
+  "pages": 400,
+  "genres": [
+    "fantasy"
+  ],
+  "reviews": [
+    {
+      "name": "yoshi",
+      "body": "nice"
+    },
+    {
+      "name": "mario",
+      "body": "good"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6543983b77bbad8150aa5851"
+  },
+  "title": "kings",
+  "author": "Pierce Morgan",
+  "rating": 7,
+  "pages": 300,
+  "genres": [
+    "fantasy"
+  ],
+  "reviews": [
+    {
+      "name": "yoshi",
+      "body": "nice"
+    },
+    {
+      "name": "mario",
+      "body": "good"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6543983b77bbad8150aa5852"
+  },
+  "title": "Harry potter",
+  "author": "JKR",
+  "rating": 3,
+  "pages": 700,
+  "genres": [
+    "fantasy"
+  ],
+  "reviews": [
+    {
+      "name": "yoshi",
+      "body": "nice"
+    },
+    {
+      "name": "mario",
+      "body": "good"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6543983b77bbad8150aa5853"
+  },
+  "title": "Harry potter 2",
+  "author": "JKR",
+  "rating": 5,
+  "pages": 700,
+  "genres": [
+    "fantasy"
+  ],
+  "reviews": [
+    {
+      "name": "yoshi",
+      "body": "nice"
+    },
+    {
+      "name": "mario",
+      "body": "good"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6543983b77bbad8150aa5854"
+  },
+  "title": "Inferno",
+  "author": "Carl sagan",
+  "rating": 6,
+  "pages": 200,
+  "genres": [
+    "fantasy"
+  ],
+  "reviews": [
+    {
+      "name": "yoshi",
+      "body": "nice"
+    },
+    {
+      "name": "mario",
+      "body": "good"
+    }
+  ]
+}]
