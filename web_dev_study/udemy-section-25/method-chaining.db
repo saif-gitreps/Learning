@@ -12,3 +12,6 @@ db.books.find().sort({title: 1});
 
 To query sorted according to a property by DESC:
 db.books.find().sort({title: -1});
+
+Multiple method chaining:
+db.books.find().sort( {title: 1}).limit(3);
