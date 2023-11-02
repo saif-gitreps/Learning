@@ -15,3 +15,25 @@ db.books.updateOne(
 //To update mutiple :
 db.books.updateMany({ author: "JKR" }, { $set: { title: "Happy potter infinity" } });
 //bscially translates to update set title = "new titile" where author is "JKR".
+
+//specal opertor : $inc , this can be used in places where you dont know the value of something but you want to increment it, like a score.
+db.books.update({ _id: ObjectId("6543983b77bbad8150aa5852") }, { $inc: { pages: 2 } });
+
+//To Push or Pop(pull specifically used) array values:
+db.books.updateOne(
+   { _id: ObjectId("6543983b77bbad8150aa5852") },
+   { $pull: { genres: "fantasy" } }
+);
+
+db.books.updateOne(
+   { _id: ObjectId("6543983b77bbad8150aa5852") },
+   { $push: { genres: "horror" } }
+);
+
+//To add multiple values into the array, we can us another operator, $each which will be nested inside $push:
+
+bookstore >
+   db.books.updateOne(
+      { _id: ObjectId("6543983b77bbad8150aa5852") },
+      { $push: { genres: { $each: ["Romantic, Sci-fi"] } } }
+   );
