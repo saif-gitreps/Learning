@@ -12,6 +12,7 @@ $gte: Value is greater than or equal to another value
 $lt: Value is less than another value
 $lte: Value is less than or equal to another value
 $in: Value is matched within an array
+$nin: Not in operator.
 
 All the usable logical operatos:
 $and: Returns documents where both queries match
@@ -33,3 +34,9 @@ example use case of $in:
  example of nested operators:
   db.books.find({$or: [{pages: {$gt: 600}}, {rating: {$lt:9}}]});
   here the Or filters any value that that has page > 600 or rating thats less than 9.
+
+  example of using $all operator:
+  db.books.find({genres: {$all: ["fantasy", "magic"]}});
+  It works like hard codded and operator but for array values.
+
+  

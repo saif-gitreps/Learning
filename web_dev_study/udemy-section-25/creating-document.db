@@ -1,115 +1,45 @@
->show dbs;
->use ratingportal;
-ratingportal> db.restaurants.insertOne({})
-{
-  acknowledged: true,
-  insertedId: ObjectId("6540c504470392b459d9c692")
-}
-ratingportal> db.restaurants.insertOne({ name: "munich" , address:{ street:"Street 5", steetNumber:"23" }});
-{
-  acknowledged: true,
-  insertedId: ObjectId("6540c599470392b459d9c693")
-}
-ratingportal> db.restaurants.insertOne({ name: "Carl" , address:{ street:"Street 20", steetNumber:"24B" }});
-{
-  acknowledged: true,
-  insertedId: ObjectId("6540c6f1470392b459d9c694")
-}
+show dbs;
+use ratingportal;
+db.restaurants.insertOne({})
+
+db.restaurants.insertOne({ name: "munich" , address:{ street:"Street 5", steetNumber:"23" }});
+
+db.restaurants.insertOne({ name: "Carl" , address:{ street:"Street 20", steetNumber:"24B" }});
 
 Reading data:
 
 db.restaurants.find();
 
-ratingportal> db.restaurants.find({name: "Carl"})
-[
-  {
-    _id: ObjectId("6540c6f1470392b459d9c694"),
-    name: 'Carl',
-    address: { street: 'Street 20', steetNumber: '24B' }
-  }
-]
-ratingportal> db.restaurants.find({} , {name:0 , _id: 1});
-[
-  { _id: ObjectId("6540c504470392b459d9c692") },
-  {
-    _id: ObjectId("6540c599470392b459d9c693"),
-    address: { street: 'Street 5', steetNumber: '23' }
-  },
-  {
-    _id: ObjectId("6540c6f1470392b459d9c694"),
-    address: { street: 'Street 20', steetNumber: '24B' }
-  }
-]
+db.restaurants.find({name: "Carl"})
 
-ratingportal> db.restaurants.find({} , {name:1});
-[
-  { _id: ObjectId("6540c504470392b459d9c692") },
-  { _id: ObjectId("6540c599470392b459d9c693"), name: 'munich' },
-  { _id: ObjectId("6540c6f1470392b459d9c694"), name: 'Carl' }
-]
-ratingportal> db.restaurants.find({} , {name:0});
-[
-  { _id: ObjectId("6540c504470392b459d9c692") },
-  {
-    _id: ObjectId("6540c599470392b459d9c693"),
-    address: { street: 'Street 5', steetNumber: '23' }
-  },
-  {
-    _id: ObjectId("6540c6f1470392b459d9c694"),
-    address: { street: 'Street 20', steetNumber: '24B' }
-  }
-]
-ratingportal> db.restaurants.find({} , {name:0, steetNumber:0});
-[
-  { _id: ObjectId("6540c504470392b459d9c692") },
-  {
-    _id: ObjectId("6540c599470392b459d9c693"),
-    address: { street: 'Street 5', steetNumber: '23' }
-  },
-  {
-    _id: ObjectId("6540c6f1470392b459d9c694"),
-    address: { street: 'Street 20', steetNumber: '24B' }
-  }
-]
-ratingportal> db.restaurants.find({address: {steetNumber:"24B"}});
+db.restaurants.find({} , {name:0 , _id: 1});
 
-ratingportal> db.restaurants.find({}, {address:1});
-[
-  { _id: ObjectId("6540c504470392b459d9c692") },
-  {
-    _id: ObjectId("6540c599470392b459d9c693"),
-    address: { street: 'Street 5', steetNumber: '23' }
-  },
-  {
-    _id: ObjectId("6540c6f1470392b459d9c694"),
-    address: { street: 'Street 20', steetNumber: '24B' }
-  }
-]
+db.restaurants.find({} , {name:1});
+
+db.restaurants.find({} , {name:0});
+
+db.restaurants.find({} , {name:0, steetNumber:0});
+
+db.restaurants.find({address: {steetNumber:"24B"}});
+
+db.restaurants.find({}, {address:1});
 
 To add a single document:
 
-test> db.bools.insertOne({title:"nice", author:"Terry", pages: 300, rating: 5 , genre:["fantasy"]});
-{
-  acknowledged: true,
-  insertedId: ObjectId("654113a4231b03009a2a2017")
-}
+db.bools.insertOne({title:"nice", author:"Terry", pages: 300, rating: 5 , genre:["fantasy"]});
 
 To add multiple documents:
 
-bookstore> show collections
-bookstore> db.books.insertMany([{title:"Ole", author:"Koolaid", pages: 40, rating: 3 , genre:["horro"]} , {title:"eclipse", author:"rry", pages: 800, rating: 8 , genre:["fantasy"]}]);
-{
-  acknowledged: true,
-  insertedIds: {
-    '0': ObjectId("65411597231b03009a2a201a"),
-    '1': ObjectId("65411597231b03009a2a201b")
-  }
-}
+show collections
+db.books.insertMany([{title:"Ole", author:"Koolaid", pages: 40, rating: 3 , genre:["horro"]} , {title:"eclipse", author:"rry", pages: 800, rating: 8 , genre:["fantasy"]}]);
 
 Giving sql like conditions:
 
- db.books.find({author:"Terry"}, {title:1});
-[ { _id: ObjectId("654114c0231b03009a2a2019"), title: 'nice' } ]
-bookstore> db.books.find({author:"Terry"}, {title:1, _id:0});
-[ { title: 'nice' } ]
-bookstore>
+db.books.find({author:"Terry"}, {title:1});
+
+db.books.find({author:"Terry"}, {title:1, _id:0});
+
+Filtering nested conditions:
+
+db.books.find({"reviews.name" : "yoshi"});
+apparently we have to put stuffs like the nested property name under quotes.
