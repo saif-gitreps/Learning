@@ -19,7 +19,12 @@ main proc
     
     CMP BL,CL
     JG L1; IF BL > CL THEN L1 WILL EXECUTE.
-       
+
+    ;Note: why was L2 placed before L1 ?
+    ;Thats because lets say its not placed and bl and cl is compared and bl > cl then JG L1 will be executed
+    ;Which will jump the code to L1 and JMP will hault the code execution.
+    ;Now if cl > bl then the jump will not get executed, the next line of code is L1 , after that
+    ;The JMP will hault the code execution. So both both condition we will get bl as output.   
     L2:
     MOV AH,2
     MOV DL,CL
