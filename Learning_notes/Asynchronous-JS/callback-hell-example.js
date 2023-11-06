@@ -17,21 +17,16 @@ let order = (fruits_name, call_production) => {
 let production = () => {
    setTimeout(() => {
       console.log("production has started");
-
       setTimeout(() => {
          console.log("fruits has been cut");
-
          setTimeout(() => {
             console.log(`${stocks.liquid[0]} and ${stocks.liquid[1]} was added`);
             setTimeout(() => {
                console.log("machine got started");
-
                setTimeout(() => {
                   console.log(`${stocks.holder[0]} was selected`);
-
                   setTimeout(() => {
                      console.log(`${stocks.toppings[0]} was selected`);
-
                      setTimeout(() => {
                         console.log("serve ice cream");
                      }, 2000);

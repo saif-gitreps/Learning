@@ -41,3 +41,4 @@ db.books.find({ $or: [{ pages: { $gt: 600 } }, { rating: { $lt: 9 } }] });
 //example of using $all operator:
 db.books.find({ genres: { $all: ["fantasy", "magic"] } });
 //It works like hard codded and operator but for array values.
+
