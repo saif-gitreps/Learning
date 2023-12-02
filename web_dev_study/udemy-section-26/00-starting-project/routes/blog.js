@@ -14,7 +14,8 @@ router.get("/posts", async function (req, res) {
    const posts = await db
       .getDb()
       .collection("posts")
-      .find({}, { title: 1, summary: 1, "author.name": 1 })
+      .find({})
+      .project({ title: 1, summary: 1, "author.name": 1 })
       .toArray();
    res.render("posts-list", { posts: posts });
 });
@@ -41,6 +42,19 @@ router.post("/posts", async (request, response) => {
    };
    await db.getDb().collection("posts").insertOne(newPost);
    response.redirect("/posts");
+});
+
+router.get("/post/:id", async (request, response) => {
+   const postID = request.params.id;
+   const post = await db
+      .getDb()
+      .collection("posts")
+      .findOne({ _id: new ObjectId(postID) }, { summary: 0 });
+   // .project({ summary: 0 });
+   if (!post) {
+      return response.statusCode(404).render("404");
+   }
+   response.render("post-detail", { post: post });
 });
 
 module.exports = router;
