@@ -10,8 +10,13 @@ router.get("/", function (req, res) {
    res.redirect("/posts");
 });
 
-router.get("/posts", function (req, res) {
-   res.render("posts-list");
+router.get("/posts", async function (req, res) {
+   const posts = db
+      .getDb()
+      .collection("posts")
+      .find({}, { title: 1, summary: 1, "author.name": 1 })
+      .toArray();
+   res.render("posts-list", { posts: posts });
 });
 
 router.get("/new-post", async function (req, res) {
@@ -21,7 +26,7 @@ router.get("/new-post", async function (req, res) {
 
 router.post("/posts", async (request, response) => {
    const author_id = new ObjectId(request.body.author);
-   const author = await db.getDb.collection("authors").findOne({ _id: author_id });
+   const author = await db.getDb().collection("authors").findOne({ _id: author_id });
 
    const newPost = {
       title: request.body.title,
@@ -31,9 +36,10 @@ router.post("/posts", async (request, response) => {
       author: {
          id: author_id,
          name: author.name,
+         email: author.email,
       },
    };
-   await db.getDb.collection("posts").insertOne(newPost);
+   await db.getDb().collection("posts").insertOne(newPost);
    response.redirect("/posts");
 });
 
