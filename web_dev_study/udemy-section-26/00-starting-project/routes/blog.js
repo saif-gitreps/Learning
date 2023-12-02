@@ -21,7 +21,7 @@ router.get("/new-post", async function (req, res) {
 
 router.post("/posts", async (request, response) => {
    const author_id = new ObjectId(request.body.author);
-   const author_name = await db.getDb.collection("authors").findOne({ _id: author_id });
+   const author = await db.getDb.collection("authors").findOne({ _id: author_id });
 
    const newPost = {
       title: request.body.title,
@@ -30,9 +30,11 @@ router.post("/posts", async (request, response) => {
       date: new Date(),
       author: {
          id: author_id,
-         name: author_name,
+         name: author.name,
       },
    };
+   await db.getDb.collection("posts").insertOne(newPost);
+   response.redirect("/posts");
 });
 
 module.exports = router;
