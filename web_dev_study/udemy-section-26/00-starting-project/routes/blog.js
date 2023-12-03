@@ -54,6 +54,16 @@ router.get("/post/:id", async (request, response) => {
    if (!post) {
       return response.statusCode(404).render("404");
    }
+   // so remember this weird javascript feature where if a property does not exist
+   // in an object , we can create one just like this.
+   post.humanReadableDate = post.date.toLocaleDateString("en-Us", {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+   });
+   post.date = post.date.toISOString();
+
    response.render("post-detail", { post: post });
 });
 
