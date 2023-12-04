@@ -9,7 +9,7 @@
       <%- include('includes/header') %>
       <main>
          <h1>Update post</h1>
-         <form action="/posts/<%= post.id%/>edit" method="put">
+         <form action="/posts/<%= post._id%>/edit" method="post">
             <div class="form-control">
                <label for="title">Title</label>
                <input

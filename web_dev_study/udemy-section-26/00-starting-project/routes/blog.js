@@ -44,7 +44,7 @@ router.post("/posts", async (request, response) => {
    response.redirect("/posts");
 });
 
-router.get("/post/:id", async (request, response) => {
+router.get("/posts/:id", async (request, response) => {
    const postID = request.params.id;
    const post = await db
       .getDb()
@@ -67,17 +67,35 @@ router.get("/post/:id", async (request, response) => {
    response.render("post-detail", { post: post });
 });
 
-router.get("/post/:id/edit", async (request, response) => {
+router.get("/posts/:id/edit", async (request, response) => {
    const postID = request.params.id;
    const post = await db
       .getDb()
       .collection("posts")
-      .findOne({ _id: new ObjectId(postID) }, { summary: 1, title: 1, body: 1 });
+      .findOne({ _id: new ObjectId(postID) }, { title: 1, summary: 1, body: 1 });
    if (!post) {
       return response.statusCode(404).render("404");
    }
 
    response.render("update-post", { post: post });
+});
+
+router.post("/posts/:id/edit", async (request, response) => {
+   const postID = new ObjectId(request.params.id);
+   const res = await db
+      .getDb()
+      .collection("posts")
+      .updateOne(
+         { _id: postID },
+         {
+            $set: {
+               title: request.body.title,
+               summary: request.body.summary,
+               body: request.body.content,
+            },
+         }
+      );
+   response.redirect("/posts");
 });
 
 module.exports = router;
