@@ -81,20 +81,39 @@ router.get("/posts/:id/edit", async (request, response) => {
 });
 
 router.post("/posts/:id/edit", async (request, response) => {
+   try {
+      const postID = new ObjectId(request.params.id);
+      const result = await db
+         .getDb()
+         .collection("posts")
+         .updateOne(
+            { _id: postID },
+            {
+               $set: {
+                  title: request.body.title,
+                  summary: request.body.summary,
+                  body: request.body.content,
+               },
+            }
+         );
+
+      if (result.modifiedCount === 1) {
+         // Successful update
+         response.redirect("/posts");
+      } else {
+         // No matching document found
+         response.status(404).send("Post not found");
+      }
+   } catch (error) {
+      console.error("Error updating post:", error);
+      response.status(500).send("Internal Server Error");
+   }
+});
+
+router.post("/posts/:id/delete", async (request, response) => {
    const postID = new ObjectId(request.params.id);
-   const res = await db
-      .getDb()
-      .collection("posts")
-      .updateOne(
-         { _id: postID },
-         {
-            $set: {
-               title: request.body.title,
-               summary: request.body.summary,
-               body: request.body.content,
-            },
-         }
-      );
+   await db.getDb().collection("posts").deleteOne({ _id: postID });
+
    response.redirect("/posts");
 });
 
