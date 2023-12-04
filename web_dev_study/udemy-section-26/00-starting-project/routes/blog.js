@@ -67,7 +67,7 @@ router.get("/post/:id", async (request, response) => {
    response.render("post-detail", { post: post });
 });
 
-router.post("/post/:id/edit", async (request, response) => {
+router.get("/post/:id/edit", async (request, response) => {
    const postID = request.params.id;
    const post = await db
       .getDb()
