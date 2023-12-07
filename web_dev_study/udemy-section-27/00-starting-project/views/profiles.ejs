@@ -14,16 +14,20 @@
             <a class="btn" href="/new-user">Add a New User</a>
          </section>
          <section id="user-profiles">
+            <%if(users.length == 0) {%>
+            <h2>Sorry no users</h2>
+            <% } else {%>
             <ul>
                <% for (const user of users) {%>
                <li class="user-item">
                   <article>
-                     <img src="<%=user.path%>" alt="The image of the user." />
+                     <img src="<%=user.imagePath%>" alt="The image of the user." />
                      <h2><%= user.name %></h2>
                   </article>
                </li>
                <% } %>
             </ul>
+            <%}%>
          </section>
       </main>
    </body>

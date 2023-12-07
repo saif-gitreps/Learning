@@ -15,7 +15,7 @@ const upload = multer({ storage: storageConfig });
 const router = express.Router();
 
 router.get("/", async function (req, res) {
-   const users = db.getDb().collection("users").find().toArray();
+   const users = await db.getDb().collection("users").find().toArray();
    res.render("profiles", { users: users });
 });
 
