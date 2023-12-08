@@ -4,24 +4,24 @@
 
 org 100h
 
-main proc
+MAIN PROC
 
-MOV AH,1
-INT 21H
-MOV BL,AL
-INT 21H
-MOV CL,AL
+    MOV AH,1
+    INT 21H
+    MOV BL,AL
+    INT 21H
+    MOV CL,AL
 
-SUB BL,32
-SUB CL,32        
-        
-MOV AH,2
-MOV DL,32
-INT 21H
-MOV DL,BL
-INT 21H
-MOV DL,CL
-INT 21H
+    SUB BL,32
+    SUB CL,32        
+            
+    MOV AH,2
+    MOV DL,32
+    INT 21H
+    MOV DL,BL
+    INT 21H
+    MOV DL,CL
+    INT 21H
 
 ret
 

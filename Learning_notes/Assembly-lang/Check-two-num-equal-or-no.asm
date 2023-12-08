@@ -1,13 +1,12 @@
+org 100h 
 
-; You may customize this and other start-up templates; 
-; The location of this template is c:\emu8086\inc\0_com_template.txt
 ; PROGRAM TO COMPARE AND PRINT IF EQUAL OR NO.
 org 100h
 .DATA
     A DB 'EQUAL$'
     B DB 'NOT EQUAL$'         
-.code
-main proc
+.CODE
+MAIN PROC
     MOV AX,@DATA
     MOV DS,AX
     
@@ -16,6 +15,10 @@ main proc
     MOV BL,AL
     INT 21H
     MOV CL,AL
+ 
+    MOV AH,2
+    MOV DL,032
+    INT 21H
     
     CMP BL,CL
     JE L1
