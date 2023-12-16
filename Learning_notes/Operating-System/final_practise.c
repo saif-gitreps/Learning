@@ -1,6 +1,30 @@
 #include<stdio.h>
 
-int wt_time(int pid[], int n ,int pri[], int bt[], int rem_bt[], int wt[], int at[]){
+int wt_time_robin_hood(int pid[], int n ,int q,int pri[], int bt[], int rem_bt[], int wt[], int at[]){
+    int t = 0;
+    int completed = 0;
+    while(completed < n){
+        int s = -1;
+        int m = 100;
+        for(int i = 0 ; i < n; i++){
+            if(rem_bt[i] != 0){
+                if(rem_bt[i] > q){
+                    t += q;
+                    rem_bt[i] -= q;
+                }
+                else{
+                    t += rem_bt[i];
+                    wt[i] = t - bt[i];
+                    rem_bt[i] = 0;
+                    completed++;
+                }
+            }
+        }
+    }
+    return 1;
+}
+
+int wt_time_priority_preemtive(int pid[], int n ,int pri[], int bt[], int rem_bt[], int wt[], int at[]){
     int completed = 0;
     int t  = 0;
     while( completed < n ){
@@ -64,7 +88,7 @@ int main(){
         rem_bt[i] = bt[i];
     }
     
-    wt_time(pid, n, pri, bt, rem_bt,wt, at);
+    //wt_time(pid, n, pri, bt, rem_bt,wt, at);
     tat_time(n, wt, bt, tat);        
     print(pid, n, pri, bt, wt, tat,at);
     
