@@ -1,5 +1,43 @@
 #include<stdio.h>
 
+int wt_time_srtf(int pid[], int n ,int pri[], int bt[], int rem_bt[], int wt[], int at[]){
+    int completed = 0;
+    int t  = 0;
+    while( completed < n ){
+        int s = -1;
+        int m = 100;
+        for(int i = 0 ; i < n; i++){
+            if(at[i] <= t && rem_bt[i] > 0 && pri[i] < m){
+                s = i;
+                m = pri[i];
+            }
+            else if(at[i] <= t && rem_bt[i] > 0 && pri[i] == m && at[i] < at[s]){
+                s = i;
+                m  = pri[i];
+            }
+            else if(at[i] <= t && rem_bt[i] > 0 && pri[i] == m && at[i] == at[s] && pid[i] < pid[s]){
+                s = i;
+                m = pri[i];
+            }
+            else {
+                //
+            }
+        }
+        if(s == -1){
+            t ++;
+            continue;
+        }
+        rem_bt[s] --;
+        if(rem_bt[s] == 0){
+            completed++;
+            wt[s] = t + 1 - at[s] - bt[s];
+        }
+        t++;
+    }
+    return 1;
+}
+
+
 int wt_time_robin_hood(int pid[], int n ,int q,int pri[], int bt[], int rem_bt[], int wt[], int at[]){
     int t = 0;
     int completed = 0;
