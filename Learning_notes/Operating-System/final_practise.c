@@ -1,5 +1,29 @@
 #include<stdio.h>
 
+
+int wt_time_SJF(int pid[], int n ,int q,int pri[], int bt[], int rem_bt[], int wt[], int at[]){
+    wt[0] = 0;
+    for(int i = 0 ; i < n; i++){
+        for(int j = i + 1 ; j < n; j++){
+            int temp;
+            if(bt[i] > bt[j]){
+                temp = bt[j];
+                bt[j] = bt[i];
+                bt[i] = temp;
+                
+                temp = pid[j];
+                pid[j] = pid[i];
+                pid[i] = temp;
+            }
+        }
+    }
+    for(int i = 1; i < n; i++){
+        wt[i] = wt[i-1] + bt[i-1];
+    }
+    return 1;
+}
+
+
 int wt_time_priority_sche(int pid[], int n ,int q,int pri[], int bt[], int rem_bt[], int wt[], int at[]){
     wt[0] = 0;
     for(int i = 0 ; i < n; i++){
