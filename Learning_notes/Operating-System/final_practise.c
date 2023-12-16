@@ -1,37 +1,59 @@
 #include<stdio.h>
 
+int wt_time_priority_sche(int pid[], int n ,int q,int pri[], int bt[], int rem_bt[], int wt[], int at[]){
+    wt[0] = 0;
+    for(int i = 0 ; i < n; i++){
+        for(int j = i + 1 ; j < n; j++){
+            int temp;
+            if(pri[i] > pri[j]){
+                temp = pri[j];
+                pri[j] = pri[i];
+                pri[i] = temp;
+                
+                temp = bt[j];
+                bt[j] = bt[i];
+                bt[i] = temp;
+                
+                temp = pid[j];
+                pid[j] = pid[i];
+                pid[i] = temp;
+            }
+        }
+    }
+    for(int i = 1; i < n; i++){
+        wt[i] = wt[i-1] + bt[i-1];
+    }
+    return 1;
+}
+
 int wt_time_srtf(int pid[], int n ,int pri[], int bt[], int rem_bt[], int wt[], int at[]){
     int completed = 0;
     int t  = 0;
     while( completed < n ){
-        int s = -1;
-        int m = 100;
+        int m = 50;
         for(int i = 0 ; i < n; i++){
-            if(at[i] <= t && rem_bt[i] > 0 && pri[i] < m){
-                s = i;
-                m = pri[i];
+            if(rem_bt[i] > 0 && at[i] <= t && rem_bt[i] < rem_bt[m]){
+                m = i;
             }
-            else if(at[i] <= t && rem_bt[i] > 0 && pri[i] == m && at[i] < at[s]){
-                s = i;
-                m  = pri[i];
+            else if(rem_bt[i] > 0 && at[i] <= t && rem_bt[i] == rem_bt[m] && at[i] < at[m]){
+                m = i;
             }
-            else if(at[i] <= t && rem_bt[i] > 0 && pri[i] == m && at[i] == at[s] && pid[i] < pid[s]){
-                s = i;
-                m = pri[i];
+            else if(rem_bt[i] > 0 && at[i] <= t && rem_bt[i] == rem_bt[m] && at[i] == at[m] && pid[i] < pid[m]){
+                m = i;
             }
             else {
-                //
+                //,,
             }
         }
-        if(s == -1){
+        if(m == 50){
             t ++;
             continue;
         }
-        rem_bt[s] --;
-        if(rem_bt[s] == 0){
+        rem_bt[m] --;
+        if(rem_bt[m] == 0){
             completed++;
-            wt[s] = t + 1 - at[s] - bt[s];
-        }
+            wt[m] = t + 1 - at[m] - bt[m];
+        } 
         t++;
     }
     return 1;
