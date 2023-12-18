@@ -19,17 +19,24 @@ function createSectionList(comments) {
    return commentList;
 }
 
-loadCommentsButton.addEventListener("click", async (event) => {
+async function loadCommentsCallback(event) {
    const postId = loadCommentsButton.dataset.postid;
    const response = await fetch(`/posts/${postId}/comments`);
+   // we convert the response to json
    const responseData = await response.json();
 
-   console.log(responseData);
+   if (responseData && responseData.length > 0) {
+      // we create a new list of comments
+      const newCommentList = createSectionList(responseData);
+      // we replace the old list with the new one
+      commentSection.innerHTML = "";
+      commentSection.appendChild(newCommentList);
+   } else {
+      commentSection.firstElementChild.textContent = "No comments yet!";
+   }
+}
 
-   const newCommentList = createSectionList(responseData);
-   commentSection.innerHTML = "";
-   commentSection.appendChild(newCommentList);
-});
+loadCommentsButton.addEventListener("click", loadCommentsCallback);
 
 commentForm.addEventListener("submit", async (event) => {
    event.preventDefault();
@@ -37,18 +44,20 @@ commentForm.addEventListener("submit", async (event) => {
    const enteredTitle = commentTitle.value;
    const enteredText = commentText.value;
 
-   console.log(enteredTitle, enteredText);
-
+   // converting the data to pre json format
    const actualComment = {
       title: enteredTitle,
       text: enteredText,
    };
 
-   await fetch(`/posts/${postId}/comments`, {
+   const response = await fetch(`/posts/${postId}/comments`, {
       method: "POST",
       body: JSON.stringify(actualComment),
       headers: {
          "Content-Type": "application/json",
       },
    });
+
+   // so after we added the comment , we reload the comments
+   loadCommentsCallback();
 });
