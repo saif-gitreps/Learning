@@ -1,6 +1,6 @@
 const loadCommentsButton = document.getElementById("load-comments-btn");
 const commentSection = document.getElementById("comments");
-const commentForm = document.querySelector("#comments-form from");
+const commentForm = document.querySelector("#comments-form form");
 const commentTitle = document.getElementById("title");
 const commentText = document.getElementById("text");
 
@@ -37,13 +37,18 @@ commentForm.addEventListener("submit", async (event) => {
    const enteredTitle = commentTitle.value;
    const enteredText = commentText.value;
 
+   console.log(enteredTitle, enteredText);
+
    const actualComment = {
       title: enteredTitle,
       text: enteredText,
    };
 
-   fetch(`/posts/${postId}/comments`, {
+   await fetch(`/posts/${postId}/comments`, {
       method: "POST",
       body: JSON.stringify(actualComment),
+      headers: {
+         "Content-Type": "application/json",
+      },
    });
 });
