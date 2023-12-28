@@ -24,6 +24,27 @@ router.post("/signup", async function (req, res) {
    const enteredConfirmEmail = userData["confirm-email"];
    const enteredPassword = userData.password;
 
+   if (
+      !enteredEmail ||
+      !enteredConfirmEmail ||
+      !enteredPassword ||
+      enteredEmail !== enteredConfirmEmail ||
+      enteredPassword.trim().length < 4
+   ) {
+      console.log("Invalid input");
+      return res.redirect("/signup");
+   }
+
+   const existingUser = await db
+      .getDb()
+      .collection("users")
+      .findOne({ email: enteredEmail });
+
+   if (existingUser) {
+      console.log("User already exists");
+      return res.redirect("/signup");
+   }
+
    const user = {
       email: enteredEmail,
       password: await bcrypt.hash(enteredPassword, 12),
