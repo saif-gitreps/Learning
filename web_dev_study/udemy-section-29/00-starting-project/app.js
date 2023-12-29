@@ -1,6 +1,6 @@
 const path = require("path");
 const session = require("express-session");
-const mongodbStore = require("connect-mongodb-session")(session);
+const mongodbStore = require("connect-mongodb-session");
 
 const express = require("express");
 

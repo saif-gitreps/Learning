@@ -86,11 +86,20 @@ router.post("/login", async function (req, res) {
       return res.redirect("/login");
    }
 
-   console.log("User logged in");
-   res.redirect("/admin");
+   req.session.user = {
+      id: existingUser.id,
+      email: existingUser.email,
+   };
+   req.session.isAuthenticated = true;
+   req.session.save(function () {
+      res.redirect("/admin");
+   });
 });
 
 router.get("/admin", function (req, res) {
+   if (!req.session.isAuthenticated) {
+      return res.status(401).render("401");
+   }
    res.render("admin");
 });
 
