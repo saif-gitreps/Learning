@@ -10,7 +10,19 @@ router.get("/", function (req, res) {
 });
 
 router.get("/signup", function (req, res) {
-   res.render("signup");
+   let sessionInputData = req.session.inputData;
+   // now we take that session data that was stored in case the user makes mistake and load it up and send as ejs
+   if (!sessionInputData) {
+      sessionInputData = {
+         hasError: false,
+         message: null,
+         email: "",
+         confirmEmail: "",
+         password: "",
+      };
+   }
+   req.session.inputData = null;
+   res.render("signup", { inputData: sessionInputData });
 });
 
 router.get("/login", function (req, res) {
@@ -32,7 +44,19 @@ router.post("/signup", async function (req, res) {
       enteredPassword.trim().length < 4
    ) {
       console.log("Invalid input");
-      return res.redirect("/signup");
+      // this data will be stored in our session and it will load in the signup page again.
+      req.session.inputData = {
+         hasError: true,
+         message: "invalid input",
+         email: enteredEmail,
+         confirmEmail: enteredConfirmEmail,
+         password: enteredPassword,
+      };
+
+      req.session.save(function () {
+         res.redirect("/signup");
+      });
+      return;
    }
 
    const existingUser = await db
