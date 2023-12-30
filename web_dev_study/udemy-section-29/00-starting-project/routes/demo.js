@@ -103,6 +103,12 @@ router.get("/admin", function (req, res) {
    res.render("admin");
 });
 
-router.post("/logout", function (req, res) {});
+router.post("/logout", function (req, res) {
+   req.session.user = null;
+   req.session.isAuthenticated = false;
+   req.session.save(function () {
+      res.redirect("/");
+   });
+});
 
 module.exports = router;
