@@ -43,11 +43,16 @@ app.use(async function (req, res, next) {
       return next();
    }
 
-   const userFromDatabase = db.getDb().collection("users").findOne({ _id: user.id });
+   const userFromDatabase = await db
+      .getDb()
+      .collection("users")
+      .findOne({ _id: user.id });
    const isAdmin = userFromDatabase.isAdmin;
 
    res.locals.isAuth = isAuth;
    res.locals.isAdmin = isAdmin;
+
+   next();
 });
 
 app.use(demoRoutes);
