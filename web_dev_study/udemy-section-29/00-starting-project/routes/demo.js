@@ -26,7 +26,19 @@ router.get("/signup", function (req, res) {
 });
 
 router.get("/login", function (req, res) {
-   res.render("login");
+   let sessionInputData = req.session.inputData;
+   // now we take that session data that was stored in case the user makes mistake and load it up and send as ejs
+   if (!sessionInputData) {
+      sessionInputData = {
+         hasError: false,
+         message: null,
+         email: "",
+         password: "",
+      };
+   }
+   req.session.inputData = null;
+
+   res.render("login", { inputData: sessionInputData });
 });
 
 router.post("/signup", async function (req, res) {
@@ -98,25 +110,43 @@ router.post("/login", async function (req, res) {
       .findOne({ email: enteredEmail });
 
    if (!existingUser) {
-      console.log("User does not exist");
-      return res.redirect("/login");
+      req.session.inputData = {
+         hasError: true,
+         message: "Please check your input credentials again!",
+         email: enteredEmail,
+         password: enteredPassword,
+      };
+      req.session.save(function () {
+         res.redirect("/login");
+      });
+      return;
    }
-   // this is another way of doing async await.
-   // bcrypt.compare(enteredPassword, existingUser.password).then(function (result) {
-   //    if (result) {
-   //       console.log("User logged in");
-   //       res.redirect("/admin");
-   //    } else {
-   //       console.log("password do not match");
-   //       res.redirect("/login");
-   //    }
-   // });
+   /*-----------------------------------------------
+      this is another way of doing async await.
+      bcrypt.compare(enteredPassword, existingUser.password).then(function (result) {
+         if (result) {
+            console.log("User logged in");
+            res.redirect("/admin");
+         } else {
+            console.log("password do not match");
+            res.redirect("/login");
+         }
+      });
+   -------------------------------------------------*/
 
    const passwordCheck = await bcrypt.compare(enteredPassword, existingUser.password);
 
    if (!passwordCheck) {
-      console.log("password do not match");
-      return res.redirect("/login");
+      req.session.inputData = {
+         hasError: true,
+         message: "Please check your input credentials again!",
+         email: enteredEmail,
+         password: enteredPassword,
+      };
+      req.session.save(function () {
+         res.redirect("/login");
+      });
+      return;
    }
 
    req.session.user = {
