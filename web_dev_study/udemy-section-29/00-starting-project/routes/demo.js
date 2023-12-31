@@ -65,8 +65,17 @@ router.post("/signup", async function (req, res) {
       .findOne({ email: enteredEmail });
 
    if (existingUser) {
-      console.log("User already exists");
-      return res.redirect("/signup");
+      req.session.inputData = {
+         hasError: true,
+         message: "User exists already!",
+         email: enteredEmail,
+         confirmEmail: enteredConfirmEmail,
+         password: enteredPassword,
+      };
+      req.session.save(function () {
+         res.redirect("/signup");
+      });
+      return;
    }
 
    const user = {
