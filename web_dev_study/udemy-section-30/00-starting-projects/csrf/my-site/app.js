@@ -1,62 +1,67 @@
-const path = require('path');
+const path = require("path");
 
-const express = require('express');
-const session = require('express-session');
-const mongodbStore = require('connect-mongodb-session');
+const express = require("express");
+const session = require("express-session");
+const mongodbStore = require("connect-mongodb-session");
+const csrf = require("csurf");
 
-const db = require('./data/database');
-const demoRoutes = require('./routes/demo');
+const db = require("./data/database");
+const demoRoutes = require("./routes/demo");
 
 const MongoDBStore = mongodbStore(session);
 
 const app = express();
 
 const sessionStore = new MongoDBStore({
-  uri: 'mongodb://localhost:27017',
-  databaseName: 'auth-demo',
-  collection: 'sessions'
+   uri: "mongodb://localhost:27017",
+   databaseName: "auth-demo",
+   collection: "sessions",
 });
 
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
 
-app.use(express.static('public'));
+app.use(express.static("public"));
 app.use(express.urlencoded({ extended: false }));
 
-app.use(session({
-  secret: 'super-secret',
-  resave: false,
-  saveUninitialized: false,
-  store: sessionStore,
-  cookie: {
-    maxAge: 2 * 24 * 60 * 60 * 1000
-  }
-}));
+app.use(
+   session({
+      secret: "super-secret",
+      resave: false,
+      saveUninitialized: false,
+      store: sessionStore,
+      cookie: {
+         maxAge: 2 * 24 * 60 * 60 * 1000,
+      },
+   })
+);
 
-app.use(async function(req, res, next) {
-  const user = req.session.user;
-  const isAuth = req.session.isAuthenticated;
+app.use(csrf());
 
-  if (!user || !isAuth) {
-    return next();
-  }
+app.use(async function (req, res, next) {
+   const user = req.session.user;
+   const isAuth = req.session.isAuthenticated;
 
-  const userDoc = await db.getDb().collection('users').findOne({_id: user.id});
-  const isAdmin = userDoc.isAdmin;
+   if (!user || !isAuth) {
+      return next();
+   }
 
-  res.locals.isAuth = isAuth;
-  res.locals.isAdmin = isAdmin;
-  res.locals.user = user;
+   const userDoc = await db.getDb().collection("users").findOne({ _id: user.id });
+   const isAdmin = userDoc.isAdmin;
 
-  next();
+   res.locals.isAuth = isAuth;
+   res.locals.isAdmin = isAdmin;
+   res.locals.user = user;
+
+   next();
 });
 
 app.use(demoRoutes);
 
-app.use(function(error, req, res, next) {
-  res.render('500');
-})
+app.use(function (error, req, res, next) {
+   res.render("500");
+});
 
 db.connectToDatabase().then(function () {
-  app.listen(3000);
+   app.listen(3000);
 });
