@@ -3,8 +3,8 @@ const path = require("path");
 const express = require("express");
 const session = require("express-session");
 const mongodbStore = require("connect-mongodb-session");
-const csrf = require("csurf");
-
+const cookieParser = require("cookie-parser");
+const csurf = require("tiny-csrf");
 const db = require("./data/database");
 const demoRoutes = require("./routes/demo");
 
@@ -23,7 +23,7 @@ app.set("views", path.join(__dirname, "views"));
 
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: false }));
-
+app.use(cookieParser("cookie-parser-secret"));
 app.use(
    session({
       secret: "super-secret",
@@ -35,8 +35,7 @@ app.use(
       },
    })
 );
-
-app.use(csrf());
+app.use(csurf("123456789iamasecret987654321look"));
 
 app.use(async function (req, res, next) {
    const user = req.session.user;
