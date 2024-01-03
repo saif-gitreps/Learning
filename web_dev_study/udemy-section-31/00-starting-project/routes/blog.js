@@ -1,130 +1,17 @@
 const express = require("express");
-const mongodb = require("mongodb");
-
-const db = require("../data/database");
-const Post = require("../models/post");
-
-const ObjectId = mongodb.ObjectId;
+const blogControllers = require("../controllers/post-controllers");
 const router = express.Router();
 
-router.get("/", function (req, res) {
-   res.render("welcome", { csrfToken: req.csrfToken() });
-});
+router.get("/", blogControllers.getHome);
 
-router.get("/admin", async function (req, res) {
-   if (!res.locals.isAuth) {
-      return res.status(401).render("401");
-   }
+router.get("/admin", blogControllers.getAdmin);
 
-   const posts = await db.getDb().collection("posts").find().toArray();
+router.post("/posts", blogControllers.createPost);
 
-   let sessionInputData = req.session.inputData;
+router.get("/posts/:id/edit", blogControllers.getSinglePost);
 
-   if (!sessionInputData) {
-      sessionInputData = {
-         hasError: false,
-         title: "",
-         content: "",
-      };
-   }
+router.post("/posts/:id/edit", blogControllers.updatePost);
 
-   req.session.inputData = null;
-
-   res.render("admin", {
-      posts: posts,
-      inputData: sessionInputData,
-      csrfToken: req.csrfToken(),
-   });
-});
-
-router.post("/posts", async function (req, res) {
-   const enteredTitle = req.body.title;
-   const enteredContent = req.body.content;
-
-   if (
-      !enteredTitle ||
-      !enteredContent ||
-      enteredTitle.trim() === "" ||
-      enteredContent.trim() === ""
-   ) {
-      req.session.inputData = {
-         hasError: true,
-         message: "Invalid input - please check your data.",
-         title: enteredTitle,
-         content: enteredContent,
-      };
-
-      res.redirect("/admin");
-      return; // or return res.redirect('/admin'); => Has the same effect
-   }
-
-   const newPost = new Post(enteredTitle, enteredContent);
-
-   await newPost.save();
-
-   res.redirect("/admin");
-});
-
-router.get("/posts/:id/edit", async function (req, res) {
-   const postId = new ObjectId(req.params.id);
-   const post = await db.getDb().collection("posts").findOne({ _id: postId });
-
-   if (!post) {
-      return res.render("404"); // 404.ejs is missing at this point - it will be added later!
-   }
-
-   let sessionInputData = req.session.inputData;
-
-   if (!sessionInputData) {
-      sessionInputData = {
-         hasError: false,
-         title: post.title,
-         content: post.content,
-      };
-   }
-
-   req.session.inputData = null;
-
-   res.render("single-post", {
-      post: post,
-      inputData: sessionInputData,
-      csrfToken: req.csrfToken(),
-   });
-});
-
-router.post("/posts/:id/edit", async function (req, res) {
-   const enteredTitle = req.body.title;
-   const enteredContent = req.body.content;
-   const postId = req.params.id;
-
-   if (
-      !enteredTitle ||
-      !enteredContent ||
-      enteredTitle.trim() === "" ||
-      enteredContent.trim() === ""
-   ) {
-      req.session.inputData = {
-         hasError: true,
-         message: "Invalid input - please check your data.",
-         title: enteredTitle,
-         content: enteredContent,
-      };
-
-      res.redirect(`/posts/${req.params.id}/edit`);
-      return;
-   }
-
-   const editPost = new Post(enteredTitle, enteredContent, postId);
-   await editPost.save();
-
-   res.redirect("/admin");
-});
-
-router.post("/posts/:id/delete", async function (req, res) {
-   const delPost = new Post(null, null, req.params.id);
-   await delPost.delete();
-
-   res.redirect("/admin");
-});
+router.post("/posts/:id/delete", blogControllers.deletePost);
 
 module.exports = router;
