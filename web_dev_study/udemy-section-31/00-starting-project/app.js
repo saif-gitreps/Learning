@@ -4,9 +4,11 @@ const express = require("express");
 const session = require("express-session");
 const mongodbStore = require("connect-mongodb-session");
 const csrf = require("csurf");
+const mongodb = require("mongodb");
 
 const db = require("./data/database");
 const blogRoutes = require("./routes/blog");
+const authRoutes = require("./routes/auth");
 
 const MongoDBStore = mongodbStore(session);
 
@@ -51,6 +53,7 @@ app.use(async function (req, res, next) {
 });
 
 app.use(blogRoutes);
+app.use(authRoutes);
 
 app.use(function (error, req, res, next) {
    res.render("500");
