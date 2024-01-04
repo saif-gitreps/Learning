@@ -1,6 +1,5 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
-const mongodb = require("mongodb");
 
 const db = require("../data/database");
 
@@ -152,6 +151,10 @@ router.post("/logout", function (req, res) {
    req.session.user = null;
    req.session.isAuthenticated = false;
    res.redirect("/");
+});
+
+router.get("/404", function (req, res) {
+   res.status(401).render("401");
 });
 
 module.exports = router;
