@@ -56,8 +56,14 @@ async function createPost(req, res) {
    res.redirect("/admin");
 }
 
-async function getSinglePost(req, res) {
-   const post = new Post(null, null, req.params.id);
+async function getSinglePost(req, res, next) {
+   let post;
+   try {
+      post = new Post(null, null, req.params.id);
+   } catch (error) {
+      next(error);
+      return;
+   }
    await post.fetch();
 
    // this is to say yea we did fetch something, if we really had fetched , title or content shoudnt be empty.

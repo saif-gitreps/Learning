@@ -9,6 +9,7 @@ const db = require("./data/database");
 const blogRoutes = require("./routes/blog");
 const authRoutes = require("./routes/auth");
 const authMiddleware = require("./middleware/auth_middleware");
+const addCSRFtokenMiddleware = require("./middleware/CSRF-token-middleware");
 
 const MongoDBStore = mongodbStore(session);
 
@@ -38,6 +39,8 @@ app.use(
    })
 );
 app.use(csrf());
+
+app.use(addCSRFtokenMiddleware);
 
 app.use(authMiddleware.auth);
 
