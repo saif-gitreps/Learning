@@ -1,5 +1,3 @@
-const { reset } = require("nodemon");
-
 const loadCommentsButton = document.getElementById("load-comments-btn");
 const commentSection = document.getElementById("comments");
 const commentForm = document.querySelector("#comments-form form");
