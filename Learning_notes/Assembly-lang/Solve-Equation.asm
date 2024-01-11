@@ -1,5 +1,4 @@
 org 100h 
-
 ;Q) 5A + 4B - 3C
 
 .DATA
