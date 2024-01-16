@@ -1,12 +1,17 @@
 const express = require("express");
 
 const db = require("./data/database");
+const todosRoutes = require("./routes/todo-routes");
 
 const app = express();
 
+app.use(express.json());
+
+app.use("/todos", todosRoutes);
+
 app.use(function (error, req, res, next) {
    res.status(500).json({
-      message: "Something went wrong!",
+      message: "Something went wrong on the server!",
    });
 });
 
