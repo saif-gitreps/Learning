@@ -5,6 +5,7 @@ const uploadOnCloudinary = require("../utils/cloudinary");
 const ApiResponse = require("../utils/ApiResponse");
 
 const register = asyncHandler(async (req, res, next) => {
+   // To Do:
    // get use details from frontend.
    // validations.
    // check existing users.
@@ -22,7 +23,7 @@ const register = asyncHandler(async (req, res, next) => {
       throw new ApiError(400, "Please fill all fields");
    }
 
-   const existingUser = User.findOne({ $or: [{ email }, { username }] });
+   const existingUser = await User.findOne({ $or: [{ email }, { username }] });
 
    if (existingUser) {
       // 409 is the status code for conflict.
@@ -71,9 +72,10 @@ const register = asyncHandler(async (req, res, next) => {
       avatar: uploadedAvatar.url,
       // here its not mandatory that we have a cover image , so we check if its not
       // undefined then we set the url by which is stored in cloudinary or we just keep it empty.
-      coverImage: coverImage?.url || "",
+      coverImage: uploadedCoverImage?.url || "",
       email: email,
       username: username.toLowerCase(),
+      password: password,
    });
 
    // we want to exclude password and refresh token, so we use this select method.
