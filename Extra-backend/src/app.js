@@ -16,7 +16,7 @@ app.use(cookieParser());
 const userRoutes = require("./routes/user.routes");
 
 // routes declaration.
-//
+// we have to add these versioning as it is RESTful api good practise.
 app.use("/api/v1/users", userRoutes);
 
 module.exports = app;
