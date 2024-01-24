@@ -4,6 +4,20 @@ const User = require("../models/user.model");
 const uploadOnCloudinary = require("../utils/cloudinary");
 const ApiResponse = require("../utils/ApiResponse");
 
+// since we are going to use the customer methods for generating access and refresh tokens.
+// its best practice to make a method for that.
+async function generateAccessAndRefreshToken(userId) {
+   try {
+      const user = await User.findById(userId);
+      user.generateAccessToken;
+   } catch (error) {
+      throw new ApiError(
+         500,
+         "Something went wrong while generating access and refresh tokens"
+      );
+   }
+}
+
 const register = asyncHandler(async (req, res, next) => {
    // To Do:
    // get use details from frontend.
@@ -100,6 +114,39 @@ const register = asyncHandler(async (req, res, next) => {
       .json(new ApiResponse(200, createdUser, "User was successfully registered"));
 });
 
+const loginUser = asyncHandler(async (req, res) => {
+   // To do:
+   // take data from req.body
+   // username or emaill
+   // check existing user.
+   // if exists, then check password else throw err
+   // if true , then add access and refresh.
+   // send cookie
+   const { username, email, password } = req.body;
+
+   if (!username || !email) {
+      throw new ApiError(400, "email/username is required");
+   }
+
+   const existingUser = await User.findOne({
+      $or: [{ email }, { username }],
+   });
+
+   if (!existingUser) {
+      throw new ApiError(404, "User does not exist");
+   }
+
+   // we are gonna use our custom methods that we defined.
+   // while using  User (our model) methods, we are using pre-existing mongoose/method methods.
+   // so when we wanna use our custom methods we use the 'existingUser' object in which
+   // the data loaded from the dbs is stored.
+
+   if (!(await user.isPasswordValid(password))) {
+      throw new ApiError(401, "Incorrect password, Try again!");
+   }
+});
+
 module.exports = {
    register,
+   loginUser,
 };
