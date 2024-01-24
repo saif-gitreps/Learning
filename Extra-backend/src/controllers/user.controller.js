@@ -9,7 +9,18 @@ const ApiResponse = require("../utils/ApiResponse");
 async function generateAccessAndRefreshToken(userId) {
    try {
       const user = await User.findById(userId);
-      user.generateAccessToken;
+      const accessToken = user.generateAccessToken();
+      const refreshToken = user.generateRefreshToken();
+
+      // we are saving the refresh token in the dbs, since we have defined that refreshToken
+      // property in the model.
+      user.refreshToken = refreshToken;
+      await user.save({ validateBeforeSave: false });
+
+      return {
+         accessToken,
+         refreshToken,
+      };
    } catch (error) {
       throw new ApiError(
          500,
@@ -144,6 +155,39 @@ const loginUser = asyncHandler(async (req, res) => {
    if (!(await user.isPasswordValid(password))) {
       throw new ApiError(401, "Incorrect password, Try again!");
    }
+
+   // rule of thumb, anything that we may know will take time , needs to be awaited.
+   const { refreshToken, accessToken } = await generateAccessAndRefreshToken(user._id);
+
+   // we want to send some data as resposne.
+   // now we did save the refreshToken in the dbs of this user when we made that call.
+   // but the current 'user' object in this scope does not have it inside.
+   // we could add that property or we could make a dbs call, here the latter is done, but
+   // practically i would just test it and modify the 'user' object and update the properties over here.
+
+   user = await User.findById(user._id).select("-password -refreshToken");
+
+   // designing some options for our cookies.
+   const options = {
+      httpOnly: true,
+      secure: true,
+   };
+
+   return res
+      .status(200)
+      .cookie("accessToken", accessToken, options)
+      .cookie("refreshToken", refreshToken, options)
+      .json(
+         new ApiResponse(
+            200,
+            {
+               user: user,
+               accessToken,
+               refreshToken,
+            },
+            "User logged in successfully"
+         )
+      );
 });
 
 module.exports = {
