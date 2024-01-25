@@ -44,4 +44,4 @@ const verifyJWT = asyncHandler(async (req, res, next) => {
    }
 });
 
-module.exports(verifyJWT);
+module.exports = verifyJWT;
