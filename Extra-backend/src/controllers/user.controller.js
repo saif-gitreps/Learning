@@ -6,6 +6,7 @@ const ApiResponse = require("../utils/ApiResponse");
 
 // since we are going to use the customer methods for generating access and refresh tokens.
 // its best practice to make a method for that.
+// would be a best practise to move this to util folders as well. might do that later.
 async function generateAccessAndRefreshToken(userId) {
    try {
       const user = await User.findById(userId);
@@ -152,12 +153,14 @@ const loginUser = asyncHandler(async (req, res) => {
    // so when we wanna use our custom methods we use the 'existingUser' object in which
    // the data loaded from the dbs is stored.
 
-   if (!(await user.isPasswordValid(password))) {
+   if (!(await existingUser.isPasswordValid(password))) {
       throw new ApiError(401, "Incorrect password, Try again!");
    }
 
    // rule of thumb, anything that we may know will take time , needs to be awaited.
-   const { refreshToken, accessToken } = await generateAccessAndRefreshToken(user._id);
+   const { refreshToken, accessToken } = await generateAccessAndRefreshToken(
+      existingUser._id
+   );
 
    // we want to send some data as resposne.
    // now we did save the refreshToken in the dbs of this user when we made that call.
@@ -165,7 +168,7 @@ const loginUser = asyncHandler(async (req, res) => {
    // we could add that property or we could make a dbs call, here the latter is done, but
    // practically i would just test it and modify the 'user' object and update the properties over here.
 
-   user = await User.findById(user._id).select("-password -refreshToken");
+   existingUser = await User.findById(existingUser._id).select("-password -refreshToken");
 
    // designing some options for our cookies.
    const options = {
@@ -181,7 +184,7 @@ const loginUser = asyncHandler(async (req, res) => {
          new ApiResponse(
             200,
             {
-               user: user,
+               user: existingUser,
                accessToken,
                refreshToken,
             },
@@ -190,7 +193,32 @@ const loginUser = asyncHandler(async (req, res) => {
       );
 });
 
-const logoutUser = asyncHandler(async (req, res) => {});
+const logoutUser = asyncHandler(async (req, res) => {
+   // now we will update the refresh token and reset it or make it undefined/null.
+   await User.findByIdAndUpdate(
+      req.user._id,
+      {
+         $set: {
+            refreshToken: undefined,
+         },
+      },
+      {
+         // this paramter will return the newly updated response to be able to store in
+         // a variable but we are not storing right now for updating.
+         new: true,
+      }
+   );
+   const options = {
+      httpOnly: true,
+      secure: true,
+   };
+
+   return res
+      .status(200)
+      .clearCookie("accessToken", options)
+      .clearCookie("refreshToken", options)
+      .json(new ApiResponse(200, {}, "User logged out successfully"));
+});
 
 module.exports = {
    register,
