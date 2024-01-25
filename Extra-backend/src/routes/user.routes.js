@@ -27,5 +27,7 @@ router.route("/login").post(userController.loginUser);
 // we ad the authentication middleware here, this will check if an authenticated
 // req is being sent.note: we can add as many middleware as we need on the paramter.
 router.route("/logout").post(verifyJWT, userController.logoutUser);
+// now u may or may not need to use the verifyJWT midleware here.
+router.route("/refresh-token").post(userController.refreshAccessToken);
 
 module.exports = router;
