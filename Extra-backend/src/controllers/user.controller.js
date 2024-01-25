@@ -3,6 +3,7 @@ const ApiError = require("../utils/ApiError");
 const User = require("../models/user.model");
 const uploadOnCloudinary = require("../utils/cloudinary");
 const ApiResponse = require("../utils/ApiResponse");
+const jwt = require("../middlewares/auth.middleware");
 
 // since we are going to use the customer methods for generating access and refresh tokens.
 // its best practice to make a method for that.
@@ -135,9 +136,10 @@ const loginUser = asyncHandler(async (req, res) => {
    // if true , then add access and refresh.
    // send cookie
    const { username, email, password } = req.body;
+   console.log(req.body);
 
-   if (!username || !email) {
-      throw new ApiError(400, "email/username is required");
+   if (!email) {
+      throw new ApiError(400, "email is required");
    }
 
    const existingUser = await User.findOne({
@@ -220,8 +222,65 @@ const logoutUser = asyncHandler(async (req, res) => {
       .json(new ApiResponse(200, {}, "User logged out successfully"));
 });
 
+// so idea is that , when this access token expires, instead of telling the user to
+// re login, the frontend UI will instead allow the user to hit some endpoint/url such that
+// the accessToken be refreshed. in this endpoint we will compare the refreshtoken at the database
+// and the refresh token of the user to give the user a new accessToken.
+
+const refreshAccessToken = asyncHandler(async (req, res) => {
+   // this or is for mobile users , lets say their token is in the body.
+   const incomingRefreshToken = req.cookies.refreshToken || req.body.refreshToken;
+
+   if (!incomingRefreshToken) {
+      throw new ApiError(401, "Unauthorized request");
+   }
+
+   // now this try block is not necessary but it is a cautinionary move.
+   // also i still have doubts about why we should use even use try block since we have async handler.
+   try {
+      const decodedToken = jwt.verify(
+         incomingRefreshToken,
+         process.env.REFRESH_TOKEN_SECRET
+      );
+
+      const user = await User.findById(decodedToken?._id);
+
+      if (!user) {
+         throw new ApiError(401, "Invalid refresh token");
+      }
+
+      if (incomingRefreshToken !== user.refreshToken) {
+         throw new ApiError(401, "Refresh token is expired or Invalid");
+      }
+
+      const options = {
+         httpOnly: true,
+         secure: true,
+      };
+
+      const { accessToken, newRefreshToken } = await generateAccessAndRefreshToken(
+         user._id
+      );
+
+      return res
+         .status(200)
+         .cookie("accessToken", accessToken, options)
+         .cookie("refreshToken", newRefreshToken, options)
+         .json(
+            new ApiResponse(
+               200,
+               { accessToken, newRefreshToken },
+               "accessToken refreshed!"
+            )
+         );
+   } catch (error) {
+      throw new ApiError(401, "Invalid refreshToken");
+   }
+});
+
 module.exports = {
    register,
    loginUser,
    logoutUser,
+   refreshAccessToken,
 };
