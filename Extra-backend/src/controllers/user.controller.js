@@ -309,6 +309,93 @@ const getCurrentUser = asyncHandler(async (req, res) => {
       .json(new ApiResponse(200, req.user), "Current user fetched successfully");
 });
 
+const updateAccountDetails = asyncHandler(async (req, res) => {
+   // add as many fields as you need.
+   const { fullname, username } = req.body;
+
+   if (!fullname || !username) {
+      throw new ApiError(400, "Please dont fields empty");
+   }
+
+   const updatedUser = await User.findByIdAndUpdate(
+      req.user?._id,
+      {
+         $set: {
+            fullname: fullname,
+            username: username,
+         },
+      },
+      {
+         new: true,
+      }
+   ).select("-password");
+
+   return res
+      .status(200)
+      .json(new ApiResponse(200, updatedUser, "User details updated successfully"));
+});
+
+// making another endpoint for file updatation.
+const updateUserAvatar = asyncHandler(async (req, res) => {
+   const avatarLocalPath = req.file?.path;
+
+   if (!avatarLocalPath) {
+      throw new ApiError(400, "Avatar missing!");
+   }
+
+   const avatar = await uploadOnCloudinary(avatarLocalPath);
+
+   if (!avatar.url) {
+      throw new ApiError(400, "Error retrieving avatar url");
+   }
+
+   await User.findByIdAndUpdate(
+      req.user._id,
+      {
+         $set: {
+            avatar: avatar.url,
+         },
+      },
+      {
+         new: true,
+      }
+   ).select("-password");
+
+   // now note that i didint save the user object and return the details on purpose
+   // tho you can if you wanted.
+   return res.status(200).json(new ApiResponse(200, {}, "Avatar updated successfully"));
+});
+
+const updateUserCoverImage = asyncHandler(async (req, res) => {
+   const coverImageLocalPath = req.file?.path;
+
+   if (!coverImageLocalPath) {
+      throw new ApiError(400, "Cover Image missing!");
+   }
+
+   const coverImage = await uploadOnCloudinary(coverImageLocalPath);
+
+   if (!coverImage.url) {
+      throw new ApiError(400, "Error retrieving coverImage url");
+   }
+
+   await User.findByIdAndUpdate(
+      req.user._id,
+      {
+         $set: {
+            coverImage: coverImage.url,
+         },
+      },
+      {
+         new: true,
+      }
+   ).select("-password");
+
+   return res
+      .status(200)
+      .json(new ApiResponse(200, {}, "Cover image updated successfully"));
+});
+
 module.exports = {
    register,
    loginUser,
@@ -316,4 +403,7 @@ module.exports = {
    refreshAccessToken,
    changeCurrentPassword,
    getCurrentUser,
+   updateAccountDetails,
+   updateUserAvatar,
+   updateUserCoverImage,
 };
