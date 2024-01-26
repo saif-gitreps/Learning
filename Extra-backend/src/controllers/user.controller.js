@@ -135,15 +135,14 @@ const loginUser = asyncHandler(async (req, res) => {
    // if exists, then check password else throw err
    // if true , then add access and refresh.
    // send cookie
-   const { username, email, password } = req.body;
-   console.log(req.body);
+   const { email, password } = req.body;
 
    if (!email) {
       throw new ApiError(400, "email is required");
    }
 
-   const existingUser = await User.findOne({
-      $or: [{ email }, { username }],
+   let existingUser = await User.findOne({
+      $or: [{ email }],
    });
 
    if (!existingUser) {
@@ -155,7 +154,8 @@ const loginUser = asyncHandler(async (req, res) => {
    // so when we wanna use our custom methods we use the 'existingUser' object in which
    // the data loaded from the dbs is stored.
 
-   if (!(await existingUser.isPasswordValid(password))) {
+   const check = await existingUser.isPasswordValid(password);
+   if (!check) {
       throw new ApiError(401, "Incorrect password, Try again!");
    }
 

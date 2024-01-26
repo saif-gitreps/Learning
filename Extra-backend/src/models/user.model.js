@@ -68,7 +68,7 @@ userSchema.pre("save", async function (next) {
 
 // making our custom models.
 userSchema.methods.isPasswordValid = async function (password) {
-   const check = await bcrypt.compare(this.password, password);
+   const check = await bcrypt.compare(password, this.password);
    return check;
 };
 
