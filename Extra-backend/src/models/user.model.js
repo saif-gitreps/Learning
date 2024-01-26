@@ -59,6 +59,8 @@ const userSchema = new mongoose.Schema(
 // this password will get encrypted again no matter what. so we have to add some conditions.
 // we only want this encyrption to happen only during the frist time or if the user has updated their password.
 userSchema.pre("save", async function (next) {
+   // [did some research about this isModified method.
+   // check the change password controller method]
    if (!this.isModified("password")) {
       return next();
    }

@@ -278,9 +278,42 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
    }
 });
 
+const changeCurrentPassword = asyncHandler(async (req, res) => {
+   const { oldPassword, newPassword } = req.body;
+
+   // We will make this route go through verifyJWT middleware.
+   // from there if you see again , we sent user object on the req.body.
+   // the other way to get user id would be to take access of our cookie.
+
+   const user = await User.findById(req.user?._id);
+
+   const isPasswordCorrect = await user.isPasswordValid(oldPassword);
+
+   if (!isPasswordCorrect) {
+      throw new ApiError(400, "Invalid current password");
+   }
+
+   // [When we are making a change in this user object, the isModified password is triggered]
+   user.password = newPassword;
+
+   await user.save({ validateBeforeSave: false });
+
+   return res.status(200).json(new ApiResponse(200, {}, "Password changed successfuly"));
+});
+
+const getCurrentUser = asyncHandler(async (req, res) => {
+   // since this route will also go through the verifyJWT middle ware.
+   // the req will have the user object.
+   return res
+      .status(200)
+      .json(new ApiResponse(200, req.user), "Current user fetched successfully");
+});
+
 module.exports = {
    register,
    loginUser,
    logoutUser,
    refreshAccessToken,
+   changeCurrentPassword,
+   getCurrentUser,
 };
