@@ -1,7 +1,7 @@
 const asyncHandler = require("../utils/async-handler");
 const ApiError = require("../utils/ApiError");
 const User = require("../models/user.model");
-const uploadOnCloudinary = require("../utils/cloudinary");
+const { uploadOnCloudinary, deleteFromCloudinary } = require("../utils/cloudinary");
 const ApiResponse = require("../utils/ApiResponse");
 const jwt = require("../middlewares/auth.middleware");
 
@@ -349,7 +349,16 @@ const updateUserAvatar = asyncHandler(async (req, res) => {
       throw new ApiError(400, "Error retrieving avatar url");
    }
 
-   await User.findByIdAndUpdate(
+   // deleting the previous avatar.
+   // now i could do this in an efficient way without much call of dbs
+   // but for the sake of understanding i will make a dbs call.
+   let user = await User.findById(req.user._id);
+
+   if (user.avatar) {
+      await deleteFromCloudinary(user.avatar);
+   }
+
+   user = await User.findByIdAndUpdate(
       req.user._id,
       {
          $set: {
@@ -363,7 +372,8 @@ const updateUserAvatar = asyncHandler(async (req, res) => {
 
    // now note that i didint save the user object and return the details on purpose
    // tho you can if you wanted.
-   return res.status(200).json(new ApiResponse(200, {}, "Avatar updated successfully"));
+   // [update i did save the user object and returned it]
+   return res.status(200).json(new ApiResponse(200, user, "Avatar updated successfully"));
 });
 
 const updateUserCoverImage = asyncHandler(async (req, res) => {
@@ -396,6 +406,83 @@ const updateUserCoverImage = asyncHandler(async (req, res) => {
       .json(new ApiResponse(200, {}, "Cover image updated successfully"));
 });
 
+const getUserChannelProfile = asyncHandler(async (req, res) => {
+   // this one we are taking from the url.
+   const { username } = req.params;
+
+   if (!username?.trim()) {
+      throw new ApiError(400, "Username missing");
+   }
+
+   // using aggregation pipelines.
+   // each object inside the this array is a stage of the pipline.
+   const channel = await User.aggregate([
+      {
+         // like filtering.
+         $match: {
+            username: username?.toLowerCase(),
+         },
+      },
+      {
+         // look up is like asking which fields to take.
+         // so it goes like , lets say we want to view a channel, we click the profile,
+         // now we will do a join with user and subscription collection.
+         // here local field is the _id of the user document
+         // foreing field is the channel id and AS is like SQL alias.
+         $lookup: {
+            from: "Subscription",
+            localField: "_id",
+            foreignField: "channel",
+            as: "subscribers",
+         },
+         // now this one is for whichever channel this channel has subscribed to
+         $lookup: {
+            from: "Subscription",
+            localField: "_id",
+            foreignField: "subscriber",
+            as: "subscribedTo",
+         },
+         // similar to the one you do in SQL where we cal then add an alias for that.
+         $addFields: {
+            subscribersCount: {
+               $size: "$subscribers",
+            },
+            channelsSubscribedToCount: {
+               $size: "$subscribedTo",
+            },
+            isSubscribed: {
+               // this cond field has 3 field if then else.
+               $cond: {
+                  // so this is basically checking me as a user is in the subscriber fields of the guy's profile i am looking at.
+                  if: { $in: [req.user?._id, "$subscribers.subscriber"] },
+                  then: true,
+                  else: false,
+               },
+            },
+         },
+         // project is like telling whatever you wanted to retrieve.
+         $project: {
+            fullname: 1,
+            username: 1,
+            subscribersCount: 1,
+            channelsSubscribedToCount: 1,
+            isSubscribed: 1,
+            avatar: 1,
+            coverImage: 1,
+            email: 1,
+         },
+      },
+   ]);
+
+   if (!channel?.length) {
+      throw new ApiError(404, "channel does not exists");
+   }
+
+   return res
+      .status(200)
+      .json(new ApiResponse(200, channel[0], "User channe fetched successfully"));
+});
+
 module.exports = {
    register,
    loginUser,
@@ -406,4 +493,5 @@ module.exports = {
    updateAccountDetails,
    updateUserAvatar,
    updateUserCoverImage,
+   getUserChannelProfile,
 };
