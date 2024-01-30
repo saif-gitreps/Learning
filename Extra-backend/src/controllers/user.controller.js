@@ -430,14 +430,14 @@ const getUserChannelProfile = asyncHandler(async (req, res) => {
          // here local field is the _id of the user document
          // foreing field is the channel id and AS is like SQL alias.
          $lookup: {
-            from: "Subscription",
+            from: "subscriptions",
             localField: "_id",
             foreignField: "channel",
             as: "subscribers",
          },
          // now this one is for whichever channel this channel has subscribed to
          $lookup: {
-            from: "Subscription",
+            from: "subscriptions",
             localField: "_id",
             foreignField: "subscriber",
             as: "subscribedTo",
@@ -483,6 +483,68 @@ const getUserChannelProfile = asyncHandler(async (req, res) => {
       .json(new ApiResponse(200, channel[0], "User channe fetched successfully"));
 });
 
+const getWatchHistory = asyncHandler(async (req, res) => {
+   const user = await User.aggregate([
+      {
+         $match: {
+            // note: here mongoose dosnet work so have to give the mongodb original id.
+            // but there is mongoose method for tht
+            _id: new mongoose.Types.ObjectId(req.user._id),
+         },
+      },
+      {
+         $lookup: {
+            // the Video model will have collection name of videos and so on for all collections.
+            from: "videos",
+            localField: "watchHistory",
+            foreignField: "_id",
+            as: "watchHistory",
+            // this is how we add nested pipline
+            // we need nested pipline because we need information of the owner
+            // of the video that will be retrieved.
+            pipeline: [
+               {
+                  $lookup: {
+                     from: "users",
+                     localField: "owner",
+                     foreignField: "_id",
+                     as: "owner",
+                     // now here we used another pipeline to bring this entire thing into one
+                     // value, experiment it and see what would happen if we had given this pipeline outside this lookup
+                     pipeline: [
+                        {
+                           $project: {
+                              username: 1,
+                              fullname: 1,
+                              avatar: 1,
+                           },
+                        },
+                     ],
+                  },
+               },
+               {
+                  // now note that the owner pipeline will return an array,
+                  // though it will only reutrn 1 value in the array,
+                  // we create a new field and store the first value from that array.
+                  // overwriting array field.
+                  $addFields: {
+                     owner: {
+                        $first: "$owner",
+                     },
+                  },
+               },
+            ],
+         },
+      },
+   ]);
+
+   console.log(user);
+
+   return res
+      .status(200)
+      .json(new ApiResponse(200, user[0].watchHistory, "Fetched watch history"));
+});
+
 module.exports = {
    register,
    loginUser,
@@ -494,4 +556,5 @@ module.exports = {
    updateUserAvatar,
    updateUserCoverImage,
    getUserChannelProfile,
+   getWatchHistory,
 };
