@@ -3,8 +3,8 @@ const ApiError = require("../utils/ApiError");
 const User = require("../models/user.model");
 const { uploadOnCloudinary, deleteFromCloudinary } = require("../utils/cloudinary");
 const ApiResponse = require("../utils/ApiResponse");
-const verifyJWT = require("../middlewares/auth.middleware");
 const jwt = require("jsonwebtoken");
+const mongoose = require("mongoose");
 
 // since we are going to use the customer methods for generating access and refresh tokens.
 // its best practice to make a method for that.
@@ -308,7 +308,7 @@ const getCurrentUser = asyncHandler(async (req, res) => {
    // the req will have the user object.
    return res
       .status(200)
-      .json(new ApiResponse(200, req.user), "Current user fetched successfully");
+      .json(new ApiResponse(200, req.user, "Current user fetched successfully"));
 });
 
 const updateAccountDetails = asyncHandler(async (req, res) => {
@@ -437,6 +437,8 @@ const getUserChannelProfile = asyncHandler(async (req, res) => {
             foreignField: "channel",
             as: "subscribers",
          },
+      },
+      {
          // now this one is for whichever channel this channel has subscribed to
          $lookup: {
             from: "subscriptions",
@@ -444,6 +446,8 @@ const getUserChannelProfile = asyncHandler(async (req, res) => {
             foreignField: "subscriber",
             as: "subscribedTo",
          },
+      },
+      {
          // similar to the one you do in SQL where we cal then add an alias for that.
          $addFields: {
             subscribersCount: {
@@ -462,6 +466,8 @@ const getUserChannelProfile = asyncHandler(async (req, res) => {
                },
             },
          },
+      },
+      {
          // project is like telling whatever you wanted to retrieve.
          $project: {
             fullname: 1,
@@ -539,8 +545,6 @@ const getWatchHistory = asyncHandler(async (req, res) => {
          },
       },
    ]);
-
-   console.log(user);
 
    return res
       .status(200)
