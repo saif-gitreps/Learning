@@ -30,4 +30,22 @@ router.route("/logout").post(verifyJWT, userController.logoutUser);
 // now u may or may not need to use the verifyJWT midleware here.
 router.route("/refresh-token").post(userController.refreshAccessToken);
 
+router.route("/change-password").post(verifyJWT, userController.changeCurrentPassword);
+
+router.route("/current-user").get(verifyJWT, userController.getCurrentUser);
+
+router.route("/update-account").patch(verifyJWT, userController.updateAccountDetails);
+
+router
+   .route("/avatar")
+   .patch(verifyJWT, upload.single("avatar"), userController.updateUserAvatar);
+
+router
+   .route("/cover-image")
+   .patch(verifyJWT, upload.single("coverImage"), userController.updateUserCoverImage);
+
+router.route("/c/:username").get(verifyJWT, userController.getUserChannelProfile);
+
+router.route("/history").get(verifyJWT, userController.getWatchHistory);
+
 module.exports = router;
