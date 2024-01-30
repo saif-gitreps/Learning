@@ -3,7 +3,8 @@ const ApiError = require("../utils/ApiError");
 const User = require("../models/user.model");
 const { uploadOnCloudinary, deleteFromCloudinary } = require("../utils/cloudinary");
 const ApiResponse = require("../utils/ApiResponse");
-const jwt = require("../middlewares/auth.middleware");
+const verifyJWT = require("../middlewares/auth.middleware");
+const jwt = require("jsonwebtoken");
 
 // since we are going to use the customer methods for generating access and refresh tokens.
 // its best practice to make a method for that.
@@ -200,8 +201,9 @@ const logoutUser = asyncHandler(async (req, res) => {
    await User.findByIdAndUpdate(
       req.user._id,
       {
-         $set: {
-            refreshToken: undefined,
+         // [update , which ever field you want to unset it just set it to 1]
+         $unset: {
+            refreshToken: 1,
          },
       },
       {
