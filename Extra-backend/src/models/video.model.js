@@ -1,4 +1,4 @@
-const mongoose = require("moongoose");
+const mongoose = require("mongoose");
 const mongooseAggregatePaginate = require("mongoose-aggregate-paginate-v2");
 
 const videoSchema = new mongoose.Schema(
@@ -21,7 +21,7 @@ const videoSchema = new mongoose.Schema(
       },
       duration: {
          type: Number, // cloudinary url <- from the video file info we will take this info
-         required: true,
+         default: 10,
       },
       views: {
          type: Number,
@@ -37,7 +37,7 @@ const videoSchema = new mongoose.Schema(
       },
    },
    {
-      timestamps: True,
+      timestamps: true,
    }
 );
 

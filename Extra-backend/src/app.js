@@ -14,9 +14,11 @@ app.use(cookieParser());
 
 // routes import.
 const userRoutes = require("./routes/user.routes");
+const videoRoutes = require("./routes/video.routes");
 
 // routes declaration.
 // we have to add these versioning as it is RESTful api good practise.
 app.use("/api/v1/users", userRoutes);
+app.use("/api/v1/videos", videoRoutes);
 
 module.exports = app;

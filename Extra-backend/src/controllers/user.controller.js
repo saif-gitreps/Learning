@@ -77,8 +77,6 @@ const register = asyncHandler(async (req, res, next) => {
 
    // here we are grabbing the path of the avatar image that we have uploaded to the server.
    const avatarLocalPath = req.files?.avatar[0]?.path;
-   console.log(req.files);
-   console.log(req.files.avatar);
 
    let coverImageLocalPath;
    if (

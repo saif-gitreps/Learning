@@ -1,7 +1,7 @@
 const asyncHandler = require("../utils/async-handler");
 const Video = require("../models/video.model");
 const User = require("../models/user.model");
-const uploadOnCloudinary = require("../utils/cloudinary");
+const { uploadOnCloudinary } = require("../utils/cloudinary");
 const ApiError = require("../utils/ApiError");
 const ApiResponse = require("../utils/ApiResponse");
 const mongoose = require("mongoose");
@@ -106,6 +106,9 @@ const publishAVideo = asyncHandler(async (req, res) => {
    const uploadedThumbnail = await uploadOnCloudinary(thumbnailLocalPath);
    const uploadedVideo = await uploadOnCloudinary(videoLocalPath);
 
+   console.log(uploadedThumbnail);
+   console.log(uploadedVideo);
+
    if (!uploadedThumbnail && !uploadedVideo) {
       throw new ApiError(
          400,
@@ -113,19 +116,14 @@ const publishAVideo = asyncHandler(async (req, res) => {
       );
    }
 
-   const newVideo = await Video.create(
-      {
-         videoFile: uploadedVideo.url,
-         thumbnail: uploadedThumbnail.url,
-         title: title,
-         description: description,
-         duration: 1, // temporarily keeping this 1, will console.log upload on cloudinary and check.
-         owner: req.user._id,
-      },
-      {
-         new: true,
-      }
-   );
+   const newVideo = await Video.create({
+      videoFile: uploadedVideo?.url,
+      thumbnail: uploadedThumbnail?.url,
+      title: title,
+      description: description,
+      duration: uploadedVideo.duration,
+      owner: req.user._id,
+   });
 
    if (!newVideo) {
       throw new ApiError(400, "failure uploading video on the platfrom.");
@@ -135,3 +133,8 @@ const publishAVideo = asyncHandler(async (req, res) => {
       .status(200)
       .json(200, new ApiResponse(200, newVideo, "Video uploaded successfully."));
 });
+
+module.exports = {
+   getAllVideos,
+   publishAVideo,
+};
