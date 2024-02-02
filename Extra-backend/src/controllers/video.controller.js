@@ -20,7 +20,7 @@ const getAllVideos = asyncHandler(async (req, res) => {
       sort[sortBY] = sortType;
    }
    if (userId) {
-      match.owner = userId;
+      match.owner = new mongoose.Types.ObjectId(userId);
    }
    const videos = await Video.aggregate([
       {
@@ -106,9 +106,6 @@ const publishAVideo = asyncHandler(async (req, res) => {
    const uploadedThumbnail = await uploadOnCloudinary(thumbnailLocalPath);
    const uploadedVideo = await uploadOnCloudinary(videoLocalPath);
 
-   console.log(uploadedThumbnail);
-   console.log(uploadedVideo);
-
    if (!uploadedThumbnail && !uploadedVideo) {
       throw new ApiError(
          400,
@@ -134,7 +131,75 @@ const publishAVideo = asyncHandler(async (req, res) => {
       .json(200, new ApiResponse(200, newVideo, "Video uploaded successfully."));
 });
 
+const getVideo = asyncHandler(async (req, res) => {
+   const { videoId } = req.params;
+   // we will get all info about the video along with owner informations,
+   // all the comments and likes (in numbers).
+
+   const video = await Video.aggregate([
+      {
+         $match: {
+            _id: new mongoose.Types.ObjectId(videoId),
+         },
+      },
+      {
+         $lookup: {
+            from: "users",
+            foreignField: "_id",
+            localField: "owner",
+            as: "owner",
+            pipeline: [
+               {
+                  $project: {
+                     _id: 1,
+                     username: 1,
+                     avatar: 1,
+                  },
+               },
+            ],
+         },
+      },
+      {
+         $lookup: {
+            from: "comments",
+            foreignField: "_id",
+            localField: "video",
+            as: "commentsOnTheVideo",
+         },
+      },
+      {
+         $lookup: {
+            from: "likes",
+            foreignField: "_id",
+            localField: "video",
+            as: "likesOnTheVideo",
+         },
+      },
+      {
+         // so this is the technique we use to deconstruct a single element array into its single object
+         // something like [result: {1,2,3}] to result: {1,2,3}
+         $addFields: {
+            owner: {
+               $first: "$owner",
+            },
+            numberOfLikes: {
+               $size: "$likesOnTheVideo",
+            },
+            numberOfLikes: {
+               $first: "$numberOfLikes",
+            },
+         },
+      },
+   ]);
+   if (!video) {
+      throw new ApiError(400, "No such video exists");
+   }
+
+   return res.status(200).json(new ApiResponse(200, video, "Video fetched successfully"));
+});
+
 module.exports = {
    getAllVideos,
    publishAVideo,
+   getVideo,
 };

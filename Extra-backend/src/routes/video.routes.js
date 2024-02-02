@@ -22,4 +22,6 @@ router.route("/publish-video").post(
    videoController.publishAVideo
 );
 
+router.route("/get-video/:videoId").get(verifyJWT, videoController.getVideo);
+
 module.exports = router;
