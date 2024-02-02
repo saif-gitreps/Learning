@@ -4,7 +4,7 @@ const upload = require("../middlewares/multer.middleware");
 const verifyJWT = require("../middlewares/auth.middleware");
 
 //unprotected routes.
-router.route("/get-videos").get(videoController.getAllVideos);
+router.route("/get-all-videos").post(videoController.getAllVideos);
 
 //protected routes.
 router.route("/publish-video").post(

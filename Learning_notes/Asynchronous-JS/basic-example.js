@@ -1,12 +1,15 @@
-console.log(" I ");
-
-console.log(" eat ");
-
-// this one will be outputed at last ascyn code doesnet wait for other function to finish executiing.
-setTimeout(() => {
-   console.log(" ice cream ");
-});
-
-console.log(" with a ");
-
-console.log(" spoon ");
+const retrievePublicIdFromUrl = (url) => {
+   let n = url.length;
+   let publicId = "";
+   for (let i = n - 1; i >= 0; i--) {
+      if (url[i] == ".") {
+         i--;
+         while (url[i] != "/") {
+            publicId += url[i];
+            i--;
+         }
+         break;
+      }
+   }
+   return publicId.split("").reverse().join("");
+};

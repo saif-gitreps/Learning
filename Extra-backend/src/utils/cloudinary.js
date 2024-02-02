@@ -32,6 +32,12 @@ const uploadOnCloudinary = async (localFilePath) => {
 // to delete a file from cloudinary
 
 const deleteFromCloudinary = async (cloudinaryPublicId) => {
+   // cloudinary.v2.api
+   //    .delete_resources(["roolsspdvod7nydyawnd"], {
+   //       type: "upload",
+   //       resource_type: "auto",
+   //    })
+   //    .then(console.log);
    try {
       if (!cloudinaryPublicId) {
          return null;
@@ -39,11 +45,28 @@ const deleteFromCloudinary = async (cloudinaryPublicId) => {
       const response = await cloudinary.uploader.destroy(cloudinaryPublicId);
       return response;
    } catch (error) {
-      throw new Error("Deletion from cloudinary faileD :" + error);
+      throw new Error("Deletion from cloudinary failed :" + error);
    }
+};
+
+const retrievePublicIdFromUrl = (url) => {
+   let n = url.length;
+   let publicId = "";
+   for (let i = n - 1; i >= 0; i--) {
+      if (url[i] == ".") {
+         i--;
+         while (url[i] != "/") {
+            publicId += url[i];
+            i--;
+         }
+         break;
+      }
+   }
+   return publicId.split("").reverse().join("");
 };
 
 module.exports = {
    uploadOnCloudinary,
    deleteFromCloudinary,
+   retrievePublicIdFromUrl,
 };

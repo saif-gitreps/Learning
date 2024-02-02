@@ -1,34 +1,42 @@
 const asyncHandler = require("../utils/async-handler");
 const Video = require("../models/video.model");
 const User = require("../models/user.model");
-const { uploadOnCloudinary, deleteFromCloudinary } = require("../utils/cloudinary");
 const ApiError = require("../utils/ApiError");
 const ApiResponse = require("../utils/ApiResponse");
 const mongoose = require("mongoose");
+const {
+   uploadOnCloudinary,
+   deleteFromCloudinary,
+   retrievePublicIdFromUrl,
+} = require("../utils/cloudinary");
 
 const getAllVideos = asyncHandler(async (req, res) => {
-   const { page = 1, limit = 10, query, sortBY, sortType, userId } = req.body;
+   const { page = 1, limit = 10, query, sortBy, sortType, userId } = req.body;
    //TODO: get all videos based on query, sort, pagination
    // task left : test different ways to get all the results.
+   console.log();
    const skip = (page - 1) * limit;
    const match = {};
    const sort = {};
    if (query) {
       match.$text = { $search: query };
    }
-   if (sortBY) {
-      // sortyBy can dateAdded, views, title, owner's username
-      sort[sortBY] = sortType;
+   if (sortBy && (sortType === 1 || sortType === -1)) {
+      // Validate sortBy against valid video fields for sorting
+      const validSortFields = ["title", "duration", "createdAt"];
+      if (validSortFields.includes(sortBy)) {
+         sort[sortBy] = parseInt(sortType);
+      } else {
+         throw new ApiError(400, "Invalid sortBy parameter");
+      }
    }
+
    if (userId) {
       match.owner = new mongoose.Types.ObjectId(userId);
    }
    const videos = await Video.aggregate([
       {
          $match: match,
-      },
-      {
-         $sort: sort,
       },
       {
          $skip: skip,
@@ -235,7 +243,7 @@ const updateVideoDetails = asyncHandler(async (req, res) => {
 
 const updateVideoThumbnail = asyncHandler(async (req, res) => {
    const { videoId } = req.params;
-   const thumbnailLocalPath = req.files?.path;
+   const thumbnailLocalPath = req.file?.path;
 
    if (!thumbnailLocalPath) {
       throw new ApiError(400, "thumbnail was not received by the server.");
@@ -249,9 +257,15 @@ const updateVideoThumbnail = asyncHandler(async (req, res) => {
 
    let video = await Video.findById(videoId);
 
+   let videoDelete;
    if (video.thumbnail) {
-      await deleteFromCloudinary(video.thumbnail);
+      videoDelete = await deleteFromCloudinary(
+         // i made this alogorithm.
+         retrievePublicIdFromUrl(video.thumbnail).trim()
+      );
    }
+
+   console.log(videoDelete);
 
    video = await Video.findByIdAndUpdate(
       {
