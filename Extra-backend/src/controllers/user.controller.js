@@ -1,7 +1,11 @@
 const asyncHandler = require("../utils/async-handler");
 const ApiError = require("../utils/ApiError");
 const User = require("../models/user.model");
-const { uploadOnCloudinary, deleteFromCloudinary } = require("../utils/cloudinary");
+const {
+   uploadOnCloudinary,
+   deleteFromCloudinary,
+   retrievePublicIdFromUrl,
+} = require("../utils/cloudinary");
 const ApiResponse = require("../utils/ApiResponse");
 const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
@@ -343,19 +347,19 @@ const updateUserAvatar = asyncHandler(async (req, res) => {
       throw new ApiError(400, "Avatar missing!");
    }
 
-   const avatar = await uploadOnCloudinary(avatarLocalPath);
-
-   if (!avatar.url) {
-      throw new ApiError(400, "Error retrieving avatar url");
-   }
-
    // deleting the previous avatar.
    // now i could do this in an efficient way without much call of dbs
    // but for the sake of understanding i will make a dbs call.
    let user = await User.findById(req.user._id);
 
    if (user.avatar) {
-      await deleteFromCloudinary(user.avatar);
+      await deleteFromCloudinary(retrievePublicIdFromUrl(user.avatar).trim());
+   }
+
+   const avatar = await uploadOnCloudinary(avatarLocalPath);
+
+   if (!avatar.url) {
+      throw new ApiError(400, "Error retrieving avatar url");
    }
 
    user = await User.findByIdAndUpdate(
@@ -383,13 +387,19 @@ const updateUserCoverImage = asyncHandler(async (req, res) => {
       throw new ApiError(400, "Cover Image missing!");
    }
 
+   let user = await User.findById(req.user._id);
+
+   if (user.coverImage) {
+      await deleteFromCloudinary(retrievePublicIdFromUrl(user.coverImage).trim());
+   }
+
    const coverImage = await uploadOnCloudinary(coverImageLocalPath);
 
    if (!coverImage.url) {
       throw new ApiError(400, "Error retrieving coverImage url");
    }
 
-   await User.findByIdAndUpdate(
+   user = await User.findByIdAndUpdate(
       req.user._id,
       {
          $set: {
@@ -403,7 +413,7 @@ const updateUserCoverImage = asyncHandler(async (req, res) => {
 
    return res
       .status(200)
-      .json(new ApiResponse(200, {}, "Cover image updated successfully"));
+      .json(new ApiResponse(200, user, "Cover image updated successfully"));
 });
 
 const getUserChannelProfile = asyncHandler(async (req, res) => {

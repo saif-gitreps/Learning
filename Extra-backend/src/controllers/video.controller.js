@@ -1,6 +1,5 @@
 const asyncHandler = require("../utils/async-handler");
 const Video = require("../models/video.model");
-const User = require("../models/user.model");
 const ApiError = require("../utils/ApiError");
 const ApiResponse = require("../utils/ApiResponse");
 const mongoose = require("mongoose");
@@ -13,22 +12,22 @@ const {
 const getAllVideos = asyncHandler(async (req, res) => {
    const { page = 1, limit = 10, query, sortBy, sortType, userId } = req.body;
    //TODO: get all videos based on query, sort, pagination
-   // task left : test different ways to get all the results.
-   console.log();
+
+   // sort types: views, createdAt, duration, title.
    const skip = (page - 1) * limit;
-   const match = {};
+   const match = {
+      isPublished: true,
+   };
    const sort = {};
    if (query) {
       match.$text = { $search: query };
    }
-   if (sortBy && (sortType === 1 || sortType === -1)) {
-      // Validate sortBy against valid video fields for sorting
-      const validSortFields = ["title", "duration", "createdAt"];
-      if (validSortFields.includes(sortBy)) {
-         sort[sortBy] = parseInt(sortType);
-      } else {
-         throw new ApiError(400, "Invalid sortBy parameter");
-      }
+
+   if (sortBy && (parseInt(sortType) === 1 || parseInt(sortType) === -1)) {
+      sort[sortBy] = parseInt(sortType);
+   } else {
+      // if no sort by was sent, then ill sort it by recent.
+      sort["createdAt"] = 1;
    }
 
    if (userId) {
@@ -37,6 +36,9 @@ const getAllVideos = asyncHandler(async (req, res) => {
    const videos = await Video.aggregate([
       {
          $match: match,
+      },
+      {
+         $sort: sort,
       },
       {
          $skip: skip,
@@ -74,6 +76,7 @@ const getAllVideos = asyncHandler(async (req, res) => {
             videoFile: 1,
             thumbnail: 1,
             owner: {
+               _id: 1,
                username: 1,
             },
             title: 1,
@@ -200,7 +203,8 @@ const getVideo = asyncHandler(async (req, res) => {
          },
       },
    ]);
-   if (!video) {
+
+   if (!video || !video.length) {
       throw new ApiError(400, "No such video exists");
    }
 
@@ -232,7 +236,7 @@ const updateVideoDetails = asyncHandler(async (req, res) => {
       }
    );
 
-   if (!video) {
+   if (!video || !video.length) {
       throw new ApiError(400, "no such video exists to update.");
    }
 
@@ -257,15 +261,12 @@ const updateVideoThumbnail = asyncHandler(async (req, res) => {
 
    let video = await Video.findById(videoId);
 
-   let videoDelete;
    if (video.thumbnail) {
-      videoDelete = await deleteFromCloudinary(
+      await deleteFromCloudinary(
          // i made this alogorithm.
          retrievePublicIdFromUrl(video.thumbnail).trim()
       );
    }
-
-   console.log(videoDelete);
 
    video = await Video.findByIdAndUpdate(
       {
@@ -281,7 +282,7 @@ const updateVideoThumbnail = asyncHandler(async (req, res) => {
       }
    );
 
-   if (!video) {
+   if (!video || !video.length) {
       throw new ApiError(400, "no such video exists to update.");
    }
 
@@ -299,7 +300,14 @@ const deleteVideo = asyncHandler(async (req, res) => {
       throw new ApiError(400, "No such video exists.");
    }
 
-   await deleteFromCloudinary(video.videoFile);
+   if (video.videoFile && video.thumbnail) {
+      await deleteFromCloudinary(retrievePublicIdFromUrl(video.thumbnail).trim());
+
+      const response = await deleteFromCloudinary(
+         retrievePublicIdFromUrl(video.videoFile)
+      );
+      console.log(response);
+   }
 
    video = await Video.findByIdAndDelete(
       {
@@ -310,7 +318,7 @@ const deleteVideo = asyncHandler(async (req, res) => {
       }
    );
 
-   if (!video) {
+   if (!video || !video.length) {
       throw new ApiError(400, "no such video exists to delete.");
    }
 

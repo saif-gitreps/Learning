@@ -4,11 +4,13 @@ const upload = require("../middlewares/multer.middleware");
 const verifyJWT = require("../middlewares/auth.middleware");
 
 //unprotected routes.
-router.route("/get-all-videos").post(videoController.getAllVideos);
+
+router.use(verifyJWT);
 
 //protected routes.
-router.route("/publish-video").post(
-   verifyJWT,
+router.route("/").get(videoController.getAllVideos);
+
+router.route("/").post(
    upload.fields([
       {
          name: "thumbnail",
@@ -22,22 +24,16 @@ router.route("/publish-video").post(
    videoController.publishAVideo
 );
 
-router.route("/get-video/:videoId").get(verifyJWT, videoController.getVideo);
+router.route("/:videoId").get(videoController.getVideo);
+
+router.route("/:videoId").delete(videoController.deleteVideo);
 
 router
-   .route("/update-details/:videoId")
-   .patch(verifyJWT, videoController.updateVideoDetails);
+   .route("/:videoId")
+   .patch(upload.single("thumbnail"), videoController.updateVideoThumbnail);
 
-router
-   .route("/update-thumbnail/:videoId")
-   .patch(verifyJWT, upload.single("thumbnail"), videoController.updateVideoThumbnail);
+router.route("/update-details/:videoId").patch(videoController.updateVideoDetails);
 
-router.route("/delete/:videoId").delete(verifyJWT, videoController.deleteVideo);
-
-router.route(
-   "/toggle-publish-status/:videoId",
-   verifyJWT,
-   videoController.togglePublishStatus
-);
+router.route("/toggle/publish/:videoId", videoController.togglePublishStatus);
 
 module.exports = router;
