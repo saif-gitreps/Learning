@@ -24,4 +24,20 @@ router.route("/publish-video").post(
 
 router.route("/get-video/:videoId").get(verifyJWT, videoController.getVideo);
 
+router
+   .route("/update-details/:videoId")
+   .patch(verifyJWT, videoController.updateVideoDetails);
+
+router
+   .route("/update-thumbnail/:videoId")
+   .patch(verifyJWT, upload.single("thumbnail"), videoController.updateVideoThumbnail);
+
+router.route("/delete/:videoId").delete(verifyJWT, videoController.deleteVideo);
+
+router.route(
+   "/toggle-publish-status/:videoId",
+   verifyJWT,
+   videoController.togglePublishStatus
+);
+
 module.exports = router;

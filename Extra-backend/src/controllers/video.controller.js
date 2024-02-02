@@ -1,7 +1,7 @@
 const asyncHandler = require("../utils/async-handler");
 const Video = require("../models/video.model");
 const User = require("../models/user.model");
-const { uploadOnCloudinary } = require("../utils/cloudinary");
+const { uploadOnCloudinary, deleteFromCloudinary } = require("../utils/cloudinary");
 const ApiError = require("../utils/ApiError");
 const ApiResponse = require("../utils/ApiResponse");
 const mongoose = require("mongoose");
@@ -9,6 +9,7 @@ const mongoose = require("mongoose");
 const getAllVideos = asyncHandler(async (req, res) => {
    const { page = 1, limit = 10, query, sortBY, sortType, userId } = req.body;
    //TODO: get all videos based on query, sort, pagination
+   // task left : test different ways to get all the results.
    const skip = (page - 1) * limit;
    const match = {};
    const sort = {};
@@ -66,12 +67,9 @@ const getAllVideos = asyncHandler(async (req, res) => {
             thumbnail: 1,
             owner: {
                username: 1,
-               avatar: 1,
             },
             title: 1,
-            description: 1,
             duration: 1,
-            views: 1,
             createdAt: 1,
          },
       },
@@ -106,7 +104,7 @@ const publishAVideo = asyncHandler(async (req, res) => {
    const uploadedThumbnail = await uploadOnCloudinary(thumbnailLocalPath);
    const uploadedVideo = await uploadOnCloudinary(videoLocalPath);
 
-   if (!uploadedThumbnail && !uploadedVideo) {
+   if (!uploadedThumbnail.url && !uploadedVideo.url) {
       throw new ApiError(
          400,
          "Failure while uploading thumbnail or video on Cloud.Try again!"
@@ -136,10 +134,13 @@ const getVideo = asyncHandler(async (req, res) => {
    // we will get all info about the video along with owner informations,
    // all the comments and likes (in numbers).
 
+   // task left in this controller: after making likes and comments controller , convert the result to
+   // object.
    const video = await Video.aggregate([
       {
          $match: {
             _id: new mongoose.Types.ObjectId(videoId),
+            isPublished: true,
          },
       },
       {
@@ -195,11 +196,143 @@ const getVideo = asyncHandler(async (req, res) => {
       throw new ApiError(400, "No such video exists");
    }
 
-   return res.status(200).json(new ApiResponse(200, video, "Video fetched successfully"));
+   return res
+      .status(200)
+      .json(new ApiResponse(200, video[0], "Video fetched successfully"));
+});
+
+const updateVideoDetails = asyncHandler(async (req, res) => {
+   const { videoId } = req.params;
+   const { title, description } = req.body;
+
+   if (!title || !description) {
+      throw new ApiError(400, "Please dont keep any fields empty.");
+   }
+
+   const video = await Video.findByIdAndUpdate(
+      {
+         _id: videoId,
+      },
+      {
+         $set: {
+            title: title,
+            description: description,
+         },
+      },
+      {
+         new: true,
+      }
+   );
+
+   if (!video) {
+      throw new ApiError(400, "no such video exists to update.");
+   }
+
+   return res
+      .status(200)
+      .json(new ApiResponse(200, video, "Video details updated successfully."));
+});
+
+const updateVideoThumbnail = asyncHandler(async (req, res) => {
+   const { videoId } = req.params;
+   const thumbnailLocalPath = req.files?.path;
+
+   if (!thumbnailLocalPath) {
+      throw new ApiError(400, "thumbnail was not received by the server.");
+   }
+
+   const uploadedThumbnail = await uploadOnCloudinary(thumbnailLocalPath);
+
+   if (!uploadedThumbnail.url) {
+      throw new ApiError(400, "Failure uploading thumbnail to cloudinary.");
+   }
+
+   let video = await Video.findById(videoId);
+
+   if (video.thumbnail) {
+      await deleteFromCloudinary(video.thumbnail);
+   }
+
+   video = await Video.findByIdAndUpdate(
+      {
+         _id: videoId,
+      },
+      {
+         $set: {
+            thumbnail: uploadedThumbnail.url,
+         },
+      },
+      {
+         new: true,
+      }
+   );
+
+   if (!video) {
+      throw new ApiError(400, "no such video exists to update.");
+   }
+
+   return res
+      .status(200)
+      .json(new ApiResponse(200, video, "Video thumbnail updated successfully."));
+});
+
+const deleteVideo = asyncHandler(async (req, res) => {
+   const { videoId } = req.params;
+
+   let video = await Video.findById(videoId);
+
+   if (!video) {
+      throw new ApiError(400, "No such video exists.");
+   }
+
+   await deleteFromCloudinary(video.videoFile);
+
+   video = await Video.findByIdAndDelete(
+      {
+         _id: videoId,
+      },
+      {
+         new: true,
+      }
+   );
+
+   if (!video) {
+      throw new ApiError(400, "no such video exists to delete.");
+   }
+
+   return res
+      .status(200)
+      .json(new ApiResponse(200, video, "Video deleted successfully."));
+});
+
+const togglePublishStatus = asyncHandler(async (req, res) => {
+   const { videoId } = req.params;
+
+   const video = await Video.findByIdAndUpdate(
+      { videoId },
+      {
+         $set: {
+            isPublished: false,
+         },
+      },
+      { new: true }
+   );
+
+   if (!video) {
+      throw new ApiError(400, "Failure changing video visibility.");
+   }
+
+   return res
+      .status(200)
+      .json(new ApiResponse(200, video, "Video made private successfully."));
 });
 
 module.exports = {
    getAllVideos,
    publishAVideo,
    getVideo,
+   updateVideoDetails,
+   updateVideoThumbnail,
+   deleteVideo,
+   togglePublishStatus,
 };
