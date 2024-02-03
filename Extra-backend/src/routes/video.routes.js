@@ -34,6 +34,6 @@ router
 
 router.route("/update-details/:videoId").patch(videoController.updateVideoDetails);
 
-router.route("/toggle/publish/:videoId", videoController.togglePublishStatus);
+router.route("/toggle/publish/:videoId").patch(videoController.togglePublishStatus);
 
 module.exports = router;

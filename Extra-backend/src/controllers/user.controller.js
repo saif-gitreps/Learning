@@ -299,7 +299,8 @@ const changeCurrentPassword = asyncHandler(async (req, res) => {
 
    // [When we are making a change in this user object, the isModified password is triggered]
    user.password = newPassword;
-
+   //If you're updating a document and only want to modify
+   //certain fields without validating the entire document.
    await user.save({ validateBeforeSave: false });
 
    return res.status(200).json(new ApiResponse(200, {}, "Password changed successfuly"));

@@ -15,14 +15,17 @@ const getAllVideos = asyncHandler(async (req, res) => {
 
    // sort types: views, createdAt, duration, title.
    const skip = (page - 1) * limit;
-   const match = {
-      isPublished: true,
-   };
-   const sort = {};
+   
+   const match = {};
    if (query) {
       match.$text = { $search: query };
+      match[isPublished] = true;
+      if (userId) {
+         match.owner = new mongoose.Types.ObjectId(userId);
+      }
    }
 
+   const sort = {};
    if (sortBy && (parseInt(sortType) === 1 || parseInt(sortType) === -1)) {
       sort[sortBy] = parseInt(sortType);
    } else {
@@ -30,9 +33,6 @@ const getAllVideos = asyncHandler(async (req, res) => {
       sort["createdAt"] = 1;
    }
 
-   if (userId) {
-      match.owner = new mongoose.Types.ObjectId(userId);
-   }
    const videos = await Video.aggregate([
       {
          $match: match,
@@ -137,7 +137,7 @@ const publishAVideo = asyncHandler(async (req, res) => {
 
    return res
       .status(200)
-      .json(200, new ApiResponse(200, newVideo, "Video uploaded successfully."));
+      .json(new ApiResponse(200, newVideo, "Video uploaded successfully."));
 });
 
 const getVideo = asyncHandler(async (req, res) => {
@@ -330,23 +330,19 @@ const deleteVideo = asyncHandler(async (req, res) => {
 const togglePublishStatus = asyncHandler(async (req, res) => {
    const { videoId } = req.params;
 
-   const video = await Video.findByIdAndUpdate(
-      { videoId },
-      {
-         $set: {
-            isPublished: false,
-         },
-      },
-      { new: true }
-   );
+   let video = await Video.findById(videoId);
 
    if (!video) {
-      throw new ApiError(400, "Failure changing video visibility.");
+      throw new ApiError(400, "No such video exists to toggle.");
    }
+
+   video.isPublished = video.isPublished == true ? false : true;
+
+   video = await video.save({ validateBeforeSave: false });
 
    return res
       .status(200)
-      .json(new ApiResponse(200, video, "Video made private successfully."));
+      .json(new ApiResponse(200, video, "Video publicity toggled successfully."));
 });
 
 module.exports = {
