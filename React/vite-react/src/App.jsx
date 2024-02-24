@@ -1,11 +1,7 @@
-let name = "saif";
+import * as fun from "./chai.jsx";
 
-function App(name) {
-   return (
-      <>
-         <h1>Hello, {name}!</h1>
-      </>
-   );
+function App() {
+   return <fun.Coffee />;
 }
 
-export default App(name);
+export default App;
